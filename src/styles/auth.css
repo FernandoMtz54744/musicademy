@@ -1,5 +1,5 @@
-/* Estilo del login & Registro*/
-.main-login{
+/* Estilo del login & Registro (auth)*/
+.main-auth{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,18 +7,25 @@
     height: 80vh;
 }
 
-.form-container-login{
+.form-container-auth{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--form-container-login);
-    width: 40vw;
+    width: 45vw;
     border-radius: 10px;
     color: whitesmoke;
 }
 
-.form-login{
+.form-container-login-color{
+    background-color: var(--form-container-login);
+}
+
+.form-container-register-color{
+    background-color: var(--form-container-register);
+}
+
+.form-auth{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,12 +33,19 @@
     border-radius: 20px;
     height: 70vh;
     width: 25vw;
-    background-color: var(--form-color-login);
+    background-color: var(--form-color-auth);
     color: black;
+}
+
+.form-login-border-color{
     border: 10px solid var(--form-container-login);
 }
 
-.form-login h1{
+.form-register-border-color{
+    border: 10px solid var(--form-container-register);
+}
+
+.form-auth h1{
     text-align: center;
 }
 
@@ -48,18 +62,32 @@
 
 .input-text{
     height: 1.5rem;
-    border: 2px solid var(--form-container-login);
     border-radius: 5px;
     margin-left: 1.5rem;
 }
 
+.input-text-login-color{
+    border: 2px solid var(--form-container-login);
+}
+
+.input-text-register-color{
+    border: 2px solid var(--form-container-register);
+}
+
 .input-button{
-    background-color: var(--form-container-login);
     font-size: x-large;
     color: whitesmoke;
     border-radius: 5px;
     border: none;
     margin-top: 2rem;
+}
+
+.input-button-login-color{
+    background-color: var(--form-container-login);
+}
+
+.input-button-register-color{
+    background-color: var(--form-container-register);
 }
 
 .registrarse-link{

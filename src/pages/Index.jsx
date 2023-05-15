@@ -11,6 +11,7 @@ export default function Index() {
         <p>Logo</p>
         <div className='header-links'>
           <Link>Acerca de</Link>
+          <Link to="/Registro">Registro</Link>
           <Link to="/Login">Login</Link>
         </div>
       </header>

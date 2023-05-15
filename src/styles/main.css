@@ -4,8 +4,9 @@
 :root{
     --black: #070809;
     --blue: #091AB4;
+    --form-color-auth: white;
     --form-container-login: #42006A;
-    --form-color-login: white;
+    --form-container-register: #42006A;
 }
 
 *{

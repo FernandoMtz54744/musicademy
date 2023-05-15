@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "../styles/main.css"
-import "../styles/login.css"
+import "../styles/auth.css"
 
 export default function Login() {
   return (
@@ -15,10 +15,10 @@ export default function Login() {
         </div>
       </header>
 
-      <main className='main-login'>
-        <div className='form-container-login'>
-          <h2>Inicie sesión</h2>
-          <form action="" className='form-login'>
+      <main className='main-auth'>
+        <div className='form-container-auth form-container-login-color'>
+          <h1>Inicie sesión</h1>
+          <form action="" className='form-auth form-login-border-color'>
             <h1>Musicademy</h1>
             <div className='inputs-container'>
               <div className='input-container'>
@@ -26,15 +26,11 @@ export default function Login() {
                 <input className="input-text" type="email" name='correo' id='correo'/>
               </div>
               <div className='input-container'>
-                <label htmlFor="usuario">Usuario</label>
-                <input className='input-text' type="text" name='usuario' id='usuario'/>
-              </div>
-              <div className='input-container'>
                 <label htmlFor="password">Contraseña</label>
-                <input className='input-text' type="password" name="password" id="password" />
+                <input className='input-text input-text-login-color' type="password" name="password" id="password" />
               </div>
               <div className='input-container'>
-                <input className='input-button' type="submit" name='login' value="Login"/>
+                <input className='input-button input-button-login-color' type="submit" name='login' value="Login"/>
               </div>
               <div className='input-container'>
                 <button>Iniciar sesión con Google</button>
