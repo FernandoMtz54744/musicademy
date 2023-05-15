@@ -9,7 +9,7 @@ export default function Registro() {
       <header className='header header-black'>
         <p>Logo</p>
         <div className='header-links'>
-          <Link>Acerca</Link>
+          <Link>Acerca de</Link>
           <Link to="/">Inicio</Link>
           <Link to="/Login">Login</Link>
         </div>

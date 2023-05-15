@@ -3,6 +3,7 @@ import IndexContainer from './containers/IndexContainer';
 import LoginContainer from './containers/LoginContainer';
 import RegistroContainer from './containers/RegistroContainer';
 import ModulosContainer from './containers/ModulosContainer';
+import TeoriaContainer from './containers/TeoriaContainer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path='/Login' element={<LoginContainer/>}/>
         <Route path='/Registro' element={<RegistroContainer/>}/>
         <Route path='/Modulos' element={<ModulosContainer/>}/>
+        <Route path='/Teoria' element={<TeoriaContainer/>}/>
       </Routes>
     </BrowserRouter>
   );

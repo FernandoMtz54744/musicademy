@@ -29,6 +29,7 @@
 
 .texto-index-container a:hover{
     cursor: pointer;
+    background-color: #1025EA;
 }
 
 .texto-index-container h1{

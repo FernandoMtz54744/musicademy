@@ -68,3 +68,8 @@
 .minijuegos-button{
     background-color: var(--minijuegos-color);
 }
+
+/* Hovers */
+.teoria-button:hover{
+    background-color: #1025EA;
+}

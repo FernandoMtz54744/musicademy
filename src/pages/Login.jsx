@@ -9,7 +9,7 @@ export default function Login() {
       <header className='header header-black'>
         <p>Logo</p>
         <div className='header-links'>
-          <Link>Acerca</Link>
+          <Link>Acerca de</Link>
           <Link to="/">Inicio</Link>
           <Link to="/Registro">Registrarse</Link>
         </div>

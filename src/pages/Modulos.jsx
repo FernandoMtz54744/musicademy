@@ -11,7 +11,7 @@ export default function Modulos() {
       <main className='main-modulos'>
         <div className='modulo-card teoria-card'>
           <p>Teoría y ejercicios</p>
-          <Link className='modulo-card-button teoria-button'>Comenzar</Link>
+          <Link className='modulo-card-button teoria-button' to="/Teoria">Comenzar</Link>
         </div>
         <div className='modulo-card practicas-card'>
           <p>Prácticas</p>

@@ -34,10 +34,6 @@ body{
     font-size: large;
 }
 
-.header-black{
-    background-color: var(--black);
-}
-
 .header-links{
     display: flex;
     flex-direction: row;
@@ -48,6 +44,14 @@ body{
     padding: 1rem;
     text-decoration: none;
     color: whitesmoke;
+}
+
+.header-black{
+    background-color: var(--black);
+}
+
+.header-blue{
+    background-color: var(--teoria-color);
 }
 
 /* Footer waves */
@@ -61,15 +65,15 @@ body{
     display: block;
 }
 
-.waves-black{
-    fill: var(--black);
+.waves-cover{
+    transform: translate(0, 42px);
 }
 
 .waves-stroke{
-   transform: translate(0, 40px);
-   stroke-width: 5px;
-   width: 110vw;
-}
+    transform: translate(0, 40px);
+    stroke-width: 5px;
+    width: 110vw;
+ }
 
 .waves-stroke-white{
     stroke: whitesmoke;
@@ -79,6 +83,10 @@ body{
     stroke: #5e35b1;
 }
 
-.waves-cover{
-    transform: translate(0, 42px);
+.waves-black{
+    fill: var(--black);
+}
+
+.waves-blue{
+    fill: var(--teoria-color);
 }
