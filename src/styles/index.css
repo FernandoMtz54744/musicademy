@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+
+:root{
+    --black: #070809;
+    --blue: #091AB4;
+}
+
+*{
+    margin: 0px;
+    font-family: 'Titillium Web';
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem 0 1rem;
+    background-color: var(--black);
+    color: whitesmoke;
+    font-size: large;
+}
+
+.header-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.header-buttons > a {
+    padding: 1rem;
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+main{
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.presentation-index{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.presentation-index > button{
+    background-color: var(--blue);
+    color: whitesmoke;
+    padding: 0.5rem;
+    font-size: x-large;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    width: 15rem;
+}
+
+.presentation-index > button{
+    background-color: var(--blue);
+    color: whitesmoke;
+    padding: 0.5rem;
+    font-size: x-large;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    width: 15rem;
+}
+.presentation-index > button:hover{
+    cursor: pointer;
+}
+
+.presentation-index > h1{
+    font-size: 3.5rem;
+}
+
+.presentation-index > p{
+    font-size: 2rem;
+    margin-bottom: 10vh;
+}
+
+main > img{
+    height: 50vh;
+}
+
+/* Se configura las waves */
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer > svg{
+    display: block;
+    fill: var(--black);
+}
+
+.w2{
+   transform: translate(0, 40px);
+   stroke: whitesmoke;
+   stroke-width: 5px;
+   width: 110vw;
+}
+
+.w3{
+    transform: translate(0, 42px);
+}
