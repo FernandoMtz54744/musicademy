@@ -1,0 +1,52 @@
+.main-perfil{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-perfil h1{
+    padding-top: 1rem;
+}
+
+.form-container-perfil{
+    background-color: var(--black);
+    width: 70vw;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.perfil-form{
+    background-color: white;
+    color: black;
+    width: 80%;
+    border: 5px solid var(--black);
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    border-radius: 7px;
+    font-size: large;
+}
+
+.button-container-perfil{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.input-button-pefil{
+    background-color: var(--black);
+    color: whitesmoke;
+    font-size: large;
+    margin-right: 1rem;
+    padding: 0.3rem;
+    border-radius: 10px;
+    width: 5rem;
+}
+
+.input-button-pefil:hover{
+    cursor: pointer;
+}

@@ -6,6 +6,7 @@ export default function Header({headerColor}) {
     <header className={`header ${headerColor}`}>
         <p>Logo</p>
         <div className='header-links'>
+          <Link to="/Modulos">Inicio</Link>
           <Link to="/Perfil">Nombre</Link>
           <Link to="/">Logout</Link>
         </div>
