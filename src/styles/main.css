@@ -1,0 +1,78 @@
+/* Estilos generales */
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+
+:root{
+    --black: #070809;
+    --blue: #091AB4;
+    --form-container-login: #42006A;
+    --form-color-login: white;
+}
+
+*{
+    margin: 0px;
+    font-family: 'Titillium Web';
+}
+
+body{
+    background-color: #F5F5F5;
+}
+
+/* Header */
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem 0 1rem;
+    color: whitesmoke;
+    font-size: large;
+}
+
+.header-black{
+    background-color: var(--black);
+}
+
+.header-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.header-links a {
+    padding: 1rem;
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+/* Footer waves */
+.footer-waves{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-waves svg{
+    display: block;
+}
+
+.waves-black{
+    fill: var(--black);
+}
+
+.waves-stroke{
+   transform: translate(0, 40px);
+   stroke-width: 5px;
+   width: 110vw;
+}
+
+.waves-stroke-white{
+    stroke: whitesmoke;
+}
+
+.waves-stroke-purple{
+    stroke: #5e35b1;
+}
+
+.waves-cover{
+    transform: translate(0, 42px);
+}

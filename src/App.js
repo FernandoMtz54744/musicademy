@@ -1,5 +1,4 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import './App.css';
 import IndexContainer from './containers/IndexContainer';
 import LoginContainer from './containers/LoginContainer';
 import RegistroContainer from './containers/RegistroContainer';
