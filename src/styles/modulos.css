@@ -1,0 +1,70 @@
+.main-modulos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 60vh;
+}
+
+.modulos > h1{
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.modulo-card{
+    background-color: var(--black);
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: x-large;
+    font-weight: bold;
+    height: 30vh;
+    width: 15vw;
+}
+
+.modulo-card-button{
+    padding: 0.3rem;
+    border-radius: 10px;
+    width: 80%;
+    text-align: center;
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+/* Colores de cards de cada modulo */
+.teoria-card{
+    box-shadow: 15px 15px 0px 5px var(--teoria-color);
+}
+
+.practicas-card{
+    box-shadow: 15px 15px 0px 5px var(--practicas-color);
+}
+
+.evaluaciones-card{
+    box-shadow: 15px 15px 0px 5px var(--evaluaciones-color);
+}
+
+.minijuegos-card{
+    box-shadow: 15px 15px 0px 5px var(--minijuegos-color);
+}
+
+/* Colores de cada boton de cada card */
+.teoria-button{
+    background-color: var(--teoria-color);
+}
+
+.practicas-button{
+    background-color: var(--practicas-color);
+}
+
+.evaluaciones-button{
+    background-color: var(--evaluaciones-color);
+}
+
+.minijuegos-button{
+    background-color: var(--minijuegos-color);
+}

@@ -20,7 +20,7 @@ export default function Index() {
         <div className='texto-index-container'>
           <h1>Aprende como más te acomode</h1>
           <p>Estudia teoría musical de forma didáctica desde la web</p>
-          <Link to="/Login">Iniciar ahora</Link>
+          <Link to="/Modulos">Iniciar ahora</Link>
         </div>
         <img src={pentagramaIndex} alt="Pentagrama"/>
       </main>

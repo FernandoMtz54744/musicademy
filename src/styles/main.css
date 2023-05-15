@@ -7,6 +7,11 @@
     --form-color-auth: white;
     --form-container-login: #42006A;
     --form-container-register: #42006A;
+
+    --teoria-color: #091AB4;
+    --practicas-color: #0B9111;
+    --evaluaciones-color: #990478;
+    --minijuegos-color: #E64A19;
 }
 
 *{
