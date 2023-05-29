@@ -15,15 +15,15 @@ export default function Modulos() {
         </div>
         <div className='modulo-card practicas-card'>
           <p>Prácticas</p>
-          <Link className='modulo-card-button practicas-button'>Comenzar</Link>
+          <Link className='modulo-card-button practicas-button' to="/Practicas">Comenzar</Link>
         </div>
         <div className='modulo-card evaluaciones-card'>
           <p>Evaluaciones</p>
-          <Link className='modulo-card-button evaluaciones-button'>Comenzar</Link>
+          <Link className='modulo-card-button evaluaciones-button' to="/Evaluaciones">Comenzar</Link>
         </div>
         <div className='modulo-card minijuegos-card'>
           <p>Minijuegos</p>
-          <Link className='modulo-card-button minijuegos-button'>Comenzar</Link>
+          <Link className='modulo-card-button minijuegos-button' to="/Minijuegos">Comenzar</Link>
         </div>
       </main>
 

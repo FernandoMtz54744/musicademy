@@ -5,6 +5,9 @@ import RegistroContainer from './containers/RegistroContainer';
 import ModulosContainer from './containers/ModulosContainer';
 import TeoriaContainer from './containers/TeoriaContainer';
 import PerfilContainer from './containers/PerfilContainer';
+import PracticasContainer from './containers/PracticasContainer';
+import EvaluacionesContainer from './containers/EvaluacionesContainer';
+import MinijuegosContainer from './containers/MinijuegosContainer';
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
         <Route path='/Perfil' element={<PerfilContainer/>}/>
         <Route path='/Modulos' element={<ModulosContainer/>}/>
         <Route path='/Teoria' element={<TeoriaContainer/>}/>
+        <Route path='/Practicas' element={<PracticasContainer/>}/>
+        <Route path='/Evaluaciones' element={<EvaluacionesContainer/>}/>
+        <Route path='/Minijuegos' element={<MinijuegosContainer/>}/>
       </Routes>
     </BrowserRouter>
   );

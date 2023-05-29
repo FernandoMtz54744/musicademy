@@ -45,6 +45,9 @@ body{
     text-decoration: none;
     color: whitesmoke;
 }
+.header-links a:hover {
+    text-decoration: underline;
+}
 
 .header-black{
     background-color: var(--black);
@@ -52,6 +55,18 @@ body{
 
 .header-blue{
     background-color: var(--teoria-color);
+}
+
+.header-orange{
+    background-color: var(--minijuegos-color);
+}
+
+.header-green{
+    background-color: var(--practicas-color);
+}
+
+.header-purple{
+    background-color: var(--evaluaciones-color);
 }
 
 /* Footer waves */
@@ -89,4 +104,16 @@ body{
 
 .waves-blue{
     fill: var(--teoria-color);
+}
+
+.waves-orange{
+    fill: var(--minijuegos-color);
+}
+
+.waves-green{
+    fill: var(--practicas-color);
+}
+
+.waves-purple{
+    fill: var(--evaluaciones-color);
 }

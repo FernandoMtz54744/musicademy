@@ -1,4 +1,4 @@
-/* Estilo del index */
+/* Estilo del index (Pagina Principal)*/
 .main-index-container{
     height: 80vh;
     display: flex;
@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .texto-index-container a{
@@ -37,7 +37,7 @@
 }
 
 .texto-index-container p{
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 10vh;
 }
 

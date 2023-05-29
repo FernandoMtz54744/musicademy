@@ -1,3 +1,4 @@
+/* Estilos selección de módulos y submodulos selectores inmediatos (Selector de tema, prácticas, evluaciones y minijuegos) */
 .main-modulos{
     display: flex;
     flex-direction: row;
@@ -67,6 +68,52 @@
 
 .minijuegos-button{
     background-color: var(--minijuegos-color);
+}
+
+/* div tables (Practicas y evaluacions)*/
+.div-table{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 60vw;
+    height: 40vh;
+    border: 4px solid;
+    font-size: x-large;
+    border-radius: 10px;
+}
+
+.div-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.div-row p, .div-row a{
+    margin: 0px 1rem 0px 1rem;
+} 
+
+.div-row-border-bottom{
+    border-bottom: 4px solid;
+}
+
+.div-table-green{
+    border-color: var(--practicas-color);
+}
+
+.div-table-row-green{
+    border-color: var(--practicas-color);
+}
+
+.div-table-purple{
+    border-color: var(--evaluaciones-color);
+}
+
+.div-table-row-purple{
+    border-color: var(--evaluaciones-color);
 }
 
 /* Hovers */
