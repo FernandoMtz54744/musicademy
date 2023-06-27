@@ -12,7 +12,7 @@ export default function Practicas() {
               <div className='div-table div-table-green practicas-card'>
                 <div className='div-row div-row-border-bottom div-table-row-green'><p>Ritmo</p><div><Link to={"/Practicas/Ritmo"} className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
                 <div className='div-row div-row-border-bottom div-table-row-green'><p>Solfeo</p><div><Link to={"/Practicas/Solfeo"} className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
-                <div className='div-row div-row-border-bottom div-table-row-green'><p>Melodía</p><div><Link className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
+                <div className='div-row div-row-border-bottom div-table-row-green'><p>Melodía</p><div><Link to={"/Practicas/Melodia"} className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
                 <div className='div-row'><p>Acordes</p><div><Link to={"/Practicas/Acordes"} className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
               </div>
             </main>

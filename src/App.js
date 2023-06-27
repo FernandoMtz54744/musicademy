@@ -11,6 +11,7 @@ import Minijuegos from './pages/Minijuegos'
 import Ritmo from './pages/Practicas/Ritmo';
 import Acordes from './pages/Practicas/Acordes';
 import Solfeo from './pages/Practicas/Solfeo';
+import Melodias from './pages/Practicas/Melodias';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         {/* Practicas */}
         <Route path='/Practicas/Ritmo' element={<Ritmo/>}/>
         <Route path='/Practicas/Solfeo' element={<Solfeo/>}/>
+        <Route path='/Practicas/Melodia' element={<Melodias/>}/>
         <Route path='/Practicas/Acordes' element={<Acordes/>}/>
 
       </Routes>
