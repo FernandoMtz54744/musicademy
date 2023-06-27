@@ -5,17 +5,15 @@
     justify-content: space-between;
     font-size: x-large;
     font-weight: 800;
-    padding: 1rem;
-    height: 50vh;
+    height: 55vh;
+    margin: 0px 5vw 0px 5vw;
 }
 
-.configuration-container input{
-    margin: 0px 1rem 0px 1rem;
-    border-radius: 5px;
-    border: 2px solid var(--practicas-color);
-    font-size: large;
-    text-align: center;
-    min-width: 4rem;
+.inputConfig-container-group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .inputConfig-container{
@@ -25,11 +23,13 @@
     align-items: center;
 }
 
-.inputConfig-container-group{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+.inputConfig-container input{
+    margin: 0px 1rem 0px 1rem;
+    border-radius: 5px;
+    border: 2px solid var(--practicas-color);
+    font-size: large;
+    text-align: center;
+    min-width: 4rem;
 }
 
 .inputConfig-container img{
@@ -48,6 +48,14 @@
     cursor: pointer;
 }
 
+.radio-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Estilos botón iniciar práctica */
 .configurationButton{
     background-color: var(--practicas-color);
     color: whitesmoke;

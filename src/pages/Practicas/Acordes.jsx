@@ -1,12 +1,12 @@
 import React from 'react'
 import Header from '../Header'
 
-export default function Armonia() {
+export default function Acordes() {
   return (
     <div>
         <div className='modulos'>
             <Header headerColor={"header-green"}/>
-            <h1>Práctica de Armonía</h1>
+            <h1>Práctica de Acordes</h1>
             <h2>Configura tu práctica</h2>
             <main className='configuration-container'>
                 <div className='inputConfig-container'>

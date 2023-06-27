@@ -9,7 +9,9 @@ import Practicas from './pages/Practicas'
 import Evaluaciones from './pages/Evaluaciones'
 import Minijuegos from './pages/Minijuegos'
 import Ritmo from './pages/Practicas/Ritmo';
-import Armonia from './pages/Practicas/Armonia';
+import Acordes from './pages/Practicas/Acordes';
+import Solfeo from './pages/Practicas/Solfeo';
+
 
 function App() {
   return (
@@ -25,8 +27,10 @@ function App() {
         <Route path='/Evaluaciones' element={<Evaluaciones/>}/>
         <Route path='/Minijuegos' element={<Minijuegos/>}/>
         {/* Practicas */}
-        <Route path='/Practicas/Ritmo' element={<Ritmo/>} />
-        <Route path='/Practicas/Armonia' element={<Armonia/>} />
+        <Route path='/Practicas/Ritmo' element={<Ritmo/>}/>
+        <Route path='/Practicas/Solfeo' element={<Solfeo/>}/>
+        <Route path='/Practicas/Acordes' element={<Acordes/>}/>
+
       </Routes>
     </BrowserRouter>
   );

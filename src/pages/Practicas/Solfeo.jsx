@@ -1,19 +1,16 @@
 import React from 'react'
 import Header from '../Header'
-import "../../styles/practicas.css"
-import redonda from "../../res/redonda.png"
-import blanca from "../../res/blanca.png"
-import negra from "../../res/negra.png"
-import corchea from "../../res/corchea.png"
-import tresillo from "../../res/tresillo.png"
-import silencio from "../../res/silencio.png"
+import claveSol from "../../res/claveSol.png"
+import claveFa from "../../res/claveFa.png"
+import sostenido from "../../res/sostenido.png"
+import bemol from "../../res/bemol.png"
 
-export default function Ritmo() {
+export default function Solfeo() {
   return (
     <div>
         <div className='modulos'>
             <Header headerColor={"header-green"}/>
-            <h1>Práctica de Ritmo</h1>
+            <h1>Práctica de Solfeo</h1>
             <h2>Configura tu práctica</h2>
             <main className='configuration-container'>
                 <div className='inputConfig-container'>
@@ -21,41 +18,36 @@ export default function Ritmo() {
                   <input type="number" name='tempo' id='tempo' min="40" max="200"/>
                   <p>bpm</p>
                 </div>
+                
 
                 <div className='inputConfig-container-group'>
                   <div className='inputConfig-container'>
-                    <p>Figuras musicales: </p>
-                    <button><img src={redonda} alt='redonda'/></button>
-                    <button><img src={blanca} alt='blanca'/></button>
-                    <button><img src={negra} alt='negra'/></button>
-                    <button><img src={corchea} alt='corchea'/></button>
+                    <p>Clave: </p>
+                    <button><img src={claveSol} alt='Clave de Sol'/></button>
+                    <button><img  src={claveFa} alt='Clave de Fa'/></button>
                   </div>
-                  <div className='inputConfig-container'>
-                    <p>Compuestos:</p>
-                    <button><img src={tresillo} alt='tresillo'/></button>
-                  </div>
-
-                  <div className='inputConfig-container'>
-                    <p>Silencios:</p>
-                    <button><img src={silencio} alt='silencio'/></button>
+                  <div className='inputConfig-container radio-container'>
+                    <p>Instrumento</p>
+                    <div>
+                        <input type="radio" value="real" name='instrumento'/>Real (Piano, Guitarra, Flauta)
+                    </div>
+                    <div>
+                        <input type="radio" value="virtual" name='instrumento'/>Virtual
+                    </div>
                   </div>
                 </div>
                 
                 <div className='inputConfig-container'>
-                  <p>Compases:</p>
-                  <input type="number" name='compases' id='compases' min="1" max="4"/>
-                </div>
-                
-                <div className='inputConfig-container'>
-                  <p>Signatura de compás:</p>
-                  <input type="number" name='signaturaNumerado' id='signaturaNumerador' min="1" max="12"/>
-                  /
-                  <input type="number" name='signaturaDenominador' id='signaturaDenominador' min="1" max="16"/>
-                </div>
+                    <p>Alteraciones: </p>
+                    <button><img src={sostenido} alt='sostenido'/></button>
+                    <button><img src={bemol} alt='bemol'/></button>
+                  </div>
                 
                 <div className='configurationButtonContainer'>
                   <button className='configurationButton'>Iniciar</button>
                 </div>
+
+
             </main>
         </div>
 
