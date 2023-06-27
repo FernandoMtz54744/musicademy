@@ -9,45 +9,38 @@ export default function Acordes() {
             <h1>Práctica de Acordes</h1>
             <h2>Configura tu práctica</h2>
             <main className='configuration-container'>
-                <div className='inputConfig-container'>
-                  <p>Tempo:</p>
-                  <input type="number" name='tempo' id='tempo' min="40" max="200"/>
-                  <p>bpm</p>
+
+              <div className='inputConfig-container-group'>
+                <div className='inputConfig-container radio-container'>
+                  <p>Tipo de acordes</p>
+                  <label htmlFor='mayores'>
+                    <input type="checkbox" id='mayores' name='mayores' value="mayores"/>Acordes mayores
+                  </label>
+                  <label htmlFor='menores'>
+                    <input type="checkbox" id='menores' name='menores' value="mayores"/>Acordes menores
+                  </label>
+                  <label htmlFor='aumentados'>
+                    <input type="checkbox" id='aumentados' name='aumentados' value="aumentados"/>Acordes aumentados
+                  </label>
+                  <label htmlFor='disminuidos'>
+                    <input type="checkbox" id='disminuidos' name='disminuidos' value="disminuidos"/>Acordes Disminuidos
+                  </label>
                 </div>
 
-                <div className='inputConfig-container-group'>
-                  <div className='inputConfig-container'>
-                    <p>Figuras musicales: </p>
-                    <button><img alt='redonda'/></button>
+                <div className='inputConfig-container radio-container'>
+                    <p>Instrumento</p>
+                      <div>
+                        <input type="radio" value="real" name='instrumento'/>Real (Piano, Guitarra, Flauta)
+                      </div>
+                      <div>
+                        <input type="radio" value="virtual" name='instrumento'/>Virtual
+                      </div>
                   </div>
-                  <div className='inputConfig-container'>
-                    <p>Compuestos:</p>
-                   
-                  </div>
-
-                  <div className='inputConfig-container'>
-                    <p>Silencios:</p>
-
-                  </div>
-                </div>
-                
-                <div className='inputConfig-container'>
-                  <p>Compases:</p>
-                  <input type="number" name='compases' id='compases' min="1" max="4"/>
-                </div>
-                
-                <div className='inputConfig-container'>
-                  <p>Signatura de compás:</p>
-                  <input type="number" name='signaturaNumerado' id='signaturaNumerador' min="1" max="12"/>
-                  /
-                  <input type="number" name='signaturaDenominador' id='signaturaDenominador' min="1" max="16"/>
-                </div>
-                
-                <div className='configurationButtonContainer'>
-                  <button className='configurationButton'>Iniciar</button>
-                </div>
-
-
+              </div>
+              
+              <div className='configurationButtonContainer'>
+                <button className='configurationButton'>Iniciar</button>
+              </div>
             </main>
         </div>
 
