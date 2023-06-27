@@ -8,12 +8,12 @@ import corchea from "../../res/corchea.png"
 import tresillo from "../../res/tresillo.png"
 import silencio from "../../res/silencio.png"
 
-export default function Solfeo() {
+export default function Ritmo() {
   return (
     <div>
         <div className='modulos'>
             <Header headerColor={"header-green"}/>
-            <h1>Práctica de ritmo</h1>
+            <h1>Práctica de Ritmo</h1>
             <h2>Configura tu práctica</h2>
             <main className='configuration-container'>
                 <div className='inputConfig-container'>

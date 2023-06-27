@@ -10,10 +10,10 @@ export default function Practicas() {
             <h1>¡A prácticar!</h1>
             <main className='main-modulos'>
               <div className='div-table div-table-green practicas-card'>
-                <div className='div-row div-row-border-bottom div-table-row-green'><p>Solfeo</p><div><Link to={"/Practicas/Solfeo"} className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
-                <div className='div-row div-row-border-bottom div-table-row-green'><p>Armonía</p><div><Link className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
+                <div className='div-row div-row-border-bottom div-table-row-green'><p>Ritmo</p><div><Link to={"/Practicas/Ritmo"} className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
+                <div className='div-row div-row-border-bottom div-table-row-green'><p>Armonía</p><div><Link to={"/Practicas/Armonia"} className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
                 <div className='div-row div-row-border-bottom div-table-row-green'><p>Melodía</p><div><Link className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
-                <div className='div-row'><p>Ritmo</p><div><Link className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
+                <div className='div-row'><p>Solfeo</p><div><Link className='modulo-card-button practicas-button'>Comenzar</Link></div></div>
               </div>
             </main>
         </div>

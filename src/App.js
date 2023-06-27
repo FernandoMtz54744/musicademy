@@ -8,7 +8,8 @@ import PerfilContainer from './containers/PerfilContainer';
 import Practicas from './pages/Practicas'
 import Evaluaciones from './pages/Evaluaciones'
 import Minijuegos from './pages/Minijuegos'
-import Solfeo from './pages/Practicas/Solfeo';
+import Ritmo from './pages/Practicas/Ritmo';
+import Armonia from './pages/Practicas/Armonia';
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
         <Route path='/Evaluaciones' element={<Evaluaciones/>}/>
         <Route path='/Minijuegos' element={<Minijuegos/>}/>
         {/* Practicas */}
-        <Route path='/Practicas/Solfeo' element={<Solfeo/>} />
+        <Route path='/Practicas/Ritmo' element={<Ritmo/>} />
+        <Route path='/Practicas/Armonia' element={<Armonia/>} />
       </Routes>
     </BrowserRouter>
   );
