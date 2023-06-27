@@ -1,0 +1,71 @@
+/* Estilos de las configuraciones prácticas y las prácticas mismas */
+.configuration-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: x-large;
+    font-weight: 800;
+    padding: 1rem;
+    height: 50vh;
+}
+
+.configuration-container input{
+    margin: 0px 1rem 0px 1rem;
+    border-radius: 5px;
+    border: 2px solid var(--practicas-color);
+    font-size: large;
+    text-align: center;
+    min-width: 4rem;
+}
+
+.inputConfig-container{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    align-items: center;
+}
+
+.inputConfig-container-group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inputConfig-container img{
+    width: 30px;
+}
+
+.inputConfig-container button{
+    border: 3px solid var(--practicas-color);
+    margin: 0px 10px 0px 10px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.inputConfig-container button:hover{
+    cursor: pointer;
+}
+
+.configurationButton{
+    background-color: var(--practicas-color);
+    color: whitesmoke;
+    border-radius: 5px;
+    font-size: x-large;
+    border: 0px;
+    min-width: 10rem;
+    font-weight: 800;
+    padding: 6px;
+}
+
+.configurationButton:hover{
+    cursor: pointer;
+}
+
+.configurationButtonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

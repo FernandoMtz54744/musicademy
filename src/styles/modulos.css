@@ -1,4 +1,4 @@
-/* Estilos selección de módulos y submodulos selectores inmediatos (Selector de tema, prácticas, evluaciones y minijuegos) */
+/* Estilos selección de módulos y submodulos selectores inmediatos (Selector de tema, prácticas, evaluaciones y minijuegos) */
 .main-modulos{
     display: flex;
     flex-direction: row;
@@ -7,7 +7,7 @@
     height: 60vh;
 }
 
-.modulos > h1{
+.modulos > h1, .modulos > h2{
     text-align: center;
     padding-top: 1rem;
 }
