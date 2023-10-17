@@ -8,10 +8,10 @@ import PerfilContainer from './containers/PerfilContainer';
 import Practicas from './pages/Practicas'
 import Evaluaciones from './pages/Evaluaciones'
 import Minijuegos from './pages/Minijuegos'
-import Ritmo from './pages/Practicas/Ritmo';
 import Acordes from './pages/Practicas/Acordes';
 import Solfeo from './pages/Practicas/Solfeo';
 import Melodias from './pages/Practicas/Melodias';
+import RitmoContainer from './containers/Practicas/RitmoContainer';
 
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         <Route path='/Evaluaciones' element={<Evaluaciones/>}/>
         <Route path='/Minijuegos' element={<Minijuegos/>}/>
         {/* Practicas */}
-        <Route path='/Practicas/Ritmo' element={<Ritmo/>}/>
+        <Route path='/Practicas/Ritmo' element={<RitmoContainer/>}/>
         <Route path='/Practicas/Solfeo' element={<Solfeo/>}/>
         <Route path='/Practicas/Melodia' element={<Melodias/>}/>
         <Route path='/Practicas/Acordes' element={<Acordes/>}/>

@@ -106,3 +106,34 @@
 .melody-button:hover{
     cursor: pointer;
 }
+
+.active-button{
+    background-color: var(--practicas-color) !important;
+}
+
+/* CSS de la practica */
+.entered-configuration{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 8vh;
+    font-size: large;
+    font-weight: 600;
+    padding: 0px 20px 0px 20px;
+}
+
+.sheetContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sheet{
+    padding: 0px 50px 0px 50px;
+}
+
+.sheet svg{
+    border: 1px solid black;
+}
