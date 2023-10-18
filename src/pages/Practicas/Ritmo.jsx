@@ -1,7 +1,7 @@
 import React from 'react'
 import RythmSheet from './RythmSheet'
 
-export default function Ritmo({data, generarRitmo, patronRitmico}) {
+export default function Ritmo({data, generarPatronRitmico, ritmoSheet, handleBack}) {
   return (
     <>
         <div className='entered-configuration'>
@@ -11,10 +11,11 @@ export default function Ritmo({data, generarRitmo, patronRitmico}) {
             <div>Figuras: {Object.keys(data.figuras).map(figura=>data.figuras[figura]?`${figura}, `:"")}</div>
         </div>
         <div>
-            Aqui se muestra el ritmo a seguir {patronRitmico.patronNumber}
-            <RythmSheet patronRitmico={patronRitmico} data={data}/>
+            Aqui se muestra el ritmo a seguir 
+            <RythmSheet ritmoSheet={ritmoSheet} data={data}/>
         </div>
-        <button onClick={generarRitmo} className='configurationButton'>Siguiente</button>
+        <button onClick={generarPatronRitmico} className='configurationButton'>Siguiente</button>
+        <button onClick={handleBack} className='configurationButton'>Atras</button>
     </>
   )
 }

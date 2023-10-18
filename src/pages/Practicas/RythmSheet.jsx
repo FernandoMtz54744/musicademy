@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Vex from "vexflow"
 
-export default function RythmSheet({data, patronRitmico}) {
+export default function RythmSheet({data, ritmoSheet}) {
     
     useEffect(()=>{
         // Elimina una partitura si la hay
@@ -33,19 +33,19 @@ export default function RythmSheet({data, patronRitmico}) {
         const ties = [];
         const tiesIndex = [];
         console.log("Patron ritmico");
-        console.log(patronRitmico);
-        for(let i=0; i<patronRitmico.length; i++){
-            if(patronRitmico[i] === 0.125){
+        console.log(ritmoSheet);
+        for(let i=0; i<ritmoSheet.length; i++){
+            if(ritmoSheet[i] === 0.125){
                 notes.push(new Vex.StaveNote({ keys: ["b/4"], duration: "8" }))
-            }else if(patronRitmico[i] === 0.25){
+            }else if(ritmoSheet[i] === 0.25){
                 notes.push(new Vex.StaveNote({ keys: ["b/4"], duration: "q" }))
-            }else if(patronRitmico[i] === 0.5){
+            }else if(ritmoSheet[i] === 0.5){
                 notes.push(new Vex.StaveNote({ keys: ["b/4"], duration: "h" }))
-            }else if(patronRitmico[i] === 1){
+            }else if(ritmoSheet[i] === 1){
                 notes.push(new Vex.StaveNote({ keys: ["b/4"], duration: "w" }))
-            }else if(patronRitmico[i] === -1){
+            }else if(ritmoSheet[i] === -1){
                 notes.push(new Vex.Flow.BarNote())
-            }else if(patronRitmico[i] === -2){
+            }else if(ritmoSheet[i] === -2){
                 tiesIndex.push(i-tiesIndex.length);
             }
         }
@@ -59,12 +59,11 @@ export default function RythmSheet({data, patronRitmico}) {
                 }));
         })
         Vex.Formatter.FormatAndDraw(context, stave, notes);
-        console.log(notes);
         ties.forEach((t) => {
             t.setContext(context).draw();
         });
-    }, [patronRitmico, data]);
-       
+    }, [ritmoSheet, data]);
+        
   return (
     <div className='sheetContainer'>
         <div name="RythmSheet" id='RythmSheet' className='sheet'></div>

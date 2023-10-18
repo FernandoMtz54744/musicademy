@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import RitmoConfiguration from '../../pages/Practicas/RitmoConfiguration';
 import Ritmo from '../../pages/Practicas/Ritmo';
 import Header from '../../pages/Header';
-import { log } from 'vexflow';
 
 export default function RitmoContainer() {
 
@@ -18,11 +17,12 @@ export default function RitmoContainer() {
       signaturaNumerador: 4,
       signaturaDenominador: 4,
       isStart: false, 
-      tied: true
+      tied: false
     }
 
     const [data, setData] = useState(valoresIniciales);
-    const [patronRitmico, setPatronRitmico] = useState({patronNumber: 0});
+    const [patronRitmico, setPatronRitmico] = useState([]);
+    const [ritmoSheet, setRitmoSheet] = useState([]);
 
     const handleChange = (e)=>{
       setData({...data, [e.target.name]:e.target.value})
@@ -57,61 +57,63 @@ export default function RitmoContainer() {
       return tiempos;
     }
 
-    const generarRitmo = ()=>{
-      const tiempos = llenaTiempos();
-      const compas = Number(data.signaturaNumerador)/Number(data.signaturaDenominador);
-      const ritmo = [];
-      const ritmoSheet = [];
-      if(data.tied){//Con ligadura
-        // Se genera el ritmo
-        let sumaRitmo = 0;
-        let totalRitmo = compas*data.compases;
-        while(sumaRitmo<totalRitmo){
-          const randomIndex = Math.trunc(Math.random()*tiempos.length);
-          const figura = tiempos[randomIndex];
-          if(sumaRitmo+figura<=totalRitmo){
-            ritmo.push(figura);
-            sumaRitmo+=figura;
-          }
-        }
-        console.log("Ritmo original:");
-        console.log(ritmo)
-        // Se genera la partitura
-        let sumaCompas = 0;
-        let barCount = 0;
-        for(let i=0; i<ritmo.length; i++){
-          if(sumaCompas+ritmo[i] <= compas){
-            ritmoSheet.push(ritmo[i]);
-            sumaCompas+=ritmo[i];
-            if(sumaCompas === compas && barCount<data.compases-1){
-              ritmoSheet.push(-1); 
-              barCount++       
-              sumaCompas = 0;
-            }
-          }else{
-            const subRitmo1 = compas-sumaCompas;
-            const subRitmo2 = sumaCompas+ritmo[i]-compas;
-            ritmoSheet.push(subRitmo1);
-            ritmoSheet.push(-2);//tied
-            ritmoSheet.push(-1); //bar
-            barCount++;
-            ritmoSheet.push(subRitmo2);
-            sumaCompas = subRitmo2;
-          }
-        }
-      }else{//Sin ligadura
+    const sumaElementos = (array) => {
+      return array.reduce((partialSum, x) => partialSum + x, 0);
+    };
 
+    const generarRitmo = (compas, ritmo, tiempos) => {
+      const decisiones = [];
+      while (decisiones.length < tiempos.length) {
+        const figura = tiempos[Math.trunc(Math.random() * tiempos.length)];
+        if (decisiones.indexOf(figura) === -1) {
+          decisiones.push(figura);
+          ritmo.push(figura);
+          if (sumaElementos(ritmo) < compas) {
+            const valido = generarRitmo(compas, ritmo, tiempos);
+            if (valido) {
+              return true;
+            } else {
+              ritmo.pop();
+            }
+          } else if (sumaElementos(ritmo) === compas) {
+            return true;
+          } else {//Si es mayor se pasa y no es válido
+            ritmo.pop();
+          }
+        }
       }
-      setPatronRitmico(ritmoSheet);
-      console.log("Ritmo Sheet: ");
-      console.log(ritmoSheet);
+      return false;
     }
 
-     
+    const generarPatronRitmico = ()=>{
+      const tiempos = llenaTiempos();
+      const compas = Number(data.signaturaNumerador)/Number(data.signaturaDenominador);
+      let patronRitmicoTemp = [];
+      let ritmoSheetTemp = [];
+      for(let i=0; i < data.compases; i++){
+        const subRitmo = [];
+        const valido = generarRitmo(compas, subRitmo, tiempos);
+        if(valido){
+          patronRitmicoTemp.push(...subRitmo)
+          ritmoSheetTemp.push(...subRitmo)
+          ritmoSheetTemp.push(-1)
+        }else{
+          break;
+        }
+      }
+      ritmoSheetTemp.pop();//Eliminar el ultimo -1
+      setPatronRitmico([...patronRitmicoTemp]);
+      setRitmoSheet(ritmoSheetTemp);
+    }
 
     const handleStart = ()=>{
-      generarRitmo();
+      generarPatronRitmico();
       setData({...data, isStart:true});
+    }
+
+    const handleBack = ()=>{
+      setData({...data, isStart:false});
+      console.log(data);
     }
 
   return (
@@ -119,7 +121,7 @@ export default function RitmoContainer() {
         {data.isStart?(
           <>
             <Header headerColor={"header-green"}/>
-            <Ritmo data={data} generarRitmo={generarRitmo} patronRitmico={patronRitmico}/>
+            <Ritmo data={data} generarPatronRitmico={generarPatronRitmico} ritmoSheet={ritmoSheet} handleBack={handleBack}/>
           </>
         ):(
           <RitmoConfiguration data={data} handleChange={handleChange} handleOnClick={handleOnClick} handleStart={handleStart}/>
