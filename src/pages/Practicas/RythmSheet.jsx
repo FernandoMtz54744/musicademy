@@ -30,10 +30,7 @@ export default function RythmSheet({data, ritmoSheet}) {
         stave.addTimeSignature(`${data.signaturaNumerador}/${data.signaturaDenominador}`);
         stave.setContext(context).draw();
         const notes = [];
-        const ties = [];
-        const tiesIndex = [];
-        console.log("Patron ritmico");
-        console.log(ritmoSheet);
+
         for(let i=0; i<ritmoSheet.length; i++){
             if(ritmoSheet[i] === 0.125){
                 notes.push(new Vex.StaveNote({ keys: ["b/4"], duration: "8" }))
@@ -45,24 +42,11 @@ export default function RythmSheet({data, ritmoSheet}) {
                 notes.push(new Vex.StaveNote({ keys: ["b/4"], duration: "w" }))
             }else if(ritmoSheet[i] === -1){
                 notes.push(new Vex.Flow.BarNote())
-            }else if(ritmoSheet[i] === -2){
-                tiesIndex.push(i-tiesIndex.length);
             }
         }
 
-        tiesIndex.forEach((i)=>{
-                ties.push(new Vex.StaveTie({
-                    first_note: notes[i-1],
-                    last_note: notes[i+1],
-                    first_indices: [0],
-                    last_indices: [0],
-                }));
-        })
         Vex.Formatter.FormatAndDraw(context, stave, notes);
-        ties.forEach((t) => {
-            t.setContext(context).draw();
-        });
-    }, [ritmoSheet, data]);
+    }, [ritmoSheet, data.signaturaNumerador, data.signaturaDenominador]);
         
   return (
     <div className='sheetContainer'>

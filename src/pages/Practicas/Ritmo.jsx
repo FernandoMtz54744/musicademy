@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import RythmSheet from './RythmSheet'
 
-export default function Ritmo({data, generarPatronRitmico, ritmoSheet, handleBack}) {
+export default function Ritmo({data, generarPatronRitmico, ritmoSheet, handleBack, keyPressed, referenceTime}) {
+  useEffect(()=>{
+    document.addEventListener("keydown",  keyPressed);
+    return ()=>document.removeEventListener("keydown", keyPressed)
+  }, )
+
   return (
     <>
         <div className='entered-configuration'>

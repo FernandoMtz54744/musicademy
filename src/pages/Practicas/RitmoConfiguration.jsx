@@ -50,7 +50,7 @@ export default function RitmoConfiguration({data, handleChange, handleOnClick, h
                   <p>Signatura de compás:</p>
                   <input type="number" name='signaturaNumerador' id='signaturaNumerador' min="2" max="12" value={data.signaturaNumerador} onChange={handleChange}/>
                   /
-                  <input type="number" name='signaturaDenominador' id='signaturaDenominador' min="4" max="8" value={data.signaturaDenominador} onChange={handleChange}/>
+                  <input type="number" name='signaturaDenominador' id='signaturaDenominador' step="2" min="2" max="8" value={data.signaturaDenominador} onChange={handleChange}/>
                 </div>
                 
                 <div className='configurationButtonContainer'>
