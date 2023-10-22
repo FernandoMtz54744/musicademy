@@ -39,7 +39,7 @@ export default function RitmoContainer() {
       Tone.Transport.cancel();
       const osc = new Tone.Oscillator().toDestination();
       const osc2 = new Tone.Oscillator(300, "sine").toDestination();
-      osc2.volume.value = -25;
+      osc2.volume.value = -12;
       Tone.Transport.bpm.value = data.tempo;
       const ticksForCompass = 768/Number(data.signaturaDenominador) * data.signaturaNumerador; //Un compas mide 768 ticks
 
@@ -164,46 +164,43 @@ export default function RitmoContainer() {
 
     const handleOnKeydown = (e)=>{
       const time = Tone.now();
+      console.log("Delay de keydown: " + (Tone.now()-metronomeBeatTime));
       if(!isDelaySynchronized){
         if(e.keyCode === 83){
-          console.log("diff: " + (Tone.now()-metronomeBeatTime)); //Manejar este delay con una sincronizacion
-          console.log(systemDelaysArray);
-          console.log(e.keyCode);
-          if(systemDelaysArray.length < 10){
+          if(systemDelaysArray.length < 20){
             const systemDelayTemp = [...systemDelaysArray];
             systemDelayTemp.push(Tone.now()-metronomeBeatTime);
             setSystemDelaysArray(systemDelayTemp)
           }else{
             const averageDelay = sumArray(systemDelaysArray) / systemDelaysArray.length;
-            console.log("Average delay: " + averageDelay);
             setAverageDelay(averageDelay);
             setIsDelaySynchronized(true);
           }
         }
       }else{
-        if (timeReference === 0) {
-          const delay = averageDelay;
-          console.log();
-          const realTimeReference = metronomeBeatTime + delay;
-          setTimeReference(realTimeReference);
-          if(time-realTimeReference < USER_PULSE_MARGIN){
-            const userAnswersTemp = [...userAnswers];
-            userAnswersTemp[0] = true;
-            setUserAnswers(userAnswersTemp);
-          }
-        }else{
-          let isCorrect = false;
-          const userRythmMs = time - timeReference;
-          for (let i = 0; i < rhythmTimesElapsed.length; i++) {
-            if(userRythmMs >= rhythmTimesElapsed[i] - USER_PULSE_MARGIN && userRythmMs <= rhythmTimesElapsed[i] + USER_PULSE_MARGIN){
-              isCorrect = true;
+        if(e.keyCode === 32){
+          if (timeReference === 0) {
+            const realTimeReference = metronomeBeatTime + averageDelay;
+            setTimeReference(realTimeReference);
+            if(time-realTimeReference < USER_PULSE_MARGIN){
               const userAnswersTemp = [...userAnswers];
-              userAnswersTemp[i] = true;
+              userAnswersTemp[0] = true;
               setUserAnswers(userAnswersTemp);
-              break;
             }
+          }else{
+            let isCorrect = false;
+            const userRythmMs = time - timeReference;
+            for (let i = 0; i < rhythmTimesElapsed.length; i++) {
+              if(userRythmMs >= rhythmTimesElapsed[i] - USER_PULSE_MARGIN && userRythmMs <= rhythmTimesElapsed[i] + USER_PULSE_MARGIN){
+                isCorrect = true;
+                const userAnswersTemp = [...userAnswers];
+                userAnswersTemp[i] = true;
+                setUserAnswers(userAnswersTemp);
+                break;
+              }
+            }
+            isCorrect?console.log("Correcto"):console.log("Incorrecto");
           }
-          isCorrect?console.log("Correcto"):console.log("Incorrecto");
         }
       }
     }

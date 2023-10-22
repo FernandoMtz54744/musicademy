@@ -49,6 +49,7 @@ export default function RitmoSheet({data, rhythmSheetData}) {
         
   return (
     <div className='sheetContainer'>
+        <h2>Presiona la tecla "Espacio" al ritmo aquí mostrado</h2>
         <div name="RythmSheet" id='RythmSheet' className='sheet'></div>
     </div>
   )
