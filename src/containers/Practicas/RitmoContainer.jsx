@@ -115,6 +115,7 @@ export default function RitmoContainer() {
     const calculateRhythmTimesElapsed = (patronRitmico)=>{
       const corcheaPulse = 60/(data.tempo*2); //Tiempo en ms de una corchea
       const rhythmTimesElapsedTemp = [];
+      rhythmTimesElapsedTemp.push(0);
       patronRitmico.reduce((partialSum, nota)=>{
         const noteDuration  = corcheaPulse * (nota/0.125);
         const sum = partialSum + noteDuration;
@@ -162,14 +163,13 @@ export default function RitmoContainer() {
       const time = Tone.now();
       // console.log("diff: " + (Tone.now()-metronomeBeatTime)); //Manejar este delay con una sincronizacion
       if (timeReference === 0) {
-        setTimeReference(metronomeBeatTime+.2);
-        if(time-metronomeBeatTime+.2 < .2){
+        const delay = 0.2;
+        const realTimeReference = metronomeBeatTime + delay;
+        setTimeReference(realTimeReference);
+        if(time-realTimeReference < USER_PULSE_MARGIN){
           const userAnswersTemp = [...userAnswers];
           userAnswersTemp[0] = true;
           setUserAnswers(userAnswersTemp);
-          console.log("Primer beat correcto");
-        }else{
-          console.log("Primer beat incorrecto");
         }
       }else{
         let isCorrect = false;
