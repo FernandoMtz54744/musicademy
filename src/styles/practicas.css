@@ -232,3 +232,17 @@
 .circle-green{
     background-color: var(--practicas-color);
 }
+
+.synchronize-container{
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 100px 0px 100px;
+}
+
+.progressBar{
+    height: 50px;
+    width: 50vw;
+}

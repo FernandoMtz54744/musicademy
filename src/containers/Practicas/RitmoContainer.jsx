@@ -27,8 +27,11 @@ export default function RitmoContainer() {
     const [timeReference, setTimeReference] = useState(0); //Tiempo de referencia desde donde se empieza a contar la duracion del patrón ritmico
     const [metronomeBeatTime, setMetronomeBeatTime] = useState(0); //Tiempo en el que el metronomo da el golpe
     const USER_PULSE_MARGIN = 0.1; //Margen en segundos de que el usuario se puede equivocar al presionar el ritmo
-    const [circleBeatCSS, setCircleBeatCSS] = useState("")
-    const [userAnswers, setUserAnswers] = useState([]);
+    const [circleBeatCSS, setCircleBeatCSS] = useState("") //Indica el CSS del circulo para indicar el golpe del metronomo
+    const [userAnswers, setUserAnswers] = useState([]); //Mantiene cuales notas fueron acertadas por el usuario
+    const [isDelaySynchronized, setIsDelaySynchronized] = useState(false); //Indica si ya se sincronizó el delay entre el beat y el sonido
+    const [systemDelaysArray, setSystemDelaysArray] = useState([]); //Es el delay en segundos entre el beat y el sonido
+    const [averageDelay, setAverageDelay] = useState(0);
     // const [ticks, setTicks] = useState(0); //Para el circulo que muestra el beat de forma visual
 
     //Iniciar el metronomo al mostrar formulario y al cambiar datos [tempo, signatura y subdivisión]
@@ -161,29 +164,47 @@ export default function RitmoContainer() {
 
     const handleOnKeydown = (e)=>{
       const time = Tone.now();
-      // console.log("diff: " + (Tone.now()-metronomeBeatTime)); //Manejar este delay con una sincronizacion
-      if (timeReference === 0) {
-        const delay = 0.2;
-        const realTimeReference = metronomeBeatTime + delay;
-        setTimeReference(realTimeReference);
-        if(time-realTimeReference < USER_PULSE_MARGIN){
-          const userAnswersTemp = [...userAnswers];
-          userAnswersTemp[0] = true;
-          setUserAnswers(userAnswersTemp);
-        }
-      }else{
-        let isCorrect = false;
-        const userRythmMs = time - timeReference;
-        for (let i = 0; i < rhythmTimesElapsed.length; i++) {
-          if(userRythmMs >= rhythmTimesElapsed[i] - USER_PULSE_MARGIN && userRythmMs <= rhythmTimesElapsed[i] + USER_PULSE_MARGIN){
-            isCorrect = true;
-            const userAnswersTemp = [...userAnswers];
-            userAnswersTemp[i] = true;
-            setUserAnswers(userAnswersTemp);
-            break;
+      if(!isDelaySynchronized){
+        if(e.keyCode === 83){
+          console.log("diff: " + (Tone.now()-metronomeBeatTime)); //Manejar este delay con una sincronizacion
+          console.log(systemDelaysArray);
+          console.log(e.keyCode);
+          if(systemDelaysArray.length < 10){
+            const systemDelayTemp = [...systemDelaysArray];
+            systemDelayTemp.push(Tone.now()-metronomeBeatTime);
+            setSystemDelaysArray(systemDelayTemp)
+          }else{
+            const averageDelay = sumArray(systemDelaysArray) / systemDelaysArray.length;
+            console.log("Average delay: " + averageDelay);
+            setAverageDelay(averageDelay);
+            setIsDelaySynchronized(true);
           }
         }
-        isCorrect?console.log("Correcto"):console.log("Incorrecto");
+      }else{
+        if (timeReference === 0) {
+          const delay = averageDelay;
+          console.log();
+          const realTimeReference = metronomeBeatTime + delay;
+          setTimeReference(realTimeReference);
+          if(time-realTimeReference < USER_PULSE_MARGIN){
+            const userAnswersTemp = [...userAnswers];
+            userAnswersTemp[0] = true;
+            setUserAnswers(userAnswersTemp);
+          }
+        }else{
+          let isCorrect = false;
+          const userRythmMs = time - timeReference;
+          for (let i = 0; i < rhythmTimesElapsed.length; i++) {
+            if(userRythmMs >= rhythmTimesElapsed[i] - USER_PULSE_MARGIN && userRythmMs <= rhythmTimesElapsed[i] + USER_PULSE_MARGIN){
+              isCorrect = true;
+              const userAnswersTemp = [...userAnswers];
+              userAnswersTemp[i] = true;
+              setUserAnswers(userAnswersTemp);
+              break;
+            }
+          }
+          isCorrect?console.log("Correcto"):console.log("Incorrecto");
+        }
       }
     }
 
@@ -205,7 +226,8 @@ export default function RitmoContainer() {
             <Ritmo data={data} generateRhythmPattern={generateRhythmPattern} rhythmSheetData={rhythmSheetData} 
                   handleBack={handleBack} handleOnKeydown={handleOnKeydown} timeReference={timeReference} 
                   circleBeatCSS={circleBeatCSS} setCircleBeatCSS={setCircleBeatCSS}
-                  userAnswers={userAnswers}/>
+                  userAnswers={userAnswers} isDelaySynchronized={isDelaySynchronized} systemDelaysArray={systemDelaysArray}
+                  averageDelay={averageDelay}/>
           </>
         ):(
           <RitmoConfiguration data={data} handleChange={handleChange} handleOnClick={handleOnClick} handleStart={handleStart}/>

@@ -6,7 +6,8 @@ import negra from "../../res/negra.png"
 import corchea from "../../res/corchea.png"
 
 export default function Ritmo({data, generateRhythmPattern, rhythmSheetData, handleBack, 
-                              handleOnKeydown, timeReference, circleBeatCSS, setCircleBeatCSS, userAnswers}) {
+                              handleOnKeydown, timeReference, circleBeatCSS, setCircleBeatCSS, userAnswers, 
+                              isDelaySynchronized, systemDelaysArray, averageDelay}) {
 
   // const [circlesIndex, setCircleIndex] = useState([]); //Contiene la cantidad de circulos de [0,...,data.signaturaNumerador]
 
@@ -14,7 +15,7 @@ export default function Ritmo({data, generateRhythmPattern, rhythmSheetData, han
   useEffect(()=>{
     document.addEventListener("keydown",  handleOnKeydown);
     return ()=>document.removeEventListener("keydown", handleOnKeydown)
-  }, [timeReference, handleOnKeydown])
+  }, [timeReference, handleOnKeydown, isDelaySynchronized, systemDelaysArray, averageDelay])
 
   //Cada que se da un golpe se ejecuta esta funcion
   useEffect(()=>{
@@ -60,6 +61,7 @@ export default function Ritmo({data, generateRhythmPattern, rhythmSheetData, han
               {data.figuras.negra && <div className="divSimulateButtonFigura" ><img src={negra} alt='negra'/></div>}
               {data.figuras.corchea && <div className="divSimulateButtonFigura" ><img src={corchea} alt='corchea'/></div>}
           </div>
+          <div>Delay: {averageDelay.toFixed(3)}s</div>
         </div>
 
         <div className='entered-configuration'>
@@ -70,7 +72,17 @@ export default function Ritmo({data, generateRhythmPattern, rhythmSheetData, han
         </div>
 
         <div>
-            <RitmoSheet rhythmSheetData={rhythmSheetData} data={data}/>
+            {isDelaySynchronized?
+            <RitmoSheet rhythmSheetData={rhythmSheetData} data={data}/>:
+            <div className='synchronize-container'>
+              <h1>
+                Antes de iniciar es necesario sincronizar el sistema con el metrónomo, presione la tecla S a cada golpe 
+                (no necesariamente debe ser seguido)
+              </h1>
+              <progress className='progressBar' max={10} value={systemDelaysArray.length}></progress>
+            </div>
+            }
+            
             <div className="circle-container">
               <div className={`circle-beat ${circleBeatCSS}`}></div>
               {/* {circlesIndex.map(i =>{
