@@ -79,7 +79,7 @@ export default function Ritmo({data, generateRhythmPattern, rhythmSheetData, han
                 Antes de iniciar es necesario sincronizar el sistema con el metrónomo, presione la tecla "S" a cada golpe 
                 (no necesariamente debe ser seguido)
               </h1>
-              <progress className='progressBar' max={20} value={systemDelaysArray.length}></progress>
+              <progress className='progressBar' max={10} value={systemDelaysArray.length}></progress>
             </div>
             }
             

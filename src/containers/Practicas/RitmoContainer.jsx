@@ -26,12 +26,12 @@ export default function RitmoContainer() {
     const [rhythmTimesElapsed, setRhythmTimesElapsed] = useState([]); //Tiempos transcurridos de cada nota desde el tiempo 0
     const [timeReference, setTimeReference] = useState(0); //Tiempo de referencia desde donde se empieza a contar la duracion del patrón ritmico
     const [metronomeBeatTime, setMetronomeBeatTime] = useState(0); //Tiempo en el que el metronomo da el golpe
-    const USER_PULSE_MARGIN = 0.1; //Margen en segundos de que el usuario se puede equivocar al presionar el ritmo
     const [circleBeatCSS, setCircleBeatCSS] = useState("") //Indica el CSS del circulo para indicar el golpe del metronomo
     const [userAnswers, setUserAnswers] = useState([]); //Mantiene cuales notas fueron acertadas por el usuario
     const [isDelaySynchronized, setIsDelaySynchronized] = useState(false); //Indica si ya se sincronizó el delay entre el beat y el sonido
     const [systemDelaysArray, setSystemDelaysArray] = useState([]); //Es el delay en segundos entre el beat y el sonido
     const [averageDelay, setAverageDelay] = useState(0);
+    const USER_PULSE_MARGIN = 0.150; //Margen en segundos de que el usuario se puede equivocar al presionar el ritmo
     // const [ticks, setTicks] = useState(0); //Para el circulo que muestra el beat de forma visual
 
     //Iniciar el metronomo al mostrar formulario y al cambiar datos [tempo, signatura y subdivisión]
@@ -164,28 +164,35 @@ export default function RitmoContainer() {
 
     const handleOnKeydown = (e)=>{
       const time = Tone.now();
-      console.log("Delay de keydown: " + (Tone.now()-metronomeBeatTime));
       if(!isDelaySynchronized){
         if(e.keyCode === 83){
-          if(systemDelaysArray.length < 20){
+          if(systemDelaysArray.length < 10){
             const systemDelayTemp = [...systemDelaysArray];
-            systemDelayTemp.push(Tone.now()-metronomeBeatTime);
+            systemDelayTemp.push(time-metronomeBeatTime);
             setSystemDelaysArray(systemDelayTemp)
           }else{
             const averageDelay = sumArray(systemDelaysArray) / systemDelaysArray.length;
-            setAverageDelay(averageDelay);
-            setIsDelaySynchronized(true);
+            if(averageDelay <= 0.250){
+              setAverageDelay(averageDelay);
+              setIsDelaySynchronized(true);
+            }else{
+              setSystemDelaysArray([]);
+              console.log("Delay demasiado alto: " + averageDelay);
+            }
           }
         }
       }else{
         if(e.keyCode === 32){
           if (timeReference === 0) {
-            const realTimeReference = metronomeBeatTime + averageDelay;
+            const realTimeReference = metronomeBeatTime+averageDelay;
             setTimeReference(realTimeReference);
-            if(time-realTimeReference < USER_PULSE_MARGIN){
+            if(time-realTimeReference< USER_PULSE_MARGIN){
               const userAnswersTemp = [...userAnswers];
               userAnswersTemp[0] = true;
               setUserAnswers(userAnswersTemp);
+              console.log("Correcto con: " + (time-realTimeReference));
+            }else{
+              console.log("Incorrecto con: " + (time-realTimeReference));
             }
           }else{
             let isCorrect = false;
@@ -199,7 +206,7 @@ export default function RitmoContainer() {
                 break;
               }
             }
-            isCorrect?console.log("Correcto"):console.log("Incorrecto");
+            isCorrect?console.log("Correcto con: " + userRythmMs):console.log("Incorrecto con: " + userRythmMs);
           }
         }
       }
