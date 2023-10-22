@@ -6,7 +6,7 @@ import * as Tone from "tone"
 
 export default function RitmoContainer() {
 
-    const valoresIniciales = {
+    const initialData = {
       tempo:60, 
       compases:4,
       figuras:{
@@ -17,142 +17,184 @@ export default function RitmoContainer() {
       },
       signaturaNumerador: 4,
       signaturaDenominador: 4,
-      isStart: false
+      isStart: false,
+      subdivision: "4"
     }
 
-    const [data, setData] = useState(valoresIniciales); //Datos del formulario
-    const [ritmoSheet, setRitmoSheet] = useState([]); //Patron ritmico en formato para desplegar en partitura 
-    const [ritmoTimes, setRitmoTimes] = useState([]); //Patron ritmico en formato tiempo en ms
-    const [referenceTime, setReferenceTime] = useState(0);
-    const [timeMetronome, setTimeMetronome] = useState(0);
-    const tolerance = 0.1;
+    const [data, setData] = useState(initialData); //Datos del formulario
+    const [rhythmSheetData, setRhythmSheetData] = useState([]); //Patron ritmico en formato para desplegar en partitura 
+    const [rhythmTimesElapsed, setRhythmTimesElapsed] = useState([]); //Tiempos transcurridos de cada nota desde el tiempo 0
+    const [timeReference, setTimeReference] = useState(0); //Tiempo de referencia desde donde se empieza a contar la duracion del patrón ritmico
+    const [metronomeBeatTime, setMetronomeBeatTime] = useState(0); //Tiempo en el que el metronomo da el golpe
+    const USER_PULSE_MARGIN = 0.1; //Margen en segundos de que el usuario se puede equivocar al presionar el ritmo
+    const [circleBeatCSS, setCircleBeatCSS] = useState("")
+    const [userAnswers, setUserAnswers] = useState([]);
+    // const [ticks, setTicks] = useState(0); //Para el circulo que muestra el beat de forma visual
 
-
-    useEffect(()=>{//Iniciar el metronomo al mostrar formulario ritmo
+    //Iniciar el metronomo al mostrar formulario y al cambiar datos [tempo, signatura y subdivisión]
+    useEffect(()=>{
       Tone.Transport.cancel();
-      Tone.Transport.bpm.value = data.tempo;
       const osc = new Tone.Oscillator().toDestination();
-      Tone.Transport.scheduleRepeat((time) => {
-        osc.start(time).stop(time + 0.1);
-        setTimeMetronome(Tone.now());
-      }, `4n`, 0);
-      Tone.Transport.start(0);
-    },[data.tempo, data.signaturaDenominador]);
+      const osc2 = new Tone.Oscillator(300, "sine").toDestination();
+      osc2.volume.value = -25;
+      Tone.Transport.bpm.value = data.tempo;
+      const ticksForCompass = 768/Number(data.signaturaDenominador) * data.signaturaNumerador; //Un compas mide 768 ticks
+
+      Tone.Transport.scheduleRepeat((time)=>{
+        setMetronomeBeatTime(Tone.now());
+        if(Tone.Transport.getTicksAtTime(time) % ticksForCompass === 0){
+          osc.start(time).stop(time + 0.1);
+          setCircleBeatCSS("main-beat");
+        }else{
+          osc2.start(time).stop(time + 0.1);
+          setCircleBeatCSS("secondary-beat")
+        }
+        // setTicks(Tone.Transport.getTicksAtTime(time))
+      },`${data.subdivision}n`, 0);
+      Tone.Transport.start();
+    },[data.tempo, data.signaturaDenominador, data.signaturaNumerador, data.subdivision]);
     
-    const handleChange = (e)=>{ //Datos del formulario
+    //Maneja el cambio de datos del formulario
+    const handleChange = (e)=>{
       setData({...data, [e.target.name]:e.target.value})
     }
 
-    const handleOnClick = (e)=>{//Click en imagenes de figuras
+    //Maneja el click en las figuras musicales
+    const handleOnClick = (e)=>{
       let buttonName="";
       if(e.target.tagName === "IMG"){
         buttonName = e.target.parentNode.name;
       }else{
         buttonName = e.target.name;
       }
-      const isFiguraActived = !data.figuras[buttonName];
-      setData({...data, figuras:{...data.figuras, [buttonName]: isFiguraActived}});
+      const toggleFiguraValue = !data.figuras[buttonName];
+      setData({...data, figuras:{...data.figuras, [buttonName]: toggleFiguraValue}});
     }
 
-    const llenaTiempos = ()=>{
-      const tiempos = [];
-      if(data.figuras.corchea){tiempos.push(0.125);}
-      if(data.figuras.negra){tiempos.push(0.25);}
-      if(data.figuras.blanca){tiempos.push(0.5);}
-      if(data.figuras.redonda){tiempos.push(1);}
-      return tiempos;
+    //Verifica cuales de las figuras musicales fueron activadas
+    const verifyActivatedFiguras = ()=>{
+      const activatedFiguras = [];
+      if(data.figuras.corchea){activatedFiguras.push(0.125);}
+      if(data.figuras.negra){activatedFiguras.push(0.25);}
+      if(data.figuras.blanca){activatedFiguras.push(0.5);}
+      if(data.figuras.redonda){activatedFiguras.push(1);}
+      return activatedFiguras;
     }
 
-    const sumaElementos = (array) => {
-      return array.reduce((partialSum, x) => partialSum + x, 0);
+    //Suma todos los elementos de un array
+    const sumArray = (array) => {
+      return array.reduce((partialSum, element) => partialSum + element, 0);
     };
 
-    const generarRitmo = (compas, ritmo, tiempos) => { //Backtracking recursivo para generar ritmos al azar
-      const decisiones = [];
-      while (decisiones.length < tiempos.length) {
-        const figura = tiempos[Math.trunc(Math.random() * tiempos.length)];
-        if (decisiones.indexOf(figura) === -1) {
-          decisiones.push(figura);
-          ritmo.push(figura);
-          if (sumaElementos(ritmo) < compas) {
-            const valido = generarRitmo(compas, ritmo, tiempos);
-            if (valido) {
+    //Funcion Backtracking recursiva para generar ritmos al azar por compás
+    const generateRhythm = (compass, rhythm, figuras) => {
+      const takenDecisions = [];
+      while (takenDecisions.length < figuras.length) {
+        const figura = figuras[Math.trunc(Math.random() * figuras.length)];
+        if (takenDecisions.indexOf(figura) === -1) {
+          takenDecisions.push(figura);
+          rhythm.push(figura);
+          if (sumArray(rhythm) < compass) {
+            const valid = generateRhythm(compass, rhythm, figuras);
+            if (valid) {
               return true;
             } else {
-              ritmo.pop();
+              rhythm.pop();
             }
-          } else if (sumaElementos(ritmo) === compas) {
+          } else if (sumArray(rhythm) === compass) {
             return true;
           } else {//Si es mayor se pasa y no es válido
-            ritmo.pop();
+            rhythm.pop();
           }
         }
       }
       return false;
     }
 
-    const generarPatronRitmico = ()=>{
-      const tiempos = llenaTiempos();
-      const compas = Number(data.signaturaNumerador)/Number(data.signaturaDenominador);
-      const patronRitmico = [];
-      const ritmoSheetTemp = [];
+    //Calcula los tiempos en los que se debe pulsar una nota a partir de la primera pulsación
+    const calculateRhythmTimesElapsed = (patronRitmico)=>{
+      const corcheaPulse = 60/(data.tempo*2); //Tiempo en ms de una corchea
+      const rhythmTimesElapsedTemp = [];
+      patronRitmico.reduce((partialSum, nota)=>{
+        const noteDuration  = corcheaPulse * (nota/0.125);
+        const sum = partialSum + noteDuration;
+        rhythmTimesElapsedTemp.push(sum);
+        return sum;
+      }, 0);
+      setRhythmTimesElapsed(rhythmTimesElapsedTemp);
+      console.log("Tiempo en segundos de cada nota: [" +  rhythmTimesElapsedTemp.toString() +"]");
+    }
+
+    //Llena las respuestas con false, es true cuando el usuario acertó en el beat
+    const fillUserAnswers = (rhythmPattern)=>{
+      const userAnswersTemp = [];
+      for(let i=0; i<rhythmPattern.length; i++){
+        userAnswersTemp.push(false);
+      }
+      setUserAnswers(userAnswersTemp);
+    }
+
+    //Funcion que genera todo el patrón ritmico completo (todos los compases)
+    const generateRhythmPattern = ()=>{
+      const figuras = verifyActivatedFiguras();
+      const compass = Number(data.signaturaNumerador)/Number(data.signaturaDenominador);
+      const rhythmPattern = [];
+      const rhythmSheetTemp = [];
       for(let i=0; i < data.compases; i++){
-        const subRitmo = [];
-        const valido = generarRitmo(compas, subRitmo, tiempos);
-        if(valido){
-          patronRitmico.push(...subRitmo)
-          ritmoSheetTemp.push(...subRitmo)
-          ritmoSheetTemp.push(-1)
+        const rhythmByCompass = [];
+        const valid = generateRhythm(compass, rhythmByCompass, figuras);
+        if(valid){
+          rhythmPattern.push(...rhythmByCompass)
+          rhythmSheetTemp.push(...rhythmByCompass)
+          rhythmSheetTemp.push(-1)
         }else{
           break;
         }
       }
-      ritmoSheetTemp.pop();//Eliminar el ultimo -1
-      setRitmoSheet(ritmoSheetTemp);
-      calculaTiemposRitmo(patronRitmico);
+      rhythmSheetTemp.pop();//Eliminar el ultimo -1
+      setRhythmSheetData(rhythmSheetTemp);
+      setTimeReference(0);
+      calculateRhythmTimesElapsed(rhythmPattern);
+      fillUserAnswers(rhythmPattern);
     }
 
-    const calculaTiemposRitmo = (patronRitmico)=>{
-        const pulsoCorchea = 60/(data.tempo*2); //Tiempo en ms de una corchea
-        const ritmoTimesAux = [];
-        patronRitmico.reduce((partialSum, nota)=>{
-          const noteDuration  = pulsoCorchea * (nota/0.125);
-          const sum = partialSum + noteDuration;
-          ritmoTimesAux.push(sum);
-          return sum;
-        }, 0);
-        setRitmoTimes(ritmoTimesAux);
-        console.log(ritmoTimesAux);
-    }
-
-    const keyPressed = (e)=>{
+    const handleOnKeydown = (e)=>{
       const time = Tone.now();
-      console.log("diff: " + (Tone.now()-timeMetronome));
-      if (referenceTime === 0) {
-        setReferenceTime(timeMetronome+.2);
-      } else {
-        let correcto = false;
-        const userRythmMs = time - referenceTime;
-        for (let i = 0; i < ritmoTimes.length; i++) {
-          if(userRythmMs >= ritmoTimes[i] - tolerance && userRythmMs <= ritmoTimes[i] + tolerance){
-            correcto = true;
+      // console.log("diff: " + (Tone.now()-metronomeBeatTime)); //Manejar este delay con una sincronizacion
+      if (timeReference === 0) {
+        setTimeReference(metronomeBeatTime+.2);
+        if(time-metronomeBeatTime+.2 < .2){
+          const userAnswersTemp = [...userAnswers];
+          userAnswersTemp[0] = true;
+          setUserAnswers(userAnswersTemp);
+          console.log("Primer beat correcto");
+        }else{
+          console.log("Primer beat incorrecto");
+        }
+      }else{
+        let isCorrect = false;
+        const userRythmMs = time - timeReference;
+        for (let i = 0; i < rhythmTimesElapsed.length; i++) {
+          if(userRythmMs >= rhythmTimesElapsed[i] - USER_PULSE_MARGIN && userRythmMs <= rhythmTimesElapsed[i] + USER_PULSE_MARGIN){
+            isCorrect = true;
+            const userAnswersTemp = [...userAnswers];
+            userAnswersTemp[i] = true;
+            setUserAnswers(userAnswersTemp);
             break;
           }
         }
-        correcto ? console.log("Correcto") : console.log("Incorrecto");
-        console.log(time - referenceTime);
+        isCorrect?console.log("Correcto"):console.log("Incorrecto");
       }
-  }
+    }
 
     const handleStart = ()=>{
-      generarPatronRitmico();
+      generateRhythmPattern();
       setData({...data, isStart:true});
     }
 
     const handleBack = ()=>{
       setData({...data, isStart:false});
-      setReferenceTime(0);
-      Tone.Transport.cancel();
+      setTimeReference(0);
     }
 
   return (
@@ -160,14 +202,15 @@ export default function RitmoContainer() {
         {data.isStart?(
           <>
             <Header headerColor={"header-green"}/>
-            <Ritmo data={data} generarPatronRitmico={generarPatronRitmico} ritmoSheet={ritmoSheet} handleBack={handleBack} keyPressed={keyPressed} referenceTime={referenceTime}/>      
+            <Ritmo data={data} generateRhythmPattern={generateRhythmPattern} rhythmSheetData={rhythmSheetData} 
+                  handleBack={handleBack} handleOnKeydown={handleOnKeydown} timeReference={timeReference} 
+                  circleBeatCSS={circleBeatCSS} setCircleBeatCSS={setCircleBeatCSS}
+                  userAnswers={userAnswers}/>
           </>
         ):(
           <RitmoConfiguration data={data} handleChange={handleChange} handleOnClick={handleOnClick} handleStart={handleStart}/>
         )
         }
-         
       </>
-     
   )
 }

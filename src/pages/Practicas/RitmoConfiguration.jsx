@@ -5,8 +5,6 @@ import redonda from "../../res/redonda.png"
 import blanca from "../../res/blanca.png"
 import negra from "../../res/negra.png"
 import corchea from "../../res/corchea.png"
-import tresillo from "../../res/tresillo.png"
-import silencio from "../../res/silencio.png"
 
 export default function RitmoConfiguration({data, handleChange, handleOnClick, handleStart}) {
   return (
@@ -16,11 +14,25 @@ export default function RitmoConfiguration({data, handleChange, handleOnClick, h
             <h1>Práctica de Ritmo</h1>
             <h2>Configura tu práctica</h2>
             <main className='configuration-container'>
+              <div className='inputConfig-container-group'>
                 <div className='inputConfig-container'>
-                  <p>Tempo:</p>
-                  <input type="number" name='tempo' id='tempo' min="40" max="200" value={data.tempo} onChange={handleChange}/>
-                  <p>bpm</p>
-                </div>
+                    <p>Tempo:</p>
+                    <input type="number" name='tempo' id='tempo' min="40" max="200" value={data.tempo} onChange={handleChange}/>
+                    <p>bpm</p>
+                  </div>
+
+                  <div className='inputConfig-container'>
+                    <p>Subdivisión:</p>
+                    <select className="selectSubdivison" name="subdivision" id="subdivision" onChange={handleChange} defaultValue="4">
+                      <option value="1">Redonda</option>
+                      <option value="2" >Blanca</option>
+                      <option value="4">Negra</option>
+                      <option value="8">Corchea</option>
+                    </select>
+                  </div>
+              </div>
+
+                
 
                 <div className='inputConfig-container-group'>
                   <div className='inputConfig-container'>
@@ -30,27 +42,23 @@ export default function RitmoConfiguration({data, handleChange, handleOnClick, h
                     <button className={data.figuras.negra?"active-button":""} onClick={handleOnClick} name="negra"><img src={negra} alt='negra'/></button>
                     <button className={data.figuras.corchea?"active-button":""} onClick={handleOnClick} name="corchea"><img src={corchea} alt='corchea'/></button>
                   </div>
-                  <div className='inputConfig-container'>
-                    <p>Compuestos:</p>
-                    <button><img src={tresillo} alt='tresillo'/></button>
-                  </div>
-
+                  {/* 
                   <div className='inputConfig-container'>
                     <p>Silencios:</p>
                     <button><img src={silencio} alt='silencio'/></button>
+                  </div> */}
+
+                  <div className='inputConfig-container'>
+                    <p>Signatura de compás:</p>
+                    <input type="number" name='signaturaNumerador' id='signaturaNumerador' min="2" max="12" value={data.signaturaNumerador} onChange={handleChange}/>
+                    /
+                    <input type="number" name='signaturaDenominador' id='signaturaDenominador' step="2" min="2" max="8" value={data.signaturaDenominador} onChange={handleChange}/>
                   </div>
                 </div>
                 
                 <div className='inputConfig-container'>
                   <p>Compases:</p>
                   <input type="number" name='compases' id='compases' min="2" max="6" value={data.compases} onChange={handleChange}/>
-                </div>
-                
-                <div className='inputConfig-container'>
-                  <p>Signatura de compás:</p>
-                  <input type="number" name='signaturaNumerador' id='signaturaNumerador' min="2" max="12" value={data.signaturaNumerador} onChange={handleChange}/>
-                  /
-                  <input type="number" name='signaturaDenominador' id='signaturaDenominador' step="2" min="2" max="8" value={data.signaturaDenominador} onChange={handleChange}/>
                 </div>
                 
                 <div className='configurationButtonContainer'>
