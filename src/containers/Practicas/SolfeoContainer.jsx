@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import SolfeoConfiguration from '../../pages/Practicas/SolfeoConfiguration'
 import Solfeo from '../../pages/Practicas/Solfeo';
 import Header from '../../pages/Header';
+import NoteDetector from '../../pages/Practicas/NoteDetector';
 
 export default function SolfeoContainer() {
 
@@ -88,7 +89,6 @@ export default function SolfeoContainer() {
 
     //Obtiene las notas de cierta escala
     const getNotesOfKey = (escala)=>{
-        escala = "Cb"
         const notesOfKey = [];
         let notesToSearch = [];
         if(escala.includes("b") || escala === "F"){ //Busca en bemoles
@@ -133,15 +133,20 @@ export default function SolfeoContainer() {
         }else{//alteraciones
             tempNote.escala = "C"; //Escala de Do mayor
             const selectedAlteracion = getTrueKeys(data.alteraciones); //Se obtiene una alteracion al azar de las activadas por el usuario (N, #, b)
+            const alteracion = selectedAlteracion[getRandomNumber(selectedAlteracion.length)];
             let selectedNote = naturalNotes[getRandomNumber(naturalNotes.length)];
-            if(selectedAlteracion === "sostenidos"){
+            if(alteracion === "sostenidos"){
                 selectedNote+="#";
-            }else if(selectedAlteracion === "bemoles"){
+            }else if(alteracion === "bemoles"){
                 selectedNote+="b";
             }//Si no entra a ninguno la nota se queda natural
             tempNote.nota = selectedNote;
         }
         setNote(tempNote);
+    }
+
+    const handleBack = ()=>{
+        setData({...data, isStart:false});
     }
 
   return (
@@ -150,7 +155,8 @@ export default function SolfeoContainer() {
         data.isStart?(
             <>
                 <Header headerColor={"header-green"}/>
-                <Solfeo note={note}></Solfeo>
+                <Solfeo note={note} generateNote={generateNote} handleBack={handleBack}></Solfeo>
+                <NoteDetector/>
             </>
         )
         :(
