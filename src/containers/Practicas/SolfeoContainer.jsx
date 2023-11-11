@@ -37,7 +37,7 @@ export default function SolfeoContainer() {
     }
 
     const [data, setData] = useState(initialData); //Datos del formulario
-    const [note, setNote] = useState({})
+    const [note, setNote] = useState({});
     const naturalNotes = ["C", "D", "E", "F", "G", "A", "B"]; //Las 7 notas naturales 
     const sharpNotes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]; //Las 12 notas musicales en modo sostenidos
     const bemolNotes = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]; //Las 12 notas en modo bemol

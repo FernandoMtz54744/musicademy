@@ -3,8 +3,10 @@ import FFT from 'fft.js';
 
 export default function NoteDetector() {
 
-  const [noteFFT, setNoteFFT] = useState();
-
+  const [noteFFT, setNoteFFT] = useState({});
+  const [noteProgressDetector, setNoteProgressDetector] = useState({});
+  const [finalNote, setFinalNote] = useState();
+  const numberOfRepetitions = 20; 
   function noteFromPitch( frequency ) {
     const noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     const noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
@@ -37,7 +39,7 @@ export default function NoteDetector() {
         });
   }
 
-  function autocorrelation(buffer, sampleRate, setNotaFFT) {
+  function autocorrelation(buffer, sampleRate, setNoteFFT) {
     // Obteniendo la RMS para saber si la amplitud eficaz es suficiente
     let SIZE = buffer.length;
     let sumOfSquares = 0;
@@ -47,11 +49,12 @@ export default function NoteDetector() {
     }
     let rms = Math.sqrt(sumOfSquares/SIZE)
     if (rms < 0.02) { //La señal no es suficiente para hacer análisis, es decir, no hay sonido
-      setNotaFFT("Silencio");
+      setNoteFFT({nota: "Silencio", frecuencia:0});
       return;
     }
     const freqFFT = fftAutocorrelation(buffer, SIZE, sampleRate);
-    setNotaFFT(noteFromPitch(freqFFT) + " : " + freqFFT);
+    
+    setNoteFFT({nota: noteFromPitch(freqFFT),  frecuencia: freqFFT});
   }
 
   // ******************** FFT AUTOCORRELATION *********************************
@@ -109,12 +112,31 @@ function fftAutocorrelation(buffer, SIZE, sampleRate) { //Autocorrelacion con el
 }
 
 useEffect(()=>{
+  if((noteProgressDetector.note === noteFFT.nota)){
+    setNoteProgressDetector(noteProgress => ({...noteProgress, repeticiones: noteProgress.repeticiones+1}))
+  }else{
+    setNoteProgressDetector({note: noteFFT.nota, repeticiones: 0})
+  }
+}, [noteFFT.frecuencia]);
+
+useEffect(()=>{
+  if(noteProgressDetector.repeticiones > numberOfRepetitions){
+    setFinalNote(noteFFT.nota);
+  }
+}, [noteProgressDetector.repeticiones]);
+
+
+useEffect(()=>{
   noteDetection(setNoteFFT);
-}, [noteFFT]);
+},[]);
 
   return (
     <div>NoteDetector
-      <div>{noteFFT}</div>
+      <div>Nota: {noteFFT.nota}</div>
+      <div>Freq: {noteFFT.frecuencia}</div>
+      <div>Rep: {noteProgressDetector.repeticiones}</div>
+      <div>Detección: {noteProgressDetector.note}<progress max={numberOfRepetitions} value={noteProgressDetector.repeticiones}></progress></div>
+      <div>La nota que tocaste es: {finalNote}</div>
     </div>
   )
 }
