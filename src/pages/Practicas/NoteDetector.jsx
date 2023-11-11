@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import FFT from 'fft.js';
 
 export default function NoteDetector() {
@@ -6,6 +6,8 @@ export default function NoteDetector() {
   const [noteFFT, setNoteFFT] = useState({});
   const [noteProgressDetector, setNoteProgressDetector] = useState({});
   const [finalNote, setFinalNote] = useState();
+  const intervals = useRef([]);
+  const streams = useRef([]);
   const numberOfRepetitions = 20; 
   function noteFromPitch( frequency ) {
     const noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
@@ -13,30 +15,33 @@ export default function NoteDetector() {
     return noteStrings[(Math.round( noteNum ) + 69)%12];
   }
 
-  function noteDetection(setNoteFFT){
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(function(mediaStream){ //Pide permiso de micrófono
-        // Se vincula el nodo de entrada con el micrófono
-        const audioContext = new AudioContext();
-        const inputNode = audioContext.createMediaStreamSource(mediaStream);
-  
-        // Se configura el nodo de analisis y se vincula con nodo de entrada
-        const analyserNode = audioContext.createAnalyser();
-        analyserNode.minDecibels = -100;
-        analyserNode.maxDecibels = -10;
-        analyserNode.smoothingTimeConstant = 0.85;
-        inputNode.connect(analyserNode);
-  
-        // Creando el buffer de datos
-        const bufferLength = analyserNode.fftSize;
-        const buffer = new Float32Array(bufferLength);
-  
-        setInterval(function(){
-            analyserNode.getFloatTimeDomainData(buffer); //Se obtiene la señal en el dominio del tiempo (normalizado de -1 a 1)
-            autocorrelation(buffer, audioContext.sampleRate, setNoteFFT); //Se realiza la autocorrelación con ambos métodos
-        }, 100)
-        }).catch(function(error) {
-          console.log("Error al hacer autoccrelación: " + error);
-        });
+    function noteDetection(setNoteFFT){
+        navigator.mediaDevices.getUserMedia({ audio: true }).then(function(mediaStream){ //Pide permiso de micrófono
+          // Se vincula el nodo de entrada con el micrófono
+          const audioContext = new AudioContext();
+          const inputNode = audioContext.createMediaStreamSource(mediaStream);
+          streams.current.push(mediaStream);
+          // Se configura el nodo de analisis y se vincula con nodo de entrada
+          const analyserNode = audioContext.createAnalyser();
+          analyserNode.minDecibels = -100;
+          analyserNode.maxDecibels = -10;
+          analyserNode.smoothingTimeConstant = 0.85;
+          inputNode.connect(analyserNode);
+    
+          // Creando el buffer de datos
+          const bufferLength = analyserNode.fftSize;
+          const buffer = new Float32Array(bufferLength);
+    
+          const idInterval = setInterval(function(){
+              analyserNode.getFloatTimeDomainData(buffer); //Se obtiene la señal en el dominio del tiempo (normalizado de -1 a 1)
+              autocorrelation(buffer, audioContext.sampleRate, setNoteFFT); //Se realiza la autocorrelación con ambos métodos
+              console.log("Detect: " + idInterval);
+          }, 100);
+          intervals.current.push(idInterval);
+          }).catch(function(error) {
+            console.log("Error al detectar la nota: " + error);
+          });
+
   }
 
   function autocorrelation(buffer, sampleRate, setNoteFFT) {
@@ -125,9 +130,22 @@ useEffect(()=>{
   }
 }, [noteProgressDetector.repeticiones]);
 
-
 useEffect(()=>{
-  noteDetection(setNoteFFT);
+    noteDetection(setNoteFFT);
+
+  return () => {
+    if(intervals){
+      intervals.current.forEach(idInterval=>{
+        clearInterval(idInterval);
+      })
+      streams.current.forEach(stream=>{
+        stream.getTracks().forEach((track) => track.stop() )
+      })
+      console.log(intervals.current);
+    }else{
+      console.log("return else");
+    }
+  }
 },[]);
 
   return (

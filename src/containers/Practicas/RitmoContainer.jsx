@@ -55,6 +55,10 @@ export default function RitmoContainer() {
         // setTicks(Tone.Transport.getTicksAtTime(time))
       },`${data.subdivision}n`, 0);
       Tone.Transport.start();
+
+      return ()=>{
+        Tone.Transport.cancel();
+      }
     },[data.tempo, data.signaturaDenominador, data.signaturaNumerador, data.subdivision]);
     
     //Maneja el cambio de datos del formulario
