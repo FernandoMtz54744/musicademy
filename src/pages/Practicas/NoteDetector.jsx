@@ -5,51 +5,53 @@ import 'react-circular-progressbar/dist/styles.css';
 
 export default function NoteDetector() {
 
-  const [noteFFT, setNoteFFT] = useState({}); //Nota obtenida por el método FFT Autocorrelation
-  const [noteProgressDetector, setNoteProgressDetector] = useState({}); //Mantiene el historial de notas
-  const [finalNote, setFinalNote] = useState();
-  const intervals = useRef([]); //Controla los ID's de los setInterval creados
+  const [noteFFT, setNoteFFT] = useState({nota: "Silencio", repeticiones: 0}) //Nota obtenida por el método FFT Autocorrelation
+  const [noteProgressDetector, setNoteProgressDetector] = useState({}); //Mantiene el historial de notas para obtener la nota final
+  const [finalNote, setFinalNote] = useState(); //Resultado de la nota tocada
+  const intervals = useRef([]); //Controla los ID's de los setInterval creados para ser detenidos
   const streams = useRef([]); //Controla los stream de audios creados para ser cerrados
-  const numberOfRepetitions = 8; //
+  const numberOfRepetitions = 15; //Numero de detección de la misma nota para determinar que es la nota final
 
   //Obtiene la nota musical a partir de la frecuencia
-  function noteFromPitch( frequency ) {
+  function noteFromPitch(frequency) {
     const noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     const noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
     return noteStrings[(Math.round( noteNum ) + 69)%12];
   }
 
   //Función para la detección de notas
-  function noteDetection(setNoteFFT){
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(function(mediaStream){ //Pide permiso de micrófono
-    // Se vincula el nodo de entrada con el micrófono
-    const audioContext = new AudioContext();
-    const inputNode = audioContext.createMediaStreamSource(mediaStream);
-    streams.current.push(mediaStream);
-    
-    // Se configura el nodo de analisis y se vincula con nodo de entrada
-    const analyserNode = audioContext.createAnalyser();
-    analyserNode.minDecibels = -100;
-    analyserNode.maxDecibels = -10;
-    analyserNode.smoothingTimeConstant = 0.85;
-    inputNode.connect(analyserNode);
-  
-    // Creando el buffer de datos
-    const bufferLength = analyserNode.fftSize;
-    const buffer = new Float32Array(bufferLength);
+  const noteDetection = ()=>{
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(function(mediaStream){  //Pide permiso de micrófono
+      // Se vincula el nodo de entrada con el micrófono
+      const audioContext = new AudioContext();
+      const inputNode = audioContext.createMediaStreamSource(mediaStream);
+      streams.current.push(mediaStream);
       
-    //Se crean los eventos para obtener muestras de audio
-    const idInterval = setInterval(function(){
-      analyserNode.getFloatTimeDomainData(buffer); //Se obtiene la señal en el dominio del tiempo (normalizado de -1 a 1)
-      autocorrelation(buffer, audioContext.sampleRate, setNoteFFT); //Se realiza la autocorrelación
-    }, 100);
+      // Se configura el nodo de analisis y se vincula con nodo de entrada
+      const analyserNode = audioContext.createAnalyser();
+      analyserNode.minDecibels = -100;
+      analyserNode.maxDecibels = -10;
+      analyserNode.smoothingTimeConstant = 0.85;
+      inputNode.connect(analyserNode);
+    
+      // Creando el buffer de datos
+      const bufferLength = analyserNode.fftSize;
+      const buffer = new Float32Array(bufferLength);
+        
+      //Se crean los eventos para obtener muestras de audio
+      const idInterval = setInterval(()=>{
+        analyserNode.getFloatTimeDomainData(buffer); //Se obtiene la señal en el dominio del tiempo (normalizado de -1 a 1)
+        autocorrelation(buffer, audioContext.sampleRate); //Se realiza la autocorrelación
+      }, 50);
+   
       intervals.current.push(idInterval);
-    }).catch(function(error) {
-      console.log("Error al detectar la nota: " + error);
-    });
+      console.log(`Se creó interval (${idInterval})`);
+      }).catch(function(error) {
+        console.log("Error al detectar la nota: " + error);
+      });
   }
 
-  function autocorrelation(buffer, sampleRate, setNoteFFT) {
+  const autocorrelation  = (buffer, sampleRate)=>{
     // Obteniendo la RMS para saber si la amplitud eficaz es suficiente
     let SIZE = buffer.length;
     let sumOfSquares = 0;
@@ -122,26 +124,28 @@ function fftAutocorrelation(buffer, SIZE, sampleRate) { //Autocorrelacion con el
 
 //Se mantiene el control de historial de notas para obtener el veredicto de la nota tocada
 useEffect(()=>{
+  console.log("useEffect");
   if((noteProgressDetector.note === noteFFT.nota)){
     setNoteProgressDetector(noteProgress => ({...noteProgress, repeticiones: noteProgress.repeticiones+1}))
   }else{
     setNoteProgressDetector({note: noteFFT.nota, repeticiones: 0})
   }
-}, [noteFFT.frecuencia]);
+}, [noteFFT.frecuencia, noteFFT.nota, noteProgressDetector.note]);
 
 //Se obtiene la nota tocada
 useEffect(()=>{
   if(noteProgressDetector.repeticiones > numberOfRepetitions){
-    setFinalNote(noteFFT.nota);
+    setFinalNote(noteProgressDetector.note);
   }
-}, [noteProgressDetector.repeticiones]);
+}, [noteProgressDetector]);
 
 //Cada que se monta el componente empieza la detección de notas
 useEffect(()=>{
-  noteDetection(setNoteFFT);
+  noteDetection();
   return () => {
       intervals.current.forEach(idInterval=>{
         clearInterval(idInterval);
+        console.log(`ClearInterval(${idInterval})`);
       })
       streams.current.forEach(stream=>{
         stream.getTracks().forEach((track) => track.stop() )
@@ -152,14 +156,15 @@ useEffect(()=>{
   return (
     <div className='noteDetector-container'>
         <h3>La nota que tocaste fue: {finalNote}</h3>
+        {/* <div>Rep: {noteProgressDetector.repeticiones}</div> */}
         <CircularProgressbar value={noteProgressDetector.repeticiones} text={`${noteProgressDetector.note}`} 
         maxValue={numberOfRepetitions}
         styles={buildStyles({
           textColor: "#42006A",
           pathColor: "#42006A",
+          pathTransitionDuration: 0.2,
           })}
         />
-
     </div>
   )
 }
