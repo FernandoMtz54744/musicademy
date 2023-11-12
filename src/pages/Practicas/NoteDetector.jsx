@@ -3,18 +3,17 @@ import FFT from 'fft.js';
 import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-export default function NoteDetector() {
+export default function NoteDetector({note, setFinalNote}){
 
   const [noteFFT, setNoteFFT] = useState({nota: "Silencio", repeticiones: 0}) //Nota obtenida por el método FFT Autocorrelation
   const [noteProgressDetector, setNoteProgressDetector] = useState({}); //Mantiene el historial de notas para obtener la nota final
-  const [finalNote, setFinalNote] = useState(); //Resultado de la nota tocada
   const intervals = useRef([]); //Controla los ID's de los setInterval creados para ser detenidos
   const streams = useRef([]); //Controla los stream de audios creados para ser cerrados
   const numberOfRepetitions = 15; //Numero de detección de la misma nota para determinar que es la nota final
+  const noteStrings = note.organizedNotes;
 
   //Obtiene la nota musical a partir de la frecuencia
   function noteFromPitch(frequency) {
-    const noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     const noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
     return noteStrings[(Math.round( noteNum ) + 69)%12];
   }
@@ -26,24 +25,21 @@ export default function NoteDetector() {
       const audioContext = new AudioContext();
       const inputNode = audioContext.createMediaStreamSource(mediaStream);
       streams.current.push(mediaStream);
-      
       // Se configura el nodo de analisis y se vincula con nodo de entrada
       const analyserNode = audioContext.createAnalyser();
       analyserNode.minDecibels = -100;
       analyserNode.maxDecibels = -10;
       analyserNode.smoothingTimeConstant = 0.85;
       inputNode.connect(analyserNode);
-    
       // Creando el buffer de datos
       const bufferLength = analyserNode.fftSize;
       const buffer = new Float32Array(bufferLength);
-        
       //Se crean los eventos para obtener muestras de audio
       const idInterval = setInterval(()=>{
         analyserNode.getFloatTimeDomainData(buffer); //Se obtiene la señal en el dominio del tiempo (normalizado de -1 a 1)
         autocorrelation(buffer, audioContext.sampleRate); //Se realiza la autocorrelación
       }, 50);
-   
+      //Se crean los intervalos para obtener las muestras de audio
       intervals.current.push(idInterval);
       console.log(`Se creó interval (${idInterval})`);
       }).catch(function(error) {
@@ -51,6 +47,7 @@ export default function NoteDetector() {
       });
   }
 
+  //Función para llevar a cabo la autocorrelación
   const autocorrelation  = (buffer, sampleRate)=>{
     // Obteniendo la RMS para saber si la amplitud eficaz es suficiente
     let SIZE = buffer.length;
@@ -64,6 +61,7 @@ export default function NoteDetector() {
       setNoteFFT({nota: "Silencio", frecuencia: 0});
       return;
     }
+    //LLeva a cabo la autocorrelación por FFT
     const freqFFT = fftAutocorrelation(buffer, SIZE, sampleRate);
     setNoteFFT({nota: noteFromPitch(freqFFT),  frecuencia: freqFFT});
   }
@@ -75,8 +73,8 @@ function fftAutocorrelation(buffer, SIZE, sampleRate) { //Autocorrelacion con el
   const fftResult = f.createComplexArray();
   f.realTransform(fftResult, buffer); //Aplica FFT
   f.completeSpectrum(fftResult);
-
-  for (let i = 0; i < fftResult.length; i += 2) { //Multiplica por su conjugado (Obtiene el espectro de potencia)
+  //Multiplica por su conjugado (Obtiene el espectro de potencia)
+  for (let i = 0; i < fftResult.length; i += 2) { 
     const real = fftResult[i];
     const imag = fftResult[i + 1];
     fftResult[i] = real * real + imag * imag;
@@ -106,14 +104,14 @@ function fftAutocorrelation(buffer, SIZE, sampleRate) { //Autocorrelacion con el
 
   // Aplica interpolación para mayor precisión
   let T0 = maxIndex;
-  let x1 = c[T0 - 1];
+  let x1 = c[T0-1];
   let x2 = c[T0];
-  let x3 = c[T0 + 1]
+  let x3 = c[T0+1]
 
-  let a = (x1 + x3 - 2 * x2) / 2;
-  let b = (x3 - x1) / 2
-  if (a) {
-    T0 = T0 - b / (2 * a);
+  let a = (x1+x3-2*x2)/2;
+  let b = (x3-x1)/2
+  if (a){
+    T0 = T0-b/(2 * a);
   }
 
   const end = performance.now();
@@ -122,7 +120,7 @@ function fftAutocorrelation(buffer, SIZE, sampleRate) { //Autocorrelacion con el
   return sampleRate/T0;
 }
 
-//Se mantiene el control de historial de notas para obtener el veredicto de la nota tocada
+//Se mantiene el control de historial de notas para obtener el veredicto final de la nota tocada
 useEffect(()=>{
   console.log("useEffect");
   if((noteProgressDetector.note === noteFFT.nota)){
@@ -155,7 +153,6 @@ useEffect(()=>{
 
   return (
     <div className='noteDetector-container'>
-        <h3>La nota que tocaste fue: {finalNote}</h3>
         {/* <div>Rep: {noteProgressDetector.repeticiones}</div> */}
         <CircularProgressbar value={noteProgressDetector.repeticiones} text={`${noteProgressDetector.note}`} 
         maxValue={numberOfRepetitions}

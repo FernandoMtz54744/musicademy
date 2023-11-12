@@ -282,3 +282,11 @@
     align-items: center;
     height: 200px;
 }
+
+
+.center-result{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

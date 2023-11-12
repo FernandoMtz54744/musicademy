@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SolfeoConfiguration from '../../pages/Practicas/SolfeoConfiguration'
 import Solfeo from '../../pages/Practicas/Solfeo';
 import Header from '../../pages/Header';
 import NoteDetector from '../../pages/Practicas/NoteDetector';
+import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 export default function SolfeoContainer() {
 
@@ -37,12 +39,13 @@ export default function SolfeoContainer() {
     }
 
     const [data, setData] = useState(initialData); //Datos del formulario
-    const [note, setNote] = useState({});
+    const [note, setNote] = useState({}); //La nota que debe tocar
+    const [finalNote, setFinalNote] = useState(); //Resultado de la nota tocada
+    const [result, setResult] = useState();
     const naturalNotes = ["C", "D", "E", "F", "G", "A", "B"]; //Las 7 notas naturales 
     const sharpNotes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]; //Las 12 notas musicales en modo sostenidos
     const bemolNotes = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]; //Las 12 notas en modo bemol
     const majorKeyPattern = [0,2,4,5,7,9,11] //Patrón T-T-ST-T-T-T de una escala mayor
-
 
     //Maneja el cambio de los inputs
     const handleChange = (e)=>{
@@ -75,12 +78,17 @@ export default function SolfeoContainer() {
         }
     }
 
+    //Maneja el regreso a la configuración
+    const handleBack = ()=>{
+        setData({...data, isStart:false});
+    }
+
     //Devuelve un número al azar
     const getRandomNumber = (max)=>{
         return Math.trunc(Math.random() * max);
     }
 
-    //Devuelve un arreglo con las claves de un arreglo JSON cuyo valor sea true
+    //Devuelve un arreglo con las claves de un objeto JSON cuyo valor sea true
     const getTrueKeys = (json)=>{
         const keys = Object.keys(json);
         const trueKeys = keys.filter(key => json[key])
@@ -118,6 +126,32 @@ export default function SolfeoContainer() {
         return notesOfKey;
     }
 
+    //Obtiene las notas organizadas (por frecuencias) de la escala generada
+    const getOrganizedNotesOfKey = (escala, nota)=>{
+        let organizedNotes = [];
+
+        if(escala.includes("b") || escala === "F" || nota.includes("b")){ //Busca en bemoles
+            organizedNotes = bemolNotes;
+        }else{ //Busca en sostenidos
+            organizedNotes = sharpNotes;
+        }
+        //Ajusta los enarmónicos
+        if(escala === "F#"){
+            organizedNotes[organizedNotes.indexOf("F")] = "E#";
+        }else if(escala === "C#"){
+            organizedNotes[organizedNotes.indexOf("F")] = "E#";
+            organizedNotes[organizedNotes.indexOf("C")] = "B#";
+        }else if(escala === "Gb"){
+            organizedNotes[organizedNotes.indexOf("B")] = "Cb";
+        }else if(escala === "Cb"){
+            organizedNotes[organizedNotes.indexOf("B")] = "Cb";
+            organizedNotes[organizedNotes.indexOf("E")] = "Fb";
+        }
+        
+        console.log("La escala organizada es: " + organizedNotes);
+        return organizedNotes;
+    } 
+
     //Devuelve una nota generada al azar de acuerdo a los parámetros
     const generateNote = ()=>{
         const tempNote = {}
@@ -142,28 +176,48 @@ export default function SolfeoContainer() {
             }//Si no entra a ninguno la nota se queda natural
             tempNote.nota = selectedNote;
         }
+
+        tempNote.organizedNotes = getOrganizedNotesOfKey(tempNote.escala, tempNote.nota);
         setNote(tempNote);
+        setResult({isCorrect: false, isPlayingNote: true, correctNote: finalNote})
     }
 
-    const handleBack = ()=>{
-        setData({...data, isStart:false});
-    }
+    useEffect(()=>{
+        if(finalNote === note.nota){
+            setResult({...result, isCorrect: true, isPlayingNote: false})
+            console.log("Correcto");
+        }else{
+            setResult({...result, isCorrect:false, isPlayingNote: false})
+        }
+    }, [finalNote]);
 
+    
   return (
     <>
-    {
-        data.isStart?(
+    {data.isStart?(
             <>
                 <Header headerColor={"header-green"}/>
                 <Solfeo note={note} generateNote={generateNote} handleBack={handleBack}></Solfeo>
-                <NoteDetector/>
+                {result.isPlayingNote?(
+                    <NoteDetector setFinalNote={setFinalNote} note={note}/>
+                ):(
+                <div className='center-result'>
+                    <div className='noteDetector-container'>
+                        <CircularProgressbar value={100} text={finalNote} 
+                            styles={buildStyles({
+                            textColor: result.isCorrect?"#2E7D32":"#D32F2F",
+                            pathColor: result.isCorrect?"#2E7D32":"#D32F2F",
+                            pathTransitionDuration: 0.2,
+                            })}
+                            />
+                    </div>
+                    <h3>{result.isCorrect?"Correcto":`Incorrecto: la nota correcta era ${note.nota}`}</h3>
+                </div>
+                )}
             </>
-        )
-        :(
+        ):(
             <SolfeoConfiguration data={data} handleChange={handleChange} handleOnClick={handleOnClick}></SolfeoConfiguration>
-        )
-    }
-        
+        )}
     </>
   )
 }
