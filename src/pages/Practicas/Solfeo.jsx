@@ -34,16 +34,21 @@ export default function Solfeo({note, generateNote, handleBack}) {
 
   return (
     <div>
-      <div>{note.clave}</div>
+      {/* <div>{note.clave}</div>
       <div>{note.escala}</div>
-      <div>{note.nota}</div>
-
+      <div>{note.nota}</div> */}
       <div className='sheetContainer'>
         <h2>Toca la nota mostrada a continuación</h2>
-        <div name="RythmSheet" id='RythmSheet' className='sheet'></div>
-        <button onClick={generateNote}>Siguiente</button>
-        <button onClick={handleBack}>Regresar</button>
+        <div name="RythmSheet" id='RythmSheet' className='sheet'/>
       </div>
+
+      <footer className='footer-waves'>
+        <div className='buttonRitmoContainer'>
+            <button className="configurationButton" onClick={generateNote}>Siguiente</button>
+            <button className='configurationButton' onClick={handleBack}>Regresar</button>
+          </div>
+      </footer>
+      
     </div>
   )
 }
