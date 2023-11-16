@@ -32,7 +32,6 @@ export default function RitmoContainer() {
     const [systemDelaysArray, setSystemDelaysArray] = useState([]); //Es el delay en segundos entre el beat y el sonido
     const [averageDelay, setAverageDelay] = useState(0);
     const USER_PULSE_MARGIN = 0.150; //Margen en segundos de que el usuario se puede equivocar al presionar el ritmo
-    // const [ticks, setTicks] = useState(0); //Para el circulo que muestra el beat de forma visual
 
     //Iniciar el metronomo al mostrar formulario y al cambiar datos [tempo, signatura y subdivisión]
     useEffect(()=>{
@@ -55,7 +54,7 @@ export default function RitmoContainer() {
         // setTicks(Tone.Transport.getTicksAtTime(time))
       },`${data.subdivision}n`, 0);
       Tone.Transport.start();
-
+      console.log("useEffect");
       return ()=>{
         Tone.Transport.cancel();
       }

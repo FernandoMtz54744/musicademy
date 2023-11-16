@@ -5,6 +5,7 @@ import Header from '../../pages/Header';
 import NoteDetector from '../../pages/Practicas/NoteDetector';
 import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { getTrueKeys, getRandomNumber, getChromaticScale, getMajorKey} from '../../utils';
 
 export default function SolfeoContainer() {
 
@@ -43,9 +44,6 @@ export default function SolfeoContainer() {
     const [finalNote, setFinalNote] = useState(); //Resultado de la nota tocada
     const [result, setResult] = useState();
     const naturalNotes = ["C", "D", "E", "F", "G", "A", "B"]; //Las 7 notas naturales 
-    const sharpNotes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]; //Las 12 notas musicales en modo sostenidos
-    const bemolNotes = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]; //Las 12 notas en modo bemol
-    const majorKeyPattern = [0,2,4,5,7,9,11] //Patrón T-T-ST-T-T-T de una escala mayor
 
     //Maneja el cambio de los inputs
     const handleChange = (e)=>{
@@ -83,75 +81,6 @@ export default function SolfeoContainer() {
         setData({...data, isStart:false});
     }
 
-    //Devuelve un número al azar
-    const getRandomNumber = (max)=>{
-        return Math.trunc(Math.random() * max);
-    }
-
-    //Devuelve un arreglo con las claves de un objeto JSON cuyo valor sea true
-    const getTrueKeys = (json)=>{
-        const keys = Object.keys(json);
-        const trueKeys = keys.filter(key => json[key])
-        return trueKeys;
-    }
-
-    //Obtiene las notas de cierta escala
-    const getNotesOfKey = (escala)=>{
-        const notesOfKey = [];
-        let notesToSearch = [];
-        if(escala.includes("b") || escala === "F"){ //Busca en bemoles
-            notesToSearch = bemolNotes;
-        }else{ //Busca en sostenidos
-            notesToSearch = sharpNotes;
-        }
-        //Obtiene las 7 notas
-        let index = notesToSearch.indexOf(escala);
-        if(escala === "Cb"){index = notesToSearch.indexOf("B")}
-        for(let i=0; i < 7; i++){
-            notesOfKey.push(notesToSearch[(index+majorKeyPattern[i])%12]);
-        }
-        //Se validan los enarmónicos para las escalas
-        if(escala === "F#"){
-            notesOfKey[notesOfKey.indexOf("F")] = "E#";
-        }else if(escala === "C#"){
-            notesOfKey[notesOfKey.indexOf("F")] = "E#";
-            notesOfKey[notesOfKey.indexOf("C")] = "B#";
-        }else if(escala === "Gb"){
-            notesOfKey[notesOfKey.indexOf("B")] = "Cb";
-        }else if(escala === "Cb"){
-            notesOfKey[notesOfKey.indexOf("B")] = "Cb";
-            notesOfKey[notesOfKey.indexOf("E")] = "Fb";
-        }
-        console.log(notesOfKey);
-        return notesOfKey;
-    }
-
-    //Obtiene las notas organizadas (por frecuencias) de la escala generada
-    const getOrganizedNotesOfKey = (escala, nota)=>{
-        let organizedNotes = [];
-
-        if(escala.includes("b") || escala === "F" || nota.includes("b")){ //Busca en bemoles
-            organizedNotes = bemolNotes;
-        }else{ //Busca en sostenidos
-            organizedNotes = sharpNotes;
-        }
-        //Ajusta los enarmónicos
-        if(escala === "F#"){
-            organizedNotes[organizedNotes.indexOf("F")] = "E#";
-        }else if(escala === "C#"){
-            organizedNotes[organizedNotes.indexOf("F")] = "E#";
-            organizedNotes[organizedNotes.indexOf("C")] = "B#";
-        }else if(escala === "Gb"){
-            organizedNotes[organizedNotes.indexOf("B")] = "Cb";
-        }else if(escala === "Cb"){
-            organizedNotes[organizedNotes.indexOf("B")] = "Cb";
-            organizedNotes[organizedNotes.indexOf("E")] = "Fb";
-        }
-        
-        console.log("La escala organizada es: " + organizedNotes);
-        return organizedNotes;
-    } 
-
     //Devuelve una nota generada al azar de acuerdo a los parámetros
     const generateNote = ()=>{
         const tempNote = {}
@@ -162,7 +91,7 @@ export default function SolfeoContainer() {
         if(data.modo === "escalas"){
             const selectedEscala = getTrueKeys(data.escalas);//Se obtiene una escala al azar
             tempNote.escala = selectedEscala[getRandomNumber(selectedEscala.length)].replace("Fsharp", "F#");
-            const keyNotes = getNotesOfKey(tempNote.escala);//Se genera la escala
+            const keyNotes = getMajorKey(tempNote.escala);//Se genera la escala
             tempNote.nota = keyNotes[getRandomNumber(keyNotes.length)];//Se obtiene una nota al azar de esa escala
         }else{//alteraciones
             tempNote.escala = "C"; //Escala de Do mayor
@@ -177,7 +106,7 @@ export default function SolfeoContainer() {
             tempNote.nota = selectedNote;
         }
 
-        tempNote.organizedNotes = getOrganizedNotesOfKey(tempNote.escala, tempNote.nota);
+        tempNote.chromaticScale = getChromaticScale(tempNote.escala, tempNote.nota);
         setNote(tempNote);
         setResult({isCorrect: false, isPlayingNote: true, correctNote: finalNote})
     }
@@ -199,7 +128,7 @@ export default function SolfeoContainer() {
                 <Header headerColor={"header-green"}/>
                 <Solfeo note={note} generateNote={generateNote} handleBack={handleBack}></Solfeo>
                 {result.isPlayingNote?(
-                    <NoteDetector setFinalNote={setFinalNote} note={note}/>
+                    <NoteDetector setFinalNote={setFinalNote} chromaticScale={note.chromaticScale}/>
                 ):(
                 <div className='center-result'>
                     <div className='noteDetector-container'>

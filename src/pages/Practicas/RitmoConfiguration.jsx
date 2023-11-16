@@ -42,11 +42,6 @@ export default function RitmoConfiguration({data, handleChange, handleOnClick, h
                     <button className={data.figuras.negra?"active-button":""} onClick={handleOnClick} name="negra"><img src={negra} alt='negra'/></button>
                     <button className={data.figuras.corchea?"active-button":""} onClick={handleOnClick} name="corchea"><img src={corchea} alt='corchea'/></button>
                   </div>
-                  {/* 
-                  <div className='inputConfig-container'>
-                    <p>Silencios:</p>
-                    <button><img src={silencio} alt='silencio'/></button>
-                  </div> */}
 
                   <div className='inputConfig-container'>
                     <p>Signatura de compás:</p>

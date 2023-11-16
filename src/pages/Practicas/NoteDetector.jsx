@@ -3,14 +3,14 @@ import FFT from 'fft.js';
 import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-export default function NoteDetector({note, setFinalNote}){
+export default function NoteDetector({chromaticScale, setFinalNote}){
 
   const [noteFFT, setNoteFFT] = useState({nota: "Silencio", repeticiones: 0}) //Nota obtenida por el método FFT Autocorrelation
   const [noteProgressDetector, setNoteProgressDetector] = useState({}); //Mantiene el historial de notas para obtener la nota final
   const intervals = useRef([]); //Controla los ID's de los setInterval creados para ser detenidos
   const streams = useRef([]); //Controla los stream de audios creados para ser cerrados
   const numberOfRepetitions = 15; //Numero de detección de la misma nota para determinar que es la nota final
-  const noteStrings = note.organizedNotes;
+  const noteStrings = chromaticScale;
 
   //Obtiene la nota musical a partir de la frecuencia
   function noteFromPitch(frequency) {
@@ -122,7 +122,6 @@ function fftAutocorrelation(buffer, SIZE, sampleRate) { //Autocorrelacion con el
 
 //Se mantiene el control de historial de notas para obtener el veredicto final de la nota tocada
 useEffect(()=>{
-  console.log("useEffect");
   if((noteProgressDetector.note === noteFFT.nota)){
     setNoteProgressDetector(noteProgress => ({...noteProgress, repeticiones: noteProgress.repeticiones+1}))
   }else{
