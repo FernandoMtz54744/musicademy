@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import AcordesConfiguration from '../../pages/Practicas/AcordesConfiguration';
-import {getTrueKeys, getRandomNumber, getRandomKey, getChromaticScale, getNotesOfChord, getNameOfChord, getChord} from "../../utils"
+import {getTrueKeys, getRandomNumber, getRandomKey, getChord} from "../../utils"
 import Acorde from '../../pages/Practicas/Acorde';
 
 export default function AcordesContainer() {
@@ -19,36 +19,42 @@ export default function AcordesContainer() {
         isStart: false
     }
 
-    const [data, setData] = useState(initialData);
-    const [chord, setChord] = useState({});
+    const [data, setData] = useState(initialData); //Contiene los datos de la configuración de la práctica
+    const [chord, setChord] = useState({}); //Contiene el acorde a tocar
 
+    //Valida que tipo de acordes se han seleccionado (checkbox)
     const handleChecked = (e)=>{
         const toggle = !data.acordes[e.target.name];  
         setData({...data, acordes:{...data.acordes, [e.target.name]:toggle}})
     }
 
+    //Maneja el cambio de los inputs
     const handleChange = (e)=>{
         setData({...data, [e.target.name]:e.target.value})
-        console.log(data);
     }
 
+    //Maneja el evento de click en el botón iniciar
     const handleStart = ()=>{
         setData({...data, isStart:true})
         generateChord();
     }
 
+    const handleBack = ()=>{
+        setData({...data, isStart:false})
+    }
+
     const generateChord = ()=>{
-        const chordTypesOptions = getTrueKeys(data.acordes);
-        const chordType = chordTypesOptions[getRandomNumber(chordTypesOptions.length)];
-        const fundamentalNote = getRandomKey(chordType);
-        const chord = getChord(fundamentalNote, chordType);
+        const posibleChordType = getTrueKeys(data.acordes);
+        const chordType = posibleChordType[getRandomNumber(posibleChordType.length)];
+        const tonic = getRandomKey(chordType);
+        const chord = getChord(tonic, chordType);
         setChord(chord);
     }
 
   return (
     
         data.isStart?(
-            <Acorde chord={chord} generateChord={generateChord}/>
+            <Acorde chord={chord} generateChord={generateChord} handleBack={handleBack}/>
         ):(
             <AcordesConfiguration data={data} handleChange={handleChange} handleChecked={handleChecked} handleStart={handleStart}/>
         )

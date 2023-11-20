@@ -19,13 +19,13 @@ export default function Solfeo({note, generateNote, handleBack}) {
 
     // // Crea un Stave
     const stave = new Vex.Stave(0, 50, 400);
-    stave.setClef(note.clave);
-    stave.setKeySignature(note.escala);
+    stave.setClef(note.clef);
+    stave.setKeySignature(note.tonic);
     stave.setContext(context).draw();
-    const octava = note.clave === "treble"?4:3;
-    const singleNote = new VF.StaveNote({ keys: [`${note.nota}/${octava}`], duration: "w", clef: note.clave });
+    const octava = note.clef === "treble"?4:3;
+    const singleNote = new VF.StaveNote({ keys: [`${note.note}/${octava}`], duration: "w", clef: note.clef });
     const voice = new VF.Voice().addTickables([singleNote]);
-    if(note.escala === "C"){
+    if(note.tonic === "C"){
       VF.Accidental.applyAccidentals([voice], 'C');
     }
     Vex.Formatter.FormatAndDraw(context, stave, [singleNote]);

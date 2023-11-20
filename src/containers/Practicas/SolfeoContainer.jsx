@@ -5,7 +5,7 @@ import Header from '../../pages/Header';
 import NoteDetector from '../../pages/Practicas/NoteDetector';
 import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { getTrueKeys, getRandomNumber, getChromaticScale, getMajorKey} from '../../utils';
+import { getTrueKeys, getRandomNumber, getMajorScale} from '../../utils';
 
 export default function SolfeoContainer() {
 
@@ -43,7 +43,6 @@ export default function SolfeoContainer() {
     const [note, setNote] = useState({}); //La nota que debe tocar
     const [finalNote, setFinalNote] = useState(); //Resultado de la nota tocada
     const [result, setResult] = useState();
-    const naturalNotes = ["C", "D", "E", "F", "G", "A", "B"]; //Las 7 notas naturales 
 
     //Maneja el cambio de los inputs
     const handleChange = (e)=>{
@@ -83,36 +82,62 @@ export default function SolfeoContainer() {
 
     //Devuelve una nota generada al azar de acuerdo a los parámetros
     const generateNote = ()=>{
-        const tempNote = {}
+        const tempNote = {
+            clef: "", //La clave [treble|bass] 
+            tonic: "", //Tonica de la que se crea la escala
+            note: "", //Alguna nota de esa escala
+            chromatic: [] //Notas cromaticas de donde se obtiene la escala
+        }
         //Se obtiene la clave al azar
-        const selectedClaves = getTrueKeys(data.claves);
-        tempNote.clave =  selectedClaves[getRandomNumber(selectedClaves.length)].replace("sol", "treble").replace("fa", "bass");
+        const posibleClef = getTrueKeys(data.claves);
+        tempNote.clef =  posibleClef[getRandomNumber(posibleClef.length)].replace("sol", "treble").replace("fa", "bass");
 
         if(data.modo === "escalas"){
-            const selectedEscala = getTrueKeys(data.escalas);//Se obtiene una escala al azar
-            tempNote.escala = selectedEscala[getRandomNumber(selectedEscala.length)].replace("Fsharp", "F#");
-            const keyNotes = getMajorKey(tempNote.escala);//Se genera la escala
-            tempNote.nota = keyNotes[getRandomNumber(keyNotes.length)];//Se obtiene una nota al azar de esa escala
+            const posibleTonic = getTrueKeys(data.escalas);//Las posibles escalas para escoger
+            tempNote.tonic = posibleTonic[getRandomNumber(posibleTonic.length)].replace("Fsharp", "F#");
+            const majorScale = getMajorScale(tempNote.tonic);//Se genera la escala
+            tempNote.note = majorScale.notes[getRandomNumber(majorScale.notes.length)];//Se obtiene una nota al azar de esa escala
+            tempNote.chromatic = majorScale.chromatic;
         }else{//alteraciones
-            tempNote.escala = "C"; //Escala de Do mayor
-            const selectedAlteracion = getTrueKeys(data.alteraciones); //Se obtiene una alteracion al azar de las activadas por el usuario (N, #, b)
-            const alteracion = selectedAlteracion[getRandomNumber(selectedAlteracion.length)];
-            let selectedNote = naturalNotes[getRandomNumber(naturalNotes.length)];
-            if(alteracion === "sostenidos"){
-                selectedNote+="#";
-            }else if(alteracion === "bemoles"){
-                selectedNote+="b";
+            tempNote.tonic = "C"; //Escala de Do mayor
+            const posibleAlterations = getTrueKeys(data.alteraciones); //Se obtiene una alteracion al azar de las activadas por el usuario (N, #, b)
+            const alteration = posibleAlterations[getRandomNumber(posibleAlterations.length)];
+            const majorScale = getMajorScale(tempNote.tonic);
+            tempNote.note = majorScale.notes[getRandomNumber(majorScale.notes.length)];
+            tempNote.chromatic = majorScale.chromatic;
+            if(alteration === "sostenidos"){
+                tempNote.note+="#";    
+            }else if(alteration === "bemoles"){
+                tempNote.note+="b";
             }//Si no entra a ninguno la nota se queda natural
-            tempNote.nota = selectedNote;
+            tempNote.chromatic = fixChromatic(tempNote.note, tempNote.chromatic);
         }
-
-        tempNote.chromaticScale = getChromaticScale(tempNote.escala, tempNote.nota);
         setNote(tempNote);
         setResult({isCorrect: false, isPlayingNote: true, correctNote: finalNote})
     }
 
+    //Ajusta la escala cromatica dependiendo la nota (para el modo alteraciones)
+    const fixChromatic = (note, chromatic)=>{
+        if(note.includes("b")){
+            chromatic = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+        }
+        //Ajusta los enarmónicos
+        if(note === "E#"){
+            chromatic[chromatic.indexOf("F")] = "E#";
+        }else if(note === "B#"){
+            chromatic[chromatic.indexOf("F")] = "E#";
+            chromatic[chromatic.indexOf("C")] = "B#";
+        }else if(note === "Cb"){
+            chromatic[chromatic.indexOf("B")] = "Cb";
+        }else if(note === "Fb"){
+            chromatic[chromatic.indexOf("B")] = "Cb";
+            chromatic[chromatic.indexOf("E")] = "Fb";
+        }
+        return chromatic;
+    }
+
     useEffect(()=>{
-        if(finalNote === note.nota){
+        if(finalNote === note.note){
             setResult({...result, isCorrect: true, isPlayingNote: false})
             console.log("Correcto");
         }else{
@@ -128,7 +153,7 @@ export default function SolfeoContainer() {
                 <Header headerColor={"header-green"}/>
                 <Solfeo note={note} generateNote={generateNote} handleBack={handleBack}></Solfeo>
                 {result.isPlayingNote?(
-                    <NoteDetector setFinalNote={setFinalNote} chromaticScale={note.chromaticScale}/>
+                    <NoteDetector setFinalNote={setFinalNote} chromaticScale={note.chromatic}/>
                 ):(
                 <div className='center-result'>
                     <div className='noteDetector-container'>
@@ -140,7 +165,7 @@ export default function SolfeoContainer() {
                             })}
                             />
                     </div>
-                    <h3>{result.isCorrect?"Correcto":`Incorrecto: la nota correcta era ${note.nota}`}</h3>
+                    <h3>{result.isCorrect?"Correcto":`Incorrecto: la nota correcta era ${note.note}`}</h3>
                 </div>
                 )}
             </>
