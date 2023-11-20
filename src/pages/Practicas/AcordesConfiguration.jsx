@@ -35,15 +35,7 @@ export default function Acordes({data, handleChange, handleChecked, handleStart}
                     <input type="checkbox" id='m7' name='m7' value="m7" onChange={handleChecked} checked={data.acordes.m7}/>Acordes m7
                   </label>
                 </div>
-
-                <div className='inputConfig-container'>
-                  <select className="selectSubdivison" name="modo" id="modo" onChange={handleChange} defaultValue="nombre">
-                    <option value="nombre">Nombre</option>
-                    <option value="partitura">Partitura</option>
-                  </select>
-                </div>
                 
-
                 <div className='inputConfig-container radio-container'>
                     <p>Instrumento</p>
                       <div>
