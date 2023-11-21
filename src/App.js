@@ -13,6 +13,7 @@ import RitmoContainer from './containers/Practicas/RitmoContainer';
 import SolfeoContainer from './containers/Practicas/SolfeoContainer';
 import AcordesContainer from './containers/Practicas/AcordesContainer';
 import { AuthProvider } from './context/AuthContext';
+import Indice from './pages/Indice';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path='/Practicas/Solfeo' element={<SolfeoContainer/>}/>
           <Route path='/Practicas/Melodia' element={<Melodias/>}/>
           <Route path='/Practicas/Acordes' element={<AcordesContainer/>}/>
+          <Route path='/Teoria/:submodulo' element={<Indice/>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

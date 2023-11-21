@@ -1,0 +1,74 @@
+{
+    "fundamentos":{
+        "introduccion":{
+         "contenido":"Introducción",
+         "url":"fundamentos/introduccion"
+        },
+        "notas_musicales" :{
+         "contenido":"Notas Musicales",
+         "url":"fundamentos/notas_musicales"
+        },
+        "figuras_musicales":{
+         "contenido":"Figuras Musicales",
+         "url":"fundamentos/figuras_musicales"
+        },
+        "pentagrama" :{
+        "contenido":"Figuras Musicales",
+         "url":"fundamentos/figuras_musicales"
+        },
+        "claves" :{
+            "contenido":"Claves",
+             "url":"fundamentos/claves"
+        },
+        "solfeo" :{
+            "contenido":"Solfeo",
+             "url":"fundamentos/solfeo"
+        }
+    },
+    "melodia":{
+        "intervalos":{
+            "contenido":"Intervalos",
+             "url":"melodia/intervalos"
+            },
+        "grados":{
+            "contenido":"Grados",
+             "url":"melodia/grados"
+            }
+    },
+    "armonia":{
+        "triadas":{
+            "contenido":"Triadas",
+             "url":"armonia/triadas"
+        },
+        "acordes":{
+            "contenido":"Acordes",
+             "url":"acordes/figuras_musicales"
+        },
+        "modos":{
+            "contenido":"Modos",
+             "url":"armonia/modos"
+        },
+        "circulo":{
+            "contenido":"Circulo de Quintas",
+             "url":"armonia/circulo"
+        }
+    },
+    "ritmo":{
+        "compases":{
+            "contenido":"Compases",
+             "url":"ritmo/compases"
+            },
+        "ligaduras":{
+            "contenido":"Ligaduras",
+             "url":"ritmo/ligaduras"
+            },
+        "tiempos_compuestos":{
+            "contenido":"Tiempos Compuestos",
+             "url":"ritmo/tiempos_compuestos"
+            },
+        "contratiempo_sincompa":{
+            "contenido":"Contratiempo y Sincompa",
+             "url":"ritmo/contratiempo_sincompa"
+            }
+    }
+}

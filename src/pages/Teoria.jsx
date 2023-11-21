@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import { Link } from 'react-router-dom'
+import "../styles/teoria.css"
 
 export default function Teoria() {
   return (
@@ -11,19 +12,19 @@ export default function Teoria() {
             <main className='main-modulos'>
                 <div className='modulo-card teoria-card'>
                 <p>Fundamentos</p>
-                <Link className='modulo-card-button teoria-button' to="/Teoria">Comenzar</Link>
+                <Link className='modulo-card-button teoria-button' to="/Teoria/fundamentos">Comenzar</Link>
                 </div>
                 <div className='modulo-card teoria-card'>
                 <p>Melodia</p>
-                <Link className='modulo-card-button teoria-button'>Comenzar</Link>
+                <Link className='modulo-card-button teoria-button' to="/Teoria/melodia">Comenzar</Link>
                 </div>
                 <div className='modulo-card teoria-card'>
                 <p>Armonía</p>
-                <Link className='modulo-card-button teoria-button'>Comenzar</Link>
+                <Link className='modulo-card-button teoria-button' to="/Teoria/armonia">Comenzar</Link>
                 </div>
                 <div className='modulo-card teoria-card'>
                 <p>Ritmo</p>
-                <Link className='modulo-card-button teoria-button'>Comenzar</Link>
+                <Link className='modulo-card-button teoria-button' to="/Teoria/ritmo">Comenzar</Link>
                 </div>
             </main>
         </div>
