@@ -22,22 +22,22 @@ export function AuthProvider({children}){
                 setUser("");
             }else{
                 setUser(currentUser);
+                console.log(currentUser);
             }         
         })
         return ()=>suscribed();
     }, []);
 
-    const register =  async (email, password)=>{
-        const response = await createUserWithEmailAndPassword(auth, email, password);
-        console.log(response);
+    const register = (email, password)=>{
+        return createUserWithEmailAndPassword(auth, email, password);
     }
-    const login = async(email, password)=>{
-        const response = await signInWithEmailAndPassword(auth, email, password);
-        console.log(response);
+    const login = (email, password)=>{
+        return signInWithEmailAndPassword(auth, email, password);
     }
-    const loginWIthGoogle = async()=>{
-        const responseGoogle = new GoogleAuthProvider();
-        return signInWithPopup(auth, responseGoogle);
+
+    const loginWIthGoogle = ()=>{
+            const responseGoogle = new GoogleAuthProvider();
+            return signInWithPopup(auth, responseGoogle)
     }
     const logout = async ()=>{
         const response = await signOut(auth);

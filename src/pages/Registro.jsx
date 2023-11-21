@@ -3,7 +3,7 @@ import "../styles/main.css"
 import "../styles/auth.css"
 import { Link } from 'react-router-dom'
 
-export default function Registro({data, handleChange, handleRegister}) {
+export default function Registro({data, handleChange, handleRegister, error}) {
   return (
     <div>
       <header className='header header-black'>
@@ -25,10 +25,10 @@ export default function Registro({data, handleChange, handleRegister}) {
                 <label htmlFor="correo">Correo</label>
                 <input className="input-text input-text-register-color" type="email" name='email' id='email' onChange={handleChange} value={data.email}/>
               </div>
-              {/* <div className='input-container'>
+              <div className='input-container'>
                 <label htmlFor="usuario">Usuario</label>
-                <input className='input-text input-text-register-color' type="text" name='usuario' id='usuario'/>
-              </div> */}
+                <input className='input-text input-text-register-color' type="text" name='usuario' id='usuario' onChange={handleChange} value={data.usuario}/>
+              </div>
               <div className='input-container'>
                 <label htmlFor="password">Contraseña</label>
                 <input className='input-text input-text-register-color' type="password" name="password" id="password" onChange={handleChange} value={data.password}/>
@@ -41,6 +41,9 @@ export default function Registro({data, handleChange, handleRegister}) {
                 <Link to="/Login" className='registrarse-link'>Login</Link>
               </div>
             </div>
+            <center className='error-form'>
+              {error}
+            </center>
           </form>
         </div>
       </main>

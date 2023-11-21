@@ -4,7 +4,7 @@ import "../styles/main.css"
 import "../styles/auth.css"
 import googleIcon from "../res/googleIcon.png"
 
-export default function Login({data, handleChange, handleLogin, handleLoginGoogle}) {
+export default function Login({data, handleChange, handleLogin, handleLoginGoogle, error}) {
   return (
     <div>
       <header className='header header-black'>
@@ -41,6 +41,9 @@ export default function Login({data, handleChange, handleLogin, handleLoginGoogl
                 <Link to="/Registro" className='registrarse-link'>Registrarse</Link>
               </div>
             </div>
+            <center className='error-form'>
+              {error}
+            </center>
           </form>
         </div>
       </main>

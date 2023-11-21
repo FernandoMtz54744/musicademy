@@ -51,3 +51,7 @@
 .input-button-pefil:hover{
     cursor: pointer;
 }
+
+.user-picture-perfil-module{
+    margin: 0 0.5rem 0 0.5rem;
+}

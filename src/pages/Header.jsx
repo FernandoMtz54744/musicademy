@@ -23,7 +23,10 @@ export default function Header({headerColor}) {
         <p>Logo</p>
         <div className='header-links'>
           <Link to="/Modulos">Inicio</Link>
-          <Link to="/Perfil">{auth.user.displayName}</Link>
+          <Link to="/Perfil" className='user-name-container'>
+            {auth.user.photoURL && <img src={auth.user.photoURL} className='user-picture' alt="usuario-picture" />}
+            {auth.user.displayName}
+          </Link>
           <Link onClick={logout}>Logout</Link>
         </div>
       </header>
