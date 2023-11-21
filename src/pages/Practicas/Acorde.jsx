@@ -31,6 +31,7 @@ export default function Acorde({chord, generateChord, handleBack, result}) {
                   textColor: "#D32F2F",
                   pathColor: "#D32F2F",
                   pathTransitionDuration: 0.2,
+                  textSize: 40
                   })}
               />
             </div>

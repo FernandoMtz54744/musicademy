@@ -1,14 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link , useNavigate} from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 export default function Header({headerColor}) {
+  const auth = useAuth();
+  const navigate = useNavigate()
+
+  const logout = (e)=>{
+    e.preventDefault();
+    auth.logout();
+    navigate("/");
+  }
+
+  useEffect(()=>{
+    if(!auth.user){
+      navigate("/Login");
+    }
+  }, [auth.user])
+
   return (
     <header className={`header ${headerColor}`}>
         <p>Logo</p>
         <div className='header-links'>
           <Link to="/Modulos">Inicio</Link>
-          <Link to="/Perfil">Nombre</Link>
-          <Link to="/">Logout</Link>
+          <Link to="/Perfil">{auth.user.displayName}</Link>
+          <Link onClick={logout}>Logout</Link>
         </div>
       </header>
   )

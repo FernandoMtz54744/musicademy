@@ -93,3 +93,24 @@
 .registrarse-link{
     text-align: right;
 }
+
+.google-button{
+    background-color: #fff;
+    height: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: medium;
+    font-weight: 700;
+    border-radius: 5px;
+}
+
+.google-icon{
+    height: 2rem;
+    margin-right: 1rem;
+}   
+
+.google-button:hover{
+    cursor: pointer;
+}
