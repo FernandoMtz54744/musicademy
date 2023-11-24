@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import RitmoConfiguration from '../../pages/Practicas/RitmoConfiguration';
 import Ritmo from '../../pages/Practicas/Ritmo';
 import Header from '../../pages/Header';
@@ -25,12 +25,9 @@ export default function RitmoContainer() {
     const [rhythmSheetData, setRhythmSheetData] = useState([]); //Patron ritmico en formato para desplegar en partitura 
     const [rhythmTimesElapsed, setRhythmTimesElapsed] = useState([]); //Tiempos transcurridos de cada nota desde el tiempo 0
     const [timeReference, setTimeReference] = useState(0); //Tiempo de referencia desde donde se empieza a contar la duracion del patrón ritmico
-    const [metronomeBeatTime, setMetronomeBeatTime] = useState(0); //Tiempo en el que el metronomo da el golpe
+    const metronomeBeatTime = useRef(); //Tiempo en el que el metronomo da el golpe
     const [circleBeatCSS, setCircleBeatCSS] = useState("") //Indica el CSS del circulo para indicar el golpe del metronomo
     const [userAnswers, setUserAnswers] = useState([]); //Mantiene cuales notas fueron acertadas por el usuario
-    const [isDelaySynchronized, setIsDelaySynchronized] = useState(false); //Indica si ya se sincronizó el delay entre el beat y el sonido
-    const [systemDelaysArray, setSystemDelaysArray] = useState([]); //Es el delay en segundos entre el beat y el sonido
-    const [averageDelay, setAverageDelay] = useState(0);
     const USER_PULSE_MARGIN = 0.150; //Margen en segundos de que el usuario se puede equivocar al presionar el ritmo
 
     //Iniciar el metronomo al mostrar formulario y al cambiar datos [tempo, signatura y subdivisión]
@@ -43,15 +40,14 @@ export default function RitmoContainer() {
       const ticksForCompass = 768/Number(data.signaturaDenominador) * data.signaturaNumerador; //Un compas mide 768 ticks
 
       Tone.Transport.scheduleRepeat((time)=>{
-        setMetronomeBeatTime(Tone.now());
         if(Tone.Transport.getTicksAtTime(time) % ticksForCompass === 0){
           osc.start(time).stop(time + 0.1);
           setCircleBeatCSS("main-beat");
         }else{
-          osc2.start(time).stop(time + 0.1);
           setCircleBeatCSS("secondary-beat")
+          osc2.start(time).stop(time + 0.1);
         }
-        // setTicks(Tone.Transport.getTicksAtTime(time))
+        metronomeBeatTime.current = Tone.immediate();
       },`${data.subdivision}n`, 0);
       Tone.Transport.start();
       console.log("useEffect");
@@ -166,28 +162,10 @@ export default function RitmoContainer() {
     }
 
     const handleOnKeydown = (e)=>{
-      const time = Tone.now();
-      if(!isDelaySynchronized){
-        if(e.keyCode === 83){
-          if(systemDelaysArray.length < 10){
-            const systemDelayTemp = [...systemDelaysArray];
-            systemDelayTemp.push(time-metronomeBeatTime);
-            setSystemDelaysArray(systemDelayTemp)
-          }else{
-            const averageDelay = sumArray(systemDelaysArray) / systemDelaysArray.length;
-            if(averageDelay <= 0.250){
-              setAverageDelay(averageDelay);
-              setIsDelaySynchronized(true);
-            }else{
-              setSystemDelaysArray([]);
-              console.log("Delay demasiado alto: " + averageDelay);
-            }
-          }
-        }
-      }else{
+      const time = Tone.immediate();
         if(e.keyCode === 32){
           if (timeReference === 0) {
-            const realTimeReference = metronomeBeatTime+averageDelay;
+            const realTimeReference = metronomeBeatTime.current; //+averageDelay;
             setTimeReference(realTimeReference);
             if(time-realTimeReference< USER_PULSE_MARGIN){
               const userAnswersTemp = [...userAnswers];
@@ -212,7 +190,6 @@ export default function RitmoContainer() {
             isCorrect?console.log("Correcto con: " + userRythmMs):console.log("Incorrecto con: " + userRythmMs);
           }
         }
-      }
     }
 
     const handleStart = ()=>{
@@ -233,8 +210,7 @@ export default function RitmoContainer() {
             <Ritmo data={data} generateRhythmPattern={generateRhythmPattern} rhythmSheetData={rhythmSheetData} 
                   handleBack={handleBack} handleOnKeydown={handleOnKeydown} timeReference={timeReference} 
                   circleBeatCSS={circleBeatCSS} setCircleBeatCSS={setCircleBeatCSS}
-                  userAnswers={userAnswers} isDelaySynchronized={isDelaySynchronized} systemDelaysArray={systemDelaysArray}
-                  averageDelay={averageDelay}/>
+                  userAnswers={userAnswers}/>
           </>
         ):(
           <RitmoConfiguration data={data} handleChange={handleChange} handleOnClick={handleOnClick} handleStart={handleStart}/>

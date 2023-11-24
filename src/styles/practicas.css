@@ -343,3 +343,55 @@
 .wrong-note-chord-container{
     width: 80px;
 }
+
+.chord-type-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chord-type-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chord-button{
+    background-color: white;
+    padding: 0.8rem;
+    border-radius: 20px;
+    margin: 0.5rem;
+    border: solid 3px var(--practicas-color);
+    font-size: medium;
+    font-weight: 500;
+}
+
+.checked-chord{
+    background-color: var(--practicas-color)
+}
+
+/* Finish Page */
+.finish-page-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100vw;
+}
+.puntaje-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem;
+}
+.excercise-counter-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    padding-right: 3rem;
+}

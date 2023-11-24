@@ -11,40 +11,44 @@ export default function Acordes({data, handleChange, handleChecked, handleStart}
             <main className='configuration-container'>
 
               <div className='inputConfig-container-group'>
-                <div className='inputConfig-container radio-container'>
-                  <p>Tipo de acordes</p>
-                  <label htmlFor='mayores'>
-                    <input type="checkbox" id='mayor' name='mayor' value="mayores" onChange={handleChecked} checked={data.acordes.mayores}/>Acordes mayores
-                  </label>
-                  <label htmlFor='menores'>
-                    <input type="checkbox" id='menor' name='menor' value="mayores" onChange={handleChecked} checked={data.acordes.menores}/>Acordes menores
-                  </label>
-                  <label htmlFor='aumentados'>
-                    <input type="checkbox" id='aumentado' name='aumentado' value="aumentados" onChange={handleChecked} checked={data.acordes.aumentados}/>Acordes aumentados
-                  </label>
-                  <label htmlFor='disminuidos'>
-                    <input type="checkbox" id='disminuido' name='disminuido' value="disminuidos" onChange={handleChecked} checked={data.acordes.disminuidos}/>Acordes Disminuidos
-                  </label>
-                  <label htmlFor='septima'>
-                    <input type="checkbox" id='septima' name='septima' value="septima" onChange={handleChecked} checked={data.acordes.septima}/>Acordes de septima
-                  </label>
-                  <label htmlFor='maj7'>
-                    <input type="checkbox" id='maj7' name='maj7' value="maj7" onChange={handleChecked} checked={data.acordes.maj7}/>Acordes Maj7
-                  </label>
-                  <label htmlFor='m7'>
-                    <input type="checkbox" id='m7' name='m7' value="m7" onChange={handleChecked} checked={data.acordes.m7}/>Acordes m7
-                  </label>
-                </div>
-                
-                <div className='inputConfig-container radio-container'>
-                    <p>Instrumento</p>
-                      <div>
-                        <input type="radio" value="real" name='instrumento' onChange={handleChange}/>Real (Piano, Guitarra, Flauta)
-                      </div>
-                      <div>
-                        <input type="radio" value="virtual" name='instrumento' onChange={handleChange}/>Virtual
-                      </div>
+                <div className='chord-type-container'>
+                  <h4>Selecciona tus tipos de acordes</h4>
+                  <div className='chord-type-group'>
+                    <button className={`chord-button ${data.acordes.mayor?"checked-chord":""}`} onClick={handleChecked} name="mayor">
+                      Mayores
+                    </button>
+                    <button className={`chord-button ${data.acordes.menor?"checked-chord":""}`} onClick={handleChecked} name="menor">
+                      Menores
+                    </button>
                   </div>
+                  <div className='chord-type-group'>
+                    <button className={`chord-button ${data.acordes.aumentado?"checked-chord":""}`} onClick={handleChecked} name="aumentado">
+                      Aumentados
+                    </button>
+                    <button className={`chord-button ${data.acordes.disminuido?"checked-chord":""}`} onClick={handleChecked} name="disminuido">
+                      Disminuidos
+                    </button>
+                  </div>  
+                  <div className='chord-type-group'>
+                    <button className={`chord-button ${data.acordes.septima?"checked-chord":""}`} onClick={handleChecked} name="septima">
+                      Séptima dominante
+                    </button>
+                    <button className={`chord-button ${data.acordes.maj7?"checked-chord":""}`} onClick={handleChecked} name="maj7">
+                      Mayor séptima
+                    </button>
+                    <button className={`chord-button ${data.acordes.m7?"checked-chord":""}`} onClick={handleChecked} name="m7">
+                      Menor séptima
+                    </button>
+                  </div>
+                </div>
+
+                <div className='inputConfig-container'>
+                  <p>Instrumento:</p>
+                  <select className="selectSubdivison" name="instrumento" id="instrumento" defaultValue="real" onChange={handleChange}>
+                    <option value="real">Real (Piano, Guitarra, Flauta)</option>
+                    <option value="virtual" >Virtual</option>
+                  </select>
+                </div>
               </div>
               
               <div className='configurationButtonContainer'>

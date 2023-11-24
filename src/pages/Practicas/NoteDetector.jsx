@@ -10,13 +10,17 @@ export default function NoteDetector({chromaticScale, setFinalNote}){
   const intervals = useRef([]); //Controla los ID's de los setInterval creados para ser detenidos
   const streams = useRef([]); //Controla los stream de audios creados para ser cerrados
   const numberOfRepetitions = 15; //Numero de detección de la misma nota para determinar que es la nota final
-  const noteStrings = chromaticScale;
+  const chromatic = useRef([]);
 
   //Obtiene la nota musical a partir de la frecuencia
   function noteFromPitch(frequency) {
     const noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
-    return noteStrings[(Math.round( noteNum ) + 69)%12];
+    return chromatic.current[(Math.round( noteNum ) + 69)%12];
   }
+
+  useEffect(()=>{
+    chromatic.current = chromaticScale;
+  }, [chromaticScale]);
 
   //Función para la detección de notas
   const noteDetection = ()=>{
