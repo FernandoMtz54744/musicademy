@@ -1,5 +1,66 @@
+/* Indice */
 .links-indice-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 0rem 3rem 0 3rem;
+}
+
+.link-indice{
+    /* background-color: #0d47a1; */
+    background-color: var(--teoria-color);
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: large;
+    color: white;
+    width: 40vw;
+    text-align: center;
+}
+
+.link-indice:hover{
+    background-color: #1565c0;
+}
+
+/*  Teoria*/
+.teoria-contenido-container{
+    padding: 3rem;
+    text-align: justify;
+}
+
+.teoria-img-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.teoria-img-container img{
+    width: 50vw;
+    min-width: 300px;
+}
+
+.teoria-contenido-button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+}
+
+.teoria-button-back{
+    min-width: 10rem;
+    background-color: var(--teoria-color);
+    color: white;
+    border-radius: 5px;
+    font-size: large;
+    border: none;
+    padding: 0.5rem;
+    margin-top: 2rem;
+}
+
+.teoria-button-back:hover{
+    cursor: pointer;
+    background-color: #1025EA;
 }

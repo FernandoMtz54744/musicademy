@@ -4,7 +4,7 @@ import {getTrueKeys, getRandomNumber, getRandomKey, getChord} from "../../utils"
 import Acorde from '../../pages/Practicas/Acorde';
 import Header from '../../pages/Header';
 import NoteDetector from '../../pages/Practicas/NoteDetector';
-import FinisPage from '../../pages/FinisPage';
+import FinishPage from '../../pages/FinishPage';
 
 export default function AcordesContainer() {
     const initialData = {
@@ -76,7 +76,7 @@ export default function AcordesContainer() {
         }
 
         const correctPlayed = resultTemp.notesPlayed.filter(note => chord.notes.includes(note));
-        if(correctPlayed.length === chord.notes.length && chord.notes.length!=0){ //Ya se tocaron todas las correctas
+        if(correctPlayed.length === chord.notes.length && chord.notes.length!==0){ //Ya se tocaron todas las correctas
             resultTemp.isPlayingNote = false;
             excerciseControlTemp[excerciseControlTemp.length-1].wasCorrect = true;
             excerciseControlTemp[excerciseControlTemp.length-1].totalNotesCorrect = correctPlayed.length;
@@ -122,11 +122,11 @@ export default function AcordesContainer() {
                         )}
                     </>
                 ):(
-                    <FinisPage handleBack={handleBack}>
+                    <FinishPage handleBack={handleBack}>
                             <h3>{excerciseControl.filter(excercise => excercise.wasCorrect).length} acordes de {TOTAL_OF_EXCERCISES} tocados correctamente</h3>
                             <h3>{excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesCorrect, 0)} notas tocadas correctamente</h3>
                             <h3>{excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesWrong, 0)} notas tocadas incorrectamente</h3>
-                    </FinisPage>
+                    </FinishPage>
                 )}
                 
             </>

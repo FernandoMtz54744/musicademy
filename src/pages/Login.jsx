@@ -18,7 +18,7 @@ export default function Login({data, handleChange, handleLogin, handleLoginGoogl
 
       <main className='main-auth'>
         <div className='form-container-auth form-container-login-color'>
-          <h1>Inicie sesión</h1>
+          <h1>Iniciar sesión</h1>
           <form action="" className='form-auth form-login-border-color'>
             <h1>Musicademy</h1>
             <div className='inputs-container'>

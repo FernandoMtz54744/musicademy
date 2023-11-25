@@ -2,73 +2,73 @@
     "fundamentos":{
         "introduccion":{
          "contenido":"Introducción",
-         "url":"fundamentos/introduccion"
+         "url":"/Teoria/fundamentos/introduccion"
         },
         "notas_musicales" :{
          "contenido":"Notas Musicales",
-         "url":"fundamentos/notas_musicales"
+         "url":"/Teoria/fundamentos/notas_musicales"
         },
         "figuras_musicales":{
          "contenido":"Figuras Musicales",
-         "url":"fundamentos/figuras_musicales"
+         "url":"/Teoria/fundamentos/figuras_musicales"
         },
         "pentagrama" :{
         "contenido":"Figuras Musicales",
-         "url":"fundamentos/figuras_musicales"
+         "url":"/Teoria/fundamentos/figuras_musicales"
         },
         "claves" :{
             "contenido":"Claves",
-             "url":"fundamentos/claves"
+             "url":"/Teoria/fundamentos/claves"
         },
         "solfeo" :{
             "contenido":"Solfeo",
-             "url":"fundamentos/solfeo"
+             "url":"/Teoria/fundamentos/solfeo"
         }
     },
     "melodia":{
         "intervalos":{
             "contenido":"Intervalos",
-             "url":"melodia/intervalos"
+             "url":"/Teoria/melodia/intervalos"
             },
         "grados":{
             "contenido":"Grados",
-             "url":"melodia/grados"
+             "url":"/Teoria/melodia/grados"
             }
     },
     "armonia":{
         "triadas":{
             "contenido":"Triadas",
-             "url":"armonia/triadas"
+             "url":"/Teoria/armonia/triadas"
         },
         "acordes":{
             "contenido":"Acordes",
-             "url":"acordes/figuras_musicales"
+             "url":"/Teoria/armonia/acordes"
         },
         "modos":{
             "contenido":"Modos",
-             "url":"armonia/modos"
+             "url":"/Teoria/armonia/modos"
         },
         "circulo":{
             "contenido":"Circulo de Quintas",
-             "url":"armonia/circulo"
+             "url":"/Teoria/armonia/circulo"
         }
     },
     "ritmo":{
         "compases":{
             "contenido":"Compases",
-             "url":"ritmo/compases"
+             "url":"/Teoria/ritmo/compases"
             },
         "ligaduras":{
             "contenido":"Ligaduras",
-             "url":"ritmo/ligaduras"
+             "url":"/Teoria/ritmo/ligaduras"
             },
         "tiempos_compuestos":{
             "contenido":"Tiempos Compuestos",
-             "url":"ritmo/tiempos_compuestos"
+             "url":"/Teoria/ritmo/tiempos_compuestos"
             },
         "contratiempo_sincompa":{
             "contenido":"Contratiempo y Sincompa",
-             "url":"ritmo/contratiempo_sincompa"
+             "url":"/Teoria/ritmo/contratiempo_sincompa"
             }
     }
 }

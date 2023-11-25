@@ -7,7 +7,7 @@ export default function Practicas() {
     <div>
         <div className='modulos'>
             <Header headerColor={"header-green"}/>
-            <h1>¡A prácticar!</h1>
+            <h1>¡A practicar!</h1>
             <main className='main-modulos'>
               <div className='div-table div-table-green practicas-card'>
                 <div className='div-row div-row-border-bottom div-table-row-green'><p>Ritmo</p><div><Link to={"/Practicas/Ritmo"} className='modulo-card-button practicas-button'>Comenzar</Link></div></div>

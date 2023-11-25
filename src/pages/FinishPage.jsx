@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function FinisPage({handleBack, children}) {
+export default function FinishPage({handleBack, children}) {
   return (
     <div className='finish-page-container'>
         <div className='puntaje-container'>
