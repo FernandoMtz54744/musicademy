@@ -13,12 +13,13 @@ export default function RitmoSheet({data, rhythmSheetData}) {
         // Crea el render de la partitura
         const VF = Vex.Flow;
         const renderer = new VF.Renderer(rythmSheet, VF.Renderer.Backends.SVG);
-        renderer.resize(1000, 350);
+        renderer.resize(1000, 200);
         var context = renderer.getContext();
-        context.setViewBox(105, 20, 200, 200); //size
+        context.scale(2,2);
+        // context.setViewBox(105, 20, 200, 200); //size
 
         // Crea un Stave
-        const stave = new Vex.Stave(0, 50, 400);
+        const stave = new Vex.Stave(50, 0, 400);
         stave.options.line_config = [
             { visible: false },
             { visible: false },
