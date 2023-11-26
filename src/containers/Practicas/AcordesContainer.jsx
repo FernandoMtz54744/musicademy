@@ -68,6 +68,9 @@ export default function AcordesContainer() {
 
     //Valida si la nota tocada es parte del acorde
     useEffect(()=>{
+        if(finalNote === ""){
+            return
+        }
         const resultTemp = {...result}; //Se crea una copia del state result
         const excerciseControlTemp = [...excerciseControl]; //Se copia el state excerciseNumber
 

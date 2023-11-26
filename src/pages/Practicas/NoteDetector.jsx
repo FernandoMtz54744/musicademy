@@ -130,6 +130,7 @@ useEffect(()=>{
     setNoteProgressDetector(noteProgress => ({...noteProgress, repeticiones: noteProgress.repeticiones+1}))
   }else{
     setNoteProgressDetector({note: noteFFT.nota, repeticiones: 0})
+    setFinalNote("");
   }
 }, [noteFFT.frecuencia, noteFFT.nota, noteProgressDetector.note]);
 

@@ -344,6 +344,18 @@
     width: 80px;
 }
 
+.correct-note-chord-container-solfeo{
+    width: 50px;
+}
+
+.wrong-note-chord-container-solfeo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+}
+
 .chord-type-container{
     display: flex;
     flex-direction: column;

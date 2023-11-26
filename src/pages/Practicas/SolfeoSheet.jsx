@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Vex from "vexflow"
+import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
 
 export default function Solfeo({notes, generateExcercise, handleBack, clef, tonic, notesPlayed}) {
 
@@ -45,11 +46,45 @@ export default function Solfeo({notes, generateExcercise, handleBack, clef, toni
 
 
   return (
-    <div>
-      <div className='sheetContainer'>
-        <h2>Toca la nota mostrada a continuación</h2>
-        <div name="RythmSheet" id='RythmSheet' className='sheet'/>
-      </div>
+    <div className='chord-page-container'>
+        <h2>Toca las notas mostradas a continuación</h2>
+        <div className='chord-container'>
+          <div className='left-chord-page'>
+            {notesPlayed.filter(notePlayed => notePlayed.isCorrect).map(note => (
+              <div className='correct-note-chord-container-solfeo'>
+                <CircularProgressbar value={100} text={note.note} 
+                    styles={buildStyles({
+                    textColor:"#2E7D32",
+                    pathColor:"#2E7D32",
+                    pathTransitionDuration: 0.2,
+                    textSize: 40
+                    })}
+                />
+              </div>
+            ))}
+          </div>
+          <div className='center-chord-page'>
+            <div className='sheetContainer'>
+              <div name="RythmSheet" id='RythmSheet' className='sheet'/>
+            </div>
+          </div>
+
+          <div className='rigth-chord-page'>
+            {notesPlayed.filter(notePlayed => !notePlayed.isCorrect).map(note => (
+              <div className='wrong-note-chord-container-solfeo'>
+                <CircularProgressbar value={100} text={note.note} 
+                    styles={buildStyles({
+                    textColor: "#D32F2F",
+                    pathColor: "#D32F2F",
+                    pathTransitionDuration: 0.2,
+                    textSize: 40
+                    })}
+                />
+              </div>
+            ))}
+        </div>  
+        </div>
+     
 
       <footer className='footer-waves'>
         <div className='buttonRitmoContainer'>

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import SolfeoConfiguration from '../../pages/Practicas/SolfeoConfiguration'
 import SolfeoSheet from '../../pages/Practicas/SolfeoSheet';
 import Header from '../../pages/Header';
 import NoteDetector from '../../pages/Practicas/NoteDetector';
-import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import FinishPage from '../../pages/FinishPage';
 import { getTrueKeys, getRandomNumber, getRandomNoteByScale, getRandomNoteByAlteration} from '../../utils';
@@ -45,6 +44,7 @@ export default function SolfeoContainer() {
     const [finalNote, setFinalNote] = useState(); //Resultado de la nota tocada
     const [excerciseControl, setExcerciseControl] = useState([]) //Controla el numero de ejercicios 
     const [result, setResult] = useState({isPlayingNote: true, notesPlayed: []}); //Maneja el resultado de las notas tocadas (por ejercicio)
+    const allowNoteDetection = useRef(true); //Para que detecte una nota debe pasar por el estado "", así se evita el error de seguir detectando la misma varias veces porque sigue sonando
     const NUMBER_OF_NOTES = 7;
     const TOTAL_OF_EXCERCISES = 10;
 
@@ -106,9 +106,11 @@ export default function SolfeoContainer() {
         }else{//Modo alteraciones
             excerciseTemp.tonic = "C"; //Escala de Do mayor
             const posibleAlterations = getTrueKeys(data.alteraciones); //Se obtiene las alteraciones activadas por el usuario (sostenidos, bemoles, naturales)
+            let alteration = posibleAlterations[getRandomNumber(posibleAlterations.length)];//Obtiene una alteración al azar (sostenidos, bemoles, naturales)
+            alteration = alteration.replace("sostenidos", "#").replace("bemoles", "b").replace("naturales", "N");
+            const randomAlteration = ["N", alteration];
             for(let i=0; i<NUMBER_OF_NOTES; i++){
-                let alteration = posibleAlterations[getRandomNumber(posibleAlterations.length)];//Obtiene una alteración al azar (sostenidos, bemoles, naturales)
-                alteration = alteration.replace("sostenidos", "#").replace("bemoles", "b").replace("naturales", "N");
+                alteration = randomAlteration[getRandomNumber(randomAlteration.length)]; //Se escogen notas al azar entre naturales y una alteración seleccionada al azar de las activadas por el usuario
                 const nota = getRandomNoteByAlteration(alteration);
                 excerciseTemp.solfeoNotes.push({note: nota.note, chromatic: nota.chromatic});
             }
@@ -125,32 +127,51 @@ export default function SolfeoContainer() {
     }
 
     useEffect(()=>{
-        const resultTemp = {...result};
-
-        if(excercise.solfeoNotes.length !==0){
+        if(finalNote === ""){
+            allowNoteDetection.current = true; //Ya pasó por la nota vacía
+            return
+        }
+        if(excercise.solfeoNotes.length !==0 && allowNoteDetection){
+            const resultTemp = {...result};
             if(finalNote === excercise.solfeoNotes[result.notesPlayed.length].note){ //Tocó la nota correcta
                 resultTemp.notesPlayed.push({
                     note: finalNote,
-                    isCorrect: true
+                    isCorrect: true, 
                 })
                 setResult(resultTemp)
             }else{ //Se equivocó
                 resultTemp.notesPlayed.push({
                     note: finalNote,
                     isCorrect: false,
-                    correcNote: excercise.solfeoNotes[result.notesPlayed.length].note
+                    correctNote: excercise.solfeoNotes[result.notesPlayed.length].note
                 })
             }
 
-            if(resultTemp.notesPlayed.length === NUMBER_OF_NOTES){
+            if(resultTemp.notesPlayed.length === NUMBER_OF_NOTES){//Ya toco todas las notas del ejercicio
                 resultTemp.isPlayingNote = false;
-                
+                const correctNotes = resultTemp.notesPlayed.filter((notePlayed)=>notePlayed.isCorrect);
+                const wrongNotes = resultTemp.notesPlayed.filter((notePlayed)=>!notePlayed.isCorrect);
+                const excerciseControlTemp = [...excerciseControl];
+                excerciseControlTemp[excerciseControl.length-1].totalNotesCorrect = correctNotes.length;
+                excerciseControlTemp[excerciseControl.length-1].totalNotesWrong = wrongNotes.length;
+
+                if(correctNotes.length === NUMBER_OF_NOTES){//Tuvo todas las notas correctas
+                    excerciseControlTemp[excerciseControl.length-1].wasCorrect = true;
+                }
+
+                if(excerciseControlTemp.length === TOTAL_OF_EXCERCISES){
+                    //Código para guardar la estadística (los datos los tiene excerciseControlTemp)
+                }
+
+                setExcerciseControl(excerciseControlTemp);
             }
             setResult(resultTemp);
-            console.log(resultTemp);
-        }
-    }, [finalNote]);
+            allowNoteDetection.current = false;
 
+            
+        }
+
+    }, [finalNote]);
     
   return (
     data.isStart?(
@@ -171,14 +192,21 @@ export default function SolfeoContainer() {
                             {excerciseControl[excerciseControl.length-1].wasCorrect?(
                                 <h1>Respondiste bien todas las notas</h1>
                             ):(
-                                <h1>Te equivocaste en algunas notas</h1>
+                                <div>
+                                    <h1>Te equivocaste en {excerciseControl[excerciseControl.length-1].totalNotesWrong  } notas</h1>    
+                                    {result.notesPlayed.filter(notePlayed => !notePlayed.isCorrect).map(note => (
+                                        <p>Tocaste {note.note} y era {note.correctNote}</p>
+                                    ))}
+                                </div>
                             )}
                         </center>
                     )}
                 </>
             ):(
                 <FinishPage handleBack={handleBack}>
-                        <p>Resultados</p>
+                        <h3>{excerciseControl.filter(excercise => excercise.wasCorrect).length} ejercicios de {TOTAL_OF_EXCERCISES} tocados correctamente</h3>
+                        <h3>{excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesCorrect, 0)} notas tocadas correctamente</h3>
+                        <h3>{excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesWrong, 0)} notas tocadas incorrectamente</h3>
                 </FinishPage>
             )}
         </>
