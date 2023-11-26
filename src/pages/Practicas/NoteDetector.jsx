@@ -11,6 +11,7 @@ export default function NoteDetector({chromaticScale, setFinalNote}){
   const streams = useRef([]); //Controla los stream de audios creados para ser cerrados
   const numberOfRepetitions = 15; //Numero de detección de la misma nota para determinar que es la nota final
   const chromatic = useRef([]);
+  const allowDetection = useRef(true); //Control para no detectar por notas hasta que vuelva estado a silencio
 
   //Obtiene la nota musical a partir de la frecuencia
   function noteFromPitch(frequency) {
@@ -63,6 +64,8 @@ export default function NoteDetector({chromaticScale, setFinalNote}){
     let rms = Math.sqrt(sumOfSquares/SIZE)
     if (rms < 0.02) { //La señal no es suficiente para hacer análisis, es decir, no hay sonido
       setNoteFFT({nota: "Silencio", frecuencia: 0});
+      allowDetection.current = true; //Hasta que pase por silencio es cuando se permite detectar nuevamente la nota
+      setFinalNote("");
       return;
     }
     //LLeva a cabo la autocorrelación por FFT
@@ -130,14 +133,15 @@ useEffect(()=>{
     setNoteProgressDetector(noteProgress => ({...noteProgress, repeticiones: noteProgress.repeticiones+1}))
   }else{
     setNoteProgressDetector({note: noteFFT.nota, repeticiones: 0})
-    setFinalNote("");
+    // setFinalNote("");
   }
 }, [noteFFT.frecuencia, noteFFT.nota, noteProgressDetector.note]);
 
 //Se obtiene la nota tocada
 useEffect(()=>{
-  if(noteProgressDetector.repeticiones > numberOfRepetitions){
+  if(noteProgressDetector.repeticiones > numberOfRepetitions && allowDetection.current){
     setFinalNote(noteProgressDetector.note);
+    allowDetection.current = false;
   }
 }, [noteProgressDetector]);
 

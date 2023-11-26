@@ -44,7 +44,6 @@ export default function SolfeoContainer() {
     const [finalNote, setFinalNote] = useState(); //Resultado de la nota tocada
     const [excerciseControl, setExcerciseControl] = useState([]) //Controla el numero de ejercicios 
     const [result, setResult] = useState({isPlayingNote: true, notesPlayed: []}); //Maneja el resultado de las notas tocadas (por ejercicio)
-    const allowNoteDetection = useRef(true); //Para que detecte una nota debe pasar por el estado "", así se evita el error de seguir detectando la misma varias veces porque sigue sonando
     const NUMBER_OF_NOTES = 7;
     const TOTAL_OF_EXCERCISES = 10;
 
@@ -128,10 +127,9 @@ export default function SolfeoContainer() {
 
     useEffect(()=>{
         if(finalNote === ""){
-            allowNoteDetection.current = true; //Ya pasó por la nota vacía
             return
         }
-        if(excercise.solfeoNotes.length !==0 && allowNoteDetection){
+        if(excercise.solfeoNotes.length !==0){
             const resultTemp = {...result};
             if(finalNote === excercise.solfeoNotes[result.notesPlayed.length].note){ //Tocó la nota correcta
                 resultTemp.notesPlayed.push({
@@ -166,9 +164,6 @@ export default function SolfeoContainer() {
                 setExcerciseControl(excerciseControlTemp);
             }
             setResult(resultTemp);
-            allowNoteDetection.current = false;
-
-            
         }
 
     }, [finalNote]);
