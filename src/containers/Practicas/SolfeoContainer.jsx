@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import SolfeoConfiguration from '../../pages/Practicas/SolfeoConfiguration'
-import Solfeo from '../../pages/Practicas/Solfeo';
+import SolfeoSheet from '../../pages/Practicas/SolfeoSheet';
 import Header from '../../pages/Header';
 import NoteDetector from '../../pages/Practicas/NoteDetector';
 import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { getTrueKeys, getRandomNumber, getMajorScale} from '../../utils';
+import FinishPage from '../../pages/FinishPage';
+import { getTrueKeys, getRandomNumber, getRandomNoteByScale, getRandomNoteByAlteration} from '../../utils';
 
 export default function SolfeoContainer() {
 
@@ -40,13 +41,15 @@ export default function SolfeoContainer() {
     }
 
     const [data, setData] = useState(initialData); //Datos del formulario
-    const [note, setNote] = useState({}); //La nota que debe tocar
+    const [excercise, setExercise] = useState({clef: "", tonic: "", solfeoNotes: []}); //Maneja el ejercicio actual
     const [finalNote, setFinalNote] = useState(); //Resultado de la nota tocada
-    const [result, setResult] = useState();
+    const [excerciseControl, setExcerciseControl] = useState([]) //Controla el numero de ejercicios 
+    const [result, setResult] = useState({isPlayingNote: true, notesPlayed: []}); //Maneja el resultado de las notas tocadas (por ejercicio)
+    const NUMBER_OF_NOTES = 7;
+    const TOTAL_OF_EXCERCISES = 10;
 
     //Maneja el cambio de los inputs
     const handleChange = (e)=>{
-        console.log(e.target.name +":" + e.target.value);
         setData({...data, [e.target.name]:e.target.value})
     }
 
@@ -67,7 +70,7 @@ export default function SolfeoContainer() {
             setData({...data, alteraciones:{...data.alteraciones, [buttonName]: toggleData}});
         }else if(buttonName === "start"){
             setData({...data, isStart:true})
-            generateNote();
+            generateExcercise();
         }else{
             console.log("Escalas : " + buttonName);
             const toggleData = !data.escalas[buttonName];
@@ -78,100 +81,109 @@ export default function SolfeoContainer() {
     //Maneja el regreso a la configuración
     const handleBack = ()=>{
         setData({...data, isStart:false});
+        setExcerciseControl([]);
+        setResult({isPlayingNote: false, notesPlayed: []});
     }
 
-    //Devuelve una nota generada al azar de acuerdo a los parámetros
-    const generateNote = ()=>{
-        const tempNote = {
-            clef: "", //La clave [treble|bass] 
-            tonic: "", //Tonica de la que se crea la escala
-            note: "", //Alguna nota de esa escala
-            chromatic: [] //Notas cromaticas de donde se obtiene la escala
+    //Devuelve solo un ejercico correspondiente al solfeo (cada ejercicio tiene varias notas para solfear)
+    const generateExcercise = ()=>{
+        const excerciseTemp = {
+            clef: "", //Clave [sol, fa]
+            tonic: "", //Armadura
+            solfeoNotes: [] //Conjunto de notas para solfear
         }
         //Se obtiene la clave al azar
         const posibleClef = getTrueKeys(data.claves);
-        tempNote.clef =  posibleClef[getRandomNumber(posibleClef.length)].replace("sol", "treble").replace("fa", "bass");
+        excerciseTemp.clef = posibleClef[getRandomNumber(posibleClef.length)].replace("sol", "treble").replace("fa", "bass"); //Se obtiene la clave
 
         if(data.modo === "escalas"){
             const posibleTonic = getTrueKeys(data.escalas);//Las posibles escalas para escoger
-            tempNote.tonic = posibleTonic[getRandomNumber(posibleTonic.length)].replace("Fsharp", "F#");
-            const majorScale = getMajorScale(tempNote.tonic);//Se genera la escala
-            tempNote.note = majorScale.notes[getRandomNumber(majorScale.notes.length)];//Se obtiene una nota al azar de esa escala
-            tempNote.chromatic = majorScale.chromatic;
-        }else{//alteraciones
-            tempNote.tonic = "C"; //Escala de Do mayor
-            const posibleAlterations = getTrueKeys(data.alteraciones); //Se obtiene una alteracion al azar de las activadas por el usuario (N, #, b)
-            const alteration = posibleAlterations[getRandomNumber(posibleAlterations.length)];
-            const majorScale = getMajorScale(tempNote.tonic);
-            tempNote.note = majorScale.notes[getRandomNumber(majorScale.notes.length)];
-            tempNote.chromatic = majorScale.chromatic;
-            if(alteration === "sostenidos"){
-                tempNote.note+="#";    
-            }else if(alteration === "bemoles"){
-                tempNote.note+="b";
-            }//Si no entra a ninguno la nota se queda natural
-            tempNote.chromatic = fixChromatic(tempNote.note, tempNote.chromatic);
+            excerciseTemp.tonic = posibleTonic[getRandomNumber(posibleTonic.length)].replace("Fsharp", "F#") //Se escoge la tonica al azar
+            for(let i=0; i<NUMBER_OF_NOTES; i++){ //Se obtienen las notas que serán del ejercicio
+                const nota = getRandomNoteByScale(excerciseTemp.tonic);
+                excerciseTemp.solfeoNotes.push({note: nota.note, chromatic: nota.chromatic});
+            }
+        }else{//Modo alteraciones
+            excerciseTemp.tonic = "C"; //Escala de Do mayor
+            const posibleAlterations = getTrueKeys(data.alteraciones); //Se obtiene las alteraciones activadas por el usuario (sostenidos, bemoles, naturales)
+            for(let i=0; i<NUMBER_OF_NOTES; i++){
+                let alteration = posibleAlterations[getRandomNumber(posibleAlterations.length)];//Obtiene una alteración al azar (sostenidos, bemoles, naturales)
+                alteration = alteration.replace("sostenidos", "#").replace("bemoles", "b").replace("naturales", "N");
+                const nota = getRandomNoteByAlteration(alteration);
+                excerciseTemp.solfeoNotes.push({note: nota.note, chromatic: nota.chromatic});
+            }
         }
-        setNote(tempNote);
-        setResult({isCorrect: false, isPlayingNote: true, correctNote: finalNote})
-    }
 
-    //Ajusta la escala cromatica dependiendo la nota (para el modo alteraciones)
-    const fixChromatic = (note, chromatic)=>{
-        if(note.includes("b")){
-            chromatic = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
-        }
-        //Ajusta los enarmónicos
-        if(note === "E#"){
-            chromatic[chromatic.indexOf("F")] = "E#";
-        }else if(note === "B#"){
-            chromatic[chromatic.indexOf("F")] = "E#";
-            chromatic[chromatic.indexOf("C")] = "B#";
-        }else if(note === "Cb"){
-            chromatic[chromatic.indexOf("B")] = "Cb";
-        }else if(note === "Fb"){
-            chromatic[chromatic.indexOf("B")] = "Cb";
-            chromatic[chromatic.indexOf("E")] = "Fb";
-        }
-        return chromatic;
+        setExercise(excerciseTemp)
+        setExcerciseControl([...excerciseControl, {number: excerciseControl.length+1, wasCorrect: false, totalNotesCorrect: 0, totalNotesWrong: 0}])
+        setResult({isPlayingNote: true, notesPlayed: []})
+    }
+    
+
+    const getNotesFromSolfeoNotes = (solfeoNotes)=>{
+        return solfeoNotes.map((solfeoNote)=> solfeoNote.note);
     }
 
     useEffect(()=>{
-        if(finalNote === note.note){
-            setResult({...result, isCorrect: true, isPlayingNote: false})
-            console.log("Correcto");
-        }else{
-            setResult({...result, isCorrect:false, isPlayingNote: false})
+        const resultTemp = {...result};
+
+        if(excercise.solfeoNotes.length !==0){
+            if(finalNote === excercise.solfeoNotes[result.notesPlayed.length].note){ //Tocó la nota correcta
+                resultTemp.notesPlayed.push({
+                    note: finalNote,
+                    isCorrect: true
+                })
+                setResult(resultTemp)
+            }else{ //Se equivocó
+                resultTemp.notesPlayed.push({
+                    note: finalNote,
+                    isCorrect: false,
+                    correcNote: excercise.solfeoNotes[result.notesPlayed.length].note
+                })
+            }
+
+            if(resultTemp.notesPlayed.length === NUMBER_OF_NOTES){
+                resultTemp.isPlayingNote = false;
+                
+            }
+            setResult(resultTemp);
+            console.log(resultTemp);
         }
     }, [finalNote]);
 
     
   return (
-    <>
-    {data.isStart?(
-            <>
-                <Header headerColor={"header-green"}/>
-                <Solfeo note={note} generateNote={generateNote} handleBack={handleBack}></Solfeo>
-                {result.isPlayingNote?(
-                    <NoteDetector setFinalNote={setFinalNote} chromaticScale={note.chromatic}/>
-                ):(
-                <div className='center-result'>
-                    <div className='noteDetector-container'>
-                        <CircularProgressbar value={100} text={finalNote} 
-                            styles={buildStyles({
-                            textColor: result.isCorrect?"#2E7D32":"#D32F2F",
-                            pathColor: result.isCorrect?"#2E7D32":"#D32F2F",
-                            pathTransitionDuration: 0.2,
-                            })}
-                            />
+    data.isStart?(
+        <>
+            <Header headerColor={"header-green"}/>
+            {excerciseControl.length <= TOTAL_OF_EXCERCISES?(
+                <>
+                    <div className='excercise-counter-container'>
+                        <h4>Ejercicio {excerciseControl.length} de 10</h4>
                     </div>
-                    <h3>{result.isCorrect?"Correcto":`Incorrecto: la nota correcta era ${note.note}`}</h3>
-                </div>
-                )}
-            </>
+                    <SolfeoSheet notes={getNotesFromSolfeoNotes(excercise.solfeoNotes)} clef={excercise.clef} 
+                    tonic={excercise.tonic} generateExcercise={generateExcercise} handleBack={handleBack}
+                    notesPlayed = {result.notesPlayed}></SolfeoSheet>
+                    {result.isPlayingNote?(
+                        <NoteDetector setFinalNote={setFinalNote} chromaticScale={excercise.solfeoNotes[result.notesPlayed.length].chromatic}/>
+                        ):(
+                        <center>
+                            {excerciseControl[excerciseControl.length-1].wasCorrect?(
+                                <h1>Respondiste bien todas las notas</h1>
+                            ):(
+                                <h1>Te equivocaste en algunas notas</h1>
+                            )}
+                        </center>
+                    )}
+                </>
+            ):(
+                <FinishPage handleBack={handleBack}>
+                        <p>Resultados</p>
+                </FinishPage>
+            )}
+        </>
         ):(
             <SolfeoConfiguration data={data} handleChange={handleChange} handleOnClick={handleOnClick}></SolfeoConfiguration>
-        )}
-    </>
-  )
+        )
+    )
 }

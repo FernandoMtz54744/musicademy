@@ -157,3 +157,53 @@ export const getChordName = (tonic, type)=>{
     }
     return name;
 }
+
+// Obtiene una nota al azar de una escala
+export const getRandomNoteByScale = (tonic)=>{
+    const note = {
+        tonic: tonic,
+        note: "",
+        chromatic: []
+    }
+    const majorScale = getMajorScale(note.tonic);//Se genera la escala
+    note.chromatic = majorScale.chromatic; //Obtiene la escala cromática de donde se genera la escala
+    note.note = majorScale.notes[getRandomNumber(majorScale.notes.length)];//Se obtiene una nota al azar de esa escala
+    return note;
+}
+
+// Obtiene una nota al azar dependiendo de las alteraciones posibles (N, #, b)
+export const getRandomNoteByAlteration = (alteration)=>{
+    const note = {
+        tonic: "C",
+        note: "",
+        chromatic: []
+    }
+    const majorScale = getMajorScale(note.tonic); //Se obtiene la escala de Do mayor
+    note.note = majorScale.notes[getRandomNumber(majorScale.notes.length)]; //Se obtiene una nota al azar de C
+    note.chromatic = majorScale.chromatic;
+    if(alteration !== "N"){//Se le adjunta la alteración
+        note.note+=alteration;    
+    }
+    note.chromatic = fixChromatic(note.note, note.chromatic); //Se ajusta la escala cromatica dependiendo la nota
+    return note;
+}
+
+//Ajusta la escala cromatica dependiendo la nota (para getRandomNoteByAlteration)
+const fixChromatic = (note, chromatic)=>{
+    if(note.includes("b")){
+        chromatic = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+    }
+    //Ajusta los enarmónicos
+    if(note === "E#"){
+        chromatic[chromatic.indexOf("F")] = "E#";
+    }else if(note === "B#"){
+        chromatic[chromatic.indexOf("F")] = "E#";
+        chromatic[chromatic.indexOf("C")] = "B#";
+    }else if(note === "Cb"){
+        chromatic[chromatic.indexOf("B")] = "Cb";
+    }else if(note === "Fb"){
+        chromatic[chromatic.indexOf("B")] = "Cb";
+        chromatic[chromatic.indexOf("E")] = "Fb";
+    }
+    return chromatic;
+}

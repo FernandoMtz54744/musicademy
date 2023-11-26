@@ -15,7 +15,7 @@ export default function Teoria() {
                 <Link className='modulo-card-button teoria-button' to="/Teoria/fundamentos">Comenzar</Link>
                 </div>
                 <div className='modulo-card teoria-card'>
-                <p>Melodia</p>
+                <p>Melodía</p>
                 <Link className='modulo-card-button teoria-button' to="/Teoria/melodia">Comenzar</Link>
                 </div>
                 <div className='modulo-card teoria-card'>

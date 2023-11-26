@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Vex from "vexflow"
 
-export default function Solfeo({note, generateNote, handleBack}) {
+export default function Solfeo({notes, generateExcercise, handleBack, clef, tonic, notesPlayed}) {
 
   useEffect(()=>{
     // Elimina una partitura si la hay
@@ -19,24 +19,33 @@ export default function Solfeo({note, generateNote, handleBack}) {
 
     // // Crea un Stave
     const stave = new Vex.Stave(0, 50, 400);
-    stave.setClef(note.clef);
-    stave.setKeySignature(note.tonic);
+    stave.setClef(clef);
+    stave.setKeySignature(tonic);
     stave.setContext(context).draw();
-    const octava = note.clef === "treble"?4:3;
-    const singleNote = new VF.StaveNote({ keys: [`${note.note}/${octava}`], duration: "w", clef: note.clef });
-    const voice = new VF.Voice().addTickables([singleNote]);
-    if(note.tonic === "C"){
+    const octava = clef === "treble"?4:3;
+    
+    const vexFlowNotes = notes.map((note)=>{
+      return new VF.StaveNote({ keys: [`${note}/${octava}`], duration: "w", clef: clef });
+    });
+
+    for(let i=0; i<notesPlayed.length; i++){
+      if(notesPlayed[i].isCorrect){
+        vexFlowNotes[i].setKeyStyle(0, {fillStyle: "green", strokeStyle: "green"})
+      }else{
+        vexFlowNotes[i].setKeyStyle(0, {fillStyle: "red", strokeStyle: "red"})
+      }
+    }
+
+    const voice = new VF.Voice().setStrict(false).addTickables(vexFlowNotes);
+    if(tonic === "C"){
       VF.Accidental.applyAccidentals([voice], 'C');
     }
-    Vex.Formatter.FormatAndDraw(context, stave, [singleNote]);
-}, [note]);
+    Vex.Formatter.FormatAndDraw(context, stave, vexFlowNotes);
+}, [notes]);
 
 
   return (
     <div>
-      {/* <div>{note.clave}</div>
-      <div>{note.escala}</div>
-      <div>{note.nota}</div> */}
       <div className='sheetContainer'>
         <h2>Toca la nota mostrada a continuación</h2>
         <div name="RythmSheet" id='RythmSheet' className='sheet'/>
@@ -44,8 +53,8 @@ export default function Solfeo({note, generateNote, handleBack}) {
 
       <footer className='footer-waves'>
         <div className='buttonRitmoContainer'>
-            <button className="configurationButton" onClick={generateNote}>Siguiente</button>
             <button className='configurationButton' onClick={handleBack}>Regresar</button>
+            <button className="configurationButton" onClick={generateExcercise}>Siguiente</button>
           </div>
       </footer>
       

@@ -14,7 +14,7 @@ export default function Header({headerColor}) {
 
   useEffect(()=>{
     if(!auth.user){
-      navigate("/Login");
+      // navigate("/Login");
     }
   }, [auth.user])
 
@@ -24,7 +24,7 @@ export default function Header({headerColor}) {
         <div className='header-links'>
           <Link to="/Modulos">Inicio</Link>
           <Link to="/Perfil" className='user-name-container'>
-            {auth.user.photoURL && <img src={auth.user.photoURL} className='user-picture' alt="usuario-picture" />}
+            {auth.user.photoURL && <img src={auth.user.photoURL} className='user-picture' alt="usuario-profile" />}
             {auth.user.displayName}
           </Link>
           <Link onClick={logout}>Logout</Link>
