@@ -10,10 +10,10 @@ export default function Evaluaciones() {
             <h1>¡A demostrar lo aprendido!</h1>
             <main className='main-modulos'>
               <div className='div-table div-table-purple evaluaciones-card'>
-                <div className='div-row div-row-border-bottom div-table-row-purple'><p>Fundamentos</p><div><Link className='modulo-card-button evaluaciones-button'>Comenzar</Link></div></div>
-                <div className='div-row div-row-border-bottom div-table-row-purple'><p>Armonía</p><div><Link className='modulo-card-button evaluaciones-button'>Comenzar</Link></div></div>
-                <div className='div-row div-row-border-bottom div-table-row-purple'><p>Melodía</p><div><Link className='modulo-card-button evaluaciones-button'>Comenzar</Link></div></div>
-                <div className='div-row'><p>Ritmo</p><div><Link className='modulo-card-button evaluaciones-button'>Comenzar</Link></div></div>
+                <div className='div-row div-row-border-bottom div-table-row-purple'><p>Fundamentos</p><div><Link to="/Evaluaciones/fundamentos" className='modulo-card-button evaluaciones-button'>Comenzar</Link></div></div>
+                <div className='div-row div-row-border-bottom div-table-row-purple'><p>Armonía</p><div><Link to="/Evaluaciones/armonia" className='modulo-card-button evaluaciones-button'>Comenzar</Link></div></div>
+                <div className='div-row div-row-border-bottom div-table-row-purple'><p>Melodía</p><div><Link to="/Evaluaciones/melodia" className='modulo-card-button evaluaciones-button'>Comenzar</Link></div></div>
+                <div className='div-row'><p>Ritmo</p><div><Link to="/Evaluaciones/ritmo" className='modulo-card-button evaluaciones-button'>Comenzar</Link></div></div>
               </div>
             </main>
         </div>
