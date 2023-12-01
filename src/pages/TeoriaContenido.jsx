@@ -16,7 +16,6 @@ export default function TeoriaContenido() {
     <div className='modulos'>
         <Header headerColor={"header-blue"}/>
         <div className='teoria-contenido-container'>
-            <div>{submodulo}-{subtema}</div>
             {etiquetas.map((etiqueta, i)=>{
                 const tipo = etiqueta.split("_")[0];
                 if(tipo === "texto"){
@@ -27,6 +26,8 @@ export default function TeoriaContenido() {
                         </div>
                 }else if(tipo === "ejercicio"){
                     return <h1 key={i}>Aqui va un ejercicio</h1>
+                }else if(tipo === "titulo"){
+                    return <h1>{teoria[submodulo][subtema][etiqueta]}</h1>
                 }else{
                     return <div>Etiqueta no encontrada</div>
                 }

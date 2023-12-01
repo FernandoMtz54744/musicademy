@@ -28,6 +28,8 @@
 .teoria-contenido-container{
     padding: 3rem;
     text-align: justify;
+    white-space: pre-line;  
+    vertical-align: bottom;
 }
 
 .teoria-img-container{

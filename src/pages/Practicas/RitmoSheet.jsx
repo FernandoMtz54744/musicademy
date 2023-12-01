@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Vex from "vexflow"
 
-export default function RitmoSheet({data, rhythmSheetData}) {
+export default function RitmoSheet({data, rhythm}) {
     
     useEffect(()=>{
         // Elimina una partitura si la hay
@@ -16,7 +16,6 @@ export default function RitmoSheet({data, rhythmSheetData}) {
         renderer.resize(1000, 200);
         var context = renderer.getContext();
         context.scale(2,2);
-        // context.setViewBox(105, 20, 200, 200); //size
 
         // Crea un Stave
         const stave = new Vex.Stave(50, 0, 400);
@@ -29,24 +28,44 @@ export default function RitmoSheet({data, rhythmSheetData}) {
         ]
         stave.addTimeSignature(`${data.signaturaNumerador}/${data.signaturaDenominador}`);
         stave.setContext(context).draw();
-        const notes = [];
+        
+        const notes = rhythm.map((nota)=>{
+            if(nota.tipo === "nota"){
+                let vexflowNote;
+                if(nota.figura === 0.125){
+                    vexflowNote = new VF.StaveNote({ keys: ["b/4"], duration: "8" })
+                }else if(nota.figura === 0.25){
+                    vexflowNote = new VF.StaveNote({ keys: ["b/4"], duration: "q" })
+                }else if(nota.figura === 0.5){
+                    vexflowNote = new VF.StaveNote({ keys: ["b/4"], duration: "h" })
+                }else {
+                    vexflowNote = new VF.StaveNote({ keys: ["b/4"], duration: "w" })
+                }
 
-        for(let i=0; i<rhythmSheetData.length; i++){
-            if(rhythmSheetData[i] === 0.125){
-                notes.push(new Vex.StaveNote({ keys: ["b/4"], duration: "8" }))
-            }else if(rhythmSheetData[i] === 0.25){
-                notes.push(new Vex.StaveNote({ keys: ["b/4"], duration: "q" }))
-            }else if(rhythmSheetData[i] === 0.5){
-                notes.push(new Vex.StaveNote({ keys: ["b/4"], duration: "h" }))
-            }else if(rhythmSheetData[i] === 1){
-                notes.push(new Vex.StaveNote({ keys: ["b/4"], duration: "w" }))
-            }else if(rhythmSheetData[i] === -1){
-                notes.push(new Vex.Flow.BarNote())
+                if(nota.tocado === "correcto"){
+                    vexflowNote.setKeyStyle(0, {fillStyle: "green", strokeStyle: "green"})
+                }else if(nota.tocado === "incorrecto"){
+                    vexflowNote.setKeyStyle(0, {fillStyle: "red", strokeStyle: "red"})
+                }else if(nota.tocado === "sonando"){
+                    vexflowNote.setKeyStyle(0, {fillStyle: "blue", strokeStyle: "blue"})
+                }
+
+                if(nota.punto){
+                    const annotation = new Vex.Flow.Annotation(".");
+                    annotation.setFont("Arial", 30, 15); 
+                    annotation.setVerticalJustification(Vex.Flow.Annotation.VerticalJustify.CENTER);
+                    vexflowNote.addModifier(annotation, 0);
+                }
+
+                return vexflowNote;
+
+            }else{ //Es una barra de compás
+                return new Vex.Flow.BarNote()
             }
-        }
+        })
 
         Vex.Formatter.FormatAndDraw(context, stave, notes);
-    }, [rhythmSheetData, data.signaturaNumerador, data.signaturaDenominador]);
+    }, [rhythm]);
         
   return (
     <div className='sheetContainer'>
