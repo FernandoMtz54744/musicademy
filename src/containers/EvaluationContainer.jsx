@@ -113,6 +113,7 @@ export default function EvaluationContainer() {
                         Tiempo {formatTiempo(time)}
                     </div>
                     <center><h2>Evaluación de {submodulo.toUpperCase()}</h2></center>
+                    {!isAnswering && (<center><h2>Tuviste {userAnswer.filter(answer => answer).length} de {NUMBER_OF_QUESTIONS} respuestas correctas en un tiempo de {formatTiempo(time)} min</h2></center>)}
                     <Evaluation submodulo={submodulo} evaluacion={evaluacion} 
                     handleChange={handleChange} handleBack={handleBack} handleSubmit={handleSubmit} 
                     data={data} userAnswer={userAnswer} isAnswering={isAnswering}/>
