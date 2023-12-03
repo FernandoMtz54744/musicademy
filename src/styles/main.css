@@ -117,3 +117,7 @@ body{
 .waves-purple{
     fill: var(--evaluaciones-color);
 }
+
+.logo{
+    height: 50px;
+}

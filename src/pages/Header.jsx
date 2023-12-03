@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link , useNavigate} from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import logo from '../res/Logo.svg'
 
 export default function Header({headerColor}) {
   const auth = useAuth();
@@ -20,7 +21,7 @@ export default function Header({headerColor}) {
 
   return (
     <header className={`header ${headerColor}`}>
-        <p>Logo</p>
+        <img src={logo} className="logo" alt='logo'/>
         <div className='header-links'>
           <Link to="/Modulos">Inicio</Link>
           <Link to="/Perfil" className='user-name-container'>

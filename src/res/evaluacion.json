@@ -1,0 +1,493 @@
+{
+    "fundamentos":{
+        "pregunta_1":{
+            "pregunta":"¿Qué es la música?",
+            "opciones":["Expresión en las matemáticas para determinar un ritmo.","Género de ritmos para convertir sonidos en algo constante.","$Es un lenguaje universal que hace el uso de sonidos con el objetivo de producir una secuencia de éstos teniendo ritmo, melodía y armonía","Cadena de sonidos con instrumentos para lograr un ritmo específico."]
+        },
+        "pregunta_2":{
+            "pregunta":"Son los bloques de construcción de la armonía musical",
+            "opciones":["$Acordes","Claves","Escalas","Melodías"]
+        },
+        "pregunta_3":{
+            "pregunta":"Dos aspectos esenciales de la música que trabajan juntos para crear canciones son: ",
+            "opciones":["Ritmo y Movimiento","Sinfonía y Desplazamientos","Acordes y Escalas","$Melodía y Armonía"]
+        },
+        "pregunta_4":{
+            "pregunta":"La escala más común es:",
+            "opciones":["$Escala diatónica","Escala pentatónica","Escala Mayor","Escala menor natural "]
+        },
+        "pregunta_5":{
+            "pregunta":"Símbolos que representan la duración de las notas en una composición musical.",
+            "opciones":["$Figura musical","Escalas","Conjuntos","Rirmos"]
+        },
+        "pregunta_6": {
+            "pregunta": "Una nota completa se “escribe” como",
+            "opciones": ["Óvalo abierto", "Óvalo abierto como un tallo unido hacia un lado de él", "Óvalo Cerrado con un tallo", "$Óvalo cerrado con un tallo y una bandera"]
+          },
+          "pregunta_7": {
+            "pregunta": "Una media nota es",
+            "opciones": ["Óvalo abierto", "$Óvalo abierto como un tallo unido hacia un lado de él", "Óvalo cerrado con un tallo", "Óvalo cerrado con un tallo y una bandera"]
+          },
+          "pregunta_8": {
+            "pregunta": "La nota de ¼ es",
+            "opciones": ["Óvalo abierto", "Óvalo abierto como un tallo unido hacia un lado de él", "$Óvalo cerrado con un tallo", "Óvalo cerrado con un tallo y una bandera"]
+          },
+          "pregunta_9": {
+            "pregunta": "Una nota de 8 es",
+            "opciones": ["Óvalo abierto", "Óvalo abierto como un tallo unido hacia un lado de él", "Óvalo cerrado con un tallo", "$Óvalo cerrado con un tallo y una bandera"]
+          },
+          "pregunta_10": {
+            "pregunta": "Una nota de 16 es similar a una de 8 pero con dos banderas",
+            "opciones": ["Óvalo abierto", "Óvalo abierto como un tallo", "$Similar a una de 8 pero con dos banderas.", "Óvalo cerrado con un tallo y una bandera"]
+          },
+          "pregunta_11": {
+            "pregunta": "Las plicas se extienden hacia abajo y están en el lado izquierdo de la cabeza de la nota cuando",
+            "opciones": ["$La nota está sobre o por encima de la tercera línea de cualquier personal.", "La nota está debajo de la tercera línea de cualquier pentagrama", "La nota está sobre o por encima de la segunda línea de cualquier personal.", "La nota está debajo de la segunda línea de cualquier pentagrama"]
+          },
+          "pregunta_12": {
+            "pregunta": "Las plicas se extienden hacia arriba y están en el lado derecho de la cabeza de la nota cuando:",
+            "opciones": ["La nota está sobre o por encima de la tercera línea de cualquier personal.", "$La nota está debajo de la tercera línea de cualquier pentagrama", "La nota está sobre o por encima de la segunda línea de cualquier personal.", "La nota está debajo de la segunda línea de cualquier pentagrama"]
+          },
+          "pregunta_13": {
+            "pregunta": "La nota más alejada de la línea media",
+            "opciones": ["$Determina la dirección general del vástago.", "Determine la forma en la nota musical.", "Determina la dirección específica en la línea.", "Determina la sinfonía de la línea."]
+          },
+          "pregunta_14": {
+            "pregunta": "Debe ser exactamente el tiempo suficiente para llegar hacia arriba o hacia abajo hasta la siguiente línea o espacio que representa la misma nota",
+            "opciones": ["Longitud de la nota.", "Longitud del tiempo.", "$Longitud del tallo.", "Longitud de la línea."]
+          },
+          "pregunta_15": {
+            "pregunta": "Son tan importantes como las pausas al momento en que hablamos.",
+            "opciones": ["$Silencios", "Valores.", "Tiempos", "Ritmos"]
+          },
+          "pregunta_16": {
+            "pregunta": "Al igual que los valores de las notas, de hecho, exactamente igual que los valores de las notas, existen valores de silencio. Simplemente los llamamos",
+            "opciones": ["$Descansos", "Afinaciones", "Ritmos", "Agudo y Grave"]
+          },
+          "pregunta_17": {
+            "pregunta": "Funciona igual para los silencios, aumentando el valor del silencio a la mitad del original.",
+            "opciones": ["Punto de descanso", "Punto de descenso", "$Punto de aumento", "Punto constate"]
+          },
+          "pregunta_18": {
+            "pregunta": "Consiste en cinco líneas horizontales sobre las cuales se sobreponen las notas y silencios previamente vistos",
+            "opciones": ["Dibujo", "Esquema", "$Pentagrama", "Mapa"]
+          },
+          "pregunta_19": {
+            "pregunta": "Cada línea o espacio en el pentagrama es para",
+            "opciones": ["$Una sola nota", "Dos notas", "Tres notas", "4 o más notas"]
+          },
+          "pregunta_20": {
+            "pregunta": "Todas las notas musicales se escriben dentro del pentagrama en",
+            "opciones": ["Una línea únicamente, no en los espacios.", "Al menos 2 líneas", "Cada tiempo", "$Una línea o un espacio"]
+          },
+          "pregunta_21": {
+            "pregunta": "Las notas representan sonidos llamados",
+            "opciones": ["$Tonos", "Melodías", "Sinfonías", "Conjuntos"]
+          },
+          "pregunta_22": {
+            "pregunta": "Para que las notas tengan un significado dentro de nuestro pentagrama necesitamos de un elemento llamado",
+            "opciones": ["$Clave", "Llave", "Todas las anteriores", "Ninguna de las anteriores"]
+          },
+          "pregunta_23": {
+            "pregunta": "Existen tres tipos de claves",
+            "opciones": ["Si, Re, Da", "Me, Le, To", "$Clave de Sol, Fa, Do.", "Todas las anteriores."]
+          },
+          "pregunta_24": {
+            "pregunta": "Clave utilizada para instrumentos como violín, guitarra, flauta, etc.), fa (para instrumentos graves como contrabajo, violonchelo",
+            "opciones": ["Clave To", "$Clave Sol", "Clave Fa", "Ninguna"]
+          },
+          "pregunta_25": {
+            "pregunta": "Clave utilizada para instrumentos graves como contrabajo, violonchelo.",
+            "opciones": ["Clave Do", "Clave Re", "$Clave Fa", "Clave Sol"]
+          },
+          "pregunta_26": {
+            "pregunta": "Lenguaje escrito de la música, una representación visual de una composición musical que permite a los músicos leer, interpretar y ejecutar la música de manera precisa.",
+            "opciones": ["Notas", "Ritmos", "$Partituras", "Esquemas"]
+          },
+          "pregunta_27": {
+            "pregunta": "Es una herramienta de entrenamiento auditivo.",
+            "opciones": ["$Solfeo", "Rítmica", "Armonía", "Ninguna de las anteriores."]
+          },
+          "pregunta_28": {
+            "pregunta": "La clave de Sol se traza a partir de la.",
+            "opciones": ["Primera Linea del pentagrama", "Tercera linea del pentagrama.", "$Segunda linea del pentagrama.", "Ultima Linea del pentagrama"]
+          },
+          "pregunta_29": {
+            "pregunta": "Representa la nota G.",
+            "opciones": ["Fa", "$Sol", "La", "Si"]
+          },
+          "pregunta_30": {
+            "pregunta": "Representa la nota B.",
+            "opciones": ["Do", "Re", "MI", "$Si"]
+          }
+        
+    },
+    "melodia":{
+        "pregunta_1": {
+            "pregunta": "En melodía, un intervalo es la diferencia de altura entre:",
+            "opciones": ["$2 sonidos.", "2 ritmos.", "2 melodías.", "2 semitonos."]
+          },
+          "pregunta_2": {
+            "pregunta": "Las distancias normales entre dos notas, en escalas occidentales, son dos:",
+            "opciones": ["$Tono y semitono.", "Tono y dos tonos.", "Una nota y dos tonos.", "Ninguna de las anteriores."]
+          },
+          "pregunta_3": {
+            "pregunta": "¿Cuál es la distancia mínima entre dos notas?",
+            "opciones": ["$Semitono", "Cuarteto", "Tono", "Seminota"]
+          },
+          "pregunta_4": {
+            "pregunta": "Las dos notas que forman el intervalo se semitono tienen el mismo nombre:",
+            "opciones": ["$Semitono Cromatico.", "Semitono Diatonico.", "Ninguna de las anteriores.", "Todas las anteriores."]
+          },
+          "pregunta_5": {
+            "pregunta": "La numeración de un intervalo se realiza contando:",
+            "opciones": ["$El número de notas que abarca.", "El número de tonos que toma.", "El número de semitonos.", "Ninguna de las anteriores."]
+          },
+          "pregunta_6": {
+            "pregunta": "Hay dos formas de nombrar las notas. Si se refiere a cada nota de la escala que se toma como número, se refiere a:",
+            "opciones": ["Tonos.", "$Grados", "Semitodos", "Descansos"]
+          },
+          "pregunta_7": {
+            "pregunta": "Clasificación de los grados.",
+            "opciones": ["$Grados Musicales Tonales y Grados Musicales Modales.", "Grados Musicales Graves y Grados Musicales Agudos.", "Grados Musicales Simples y Grados Musicales Complejos.", "Grados Musicales Altos y Grados Musicales Bajos."]
+          },
+          "pregunta_8": {
+            "pregunta": "Se llaman Grados tonales porque definen:",
+            "opciones": ["$Tonos", "Sonidos", "Descansos", "Distancias de tono."]
+          },
+          "pregunta_9": {
+            "pregunta": "Los grados tonales están formados por los grados:",
+            "opciones": ["I, III, VI.", "I, II, VI.", "I, V, VII.", "$I, IV, V."]
+          },
+          "pregunta_10": {
+            "pregunta": "El primer grado I, es:",
+            "opciones": ["La primera nota musical de la escala.", "Centro de la composición.", "Centro del equilibrio.", "$Todas las anteriores."]
+          },
+          "pregunta_11": {
+            "pregunta": "Grado subdominante, ya que también tiene una gran influencia sobre la composición, aunque menor que el grado dominante.",
+            "opciones": ["$Grado IV.", "Grado VI.", "Grado III.", "Grado II."]
+          },
+          "pregunta_12": {
+            "pregunta": "Grado dominante, tiene una función dominante y suele aparecer bastantes veces en la melodía.",
+            "opciones": ["Grado I.", "Grado III.", "Grado VI.", "$Grado V."]
+          },
+          "pregunta_13": {
+            "pregunta": "Los grados que representan a los Grados Modales son:",
+            "opciones": ["III, VI y VII.", "II, III, IV.", "$I, II, III.", "Ninguno de los anteriores."]
+          },
+          "pregunta_14": {
+            "pregunta": "Es considerado el Grado Mediante.",
+            "opciones": ["Grado I", "Grado II.", "$Grado III.", "Grado VI."]
+          },
+          "pregunta_15": {
+            "pregunta": "Es considerado el grado superdominante.",
+            "opciones": ["Grado II.", "$Grado VI.", "Grado III.", "Grado ."]
+          },
+          "pregunta_16": {
+            "pregunta": "En ocasiones es considerado el grado Sensible.",
+            "opciones": ["Grado VI", "$Grado VII.", "Grado II.", "Grado VIV."]
+          },
+          "pregunta_17": {
+            "pregunta": "La 3ra Mayor equivale a:",
+            "opciones": ["1 Tono.", "$2 Tonos", "2 Tonos + 1 Semitono.", "3 Tonos + 1 Semitono"]
+          },
+          "pregunta_18": {
+            "pregunta": "La 2da Mayor equivale a:",
+            "opciones": ["1 Tono", "2 Tonos", "2 Tonos + 1 Semitono", "4 Tonos + 1 Semitono."]
+          },
+          "pregunta_19": {
+            "pregunta": "La 6a Mayor equivale a:",
+            "opciones": ["3 Tonos + 1 Semitono", "4 Tonos + 1 Semitono", "6 Tonos", "2 Tonos + 1 Semitono."]
+          },
+          "pregunta_20": {
+            "pregunta": "La 4a Justa equivale a:",
+            "opciones": ["2 Tonos + 1 Semitono", "3 Tonos +1 Semitono.", "5 Tonos + 1 Tono", "6 Tonos"]
+          },
+          "pregunta_21": {
+            "pregunta": "La 5a Justa equivale a",
+            "opciones": ["3 Tonos + 1 Semitono", "6 Tonos + 1 Tono", "2 Tonos + 1 Semitono", "5 Tonos + 1 Semitono."]
+          },
+          "pregunta_22": {
+            "pregunta": "La 7a Mayor equivale a:",
+            "opciones": ["6 Tonos", "2 Tonos + 1 Semitono", "$5 Tonos + 1 Semitono", "3 Tonos + 1 Semitono."]
+          },
+          "pregunta_23": {
+            "pregunta": "La 8a Justa",
+            "opciones": ["6 Tonos", "2 Tonos + 1 Semitono", "5 Tonos + 1 Semitono", "3 Tonos + 1 Semitono."]
+          },
+          "pregunta_24": {
+            "pregunta": "La 2a menor equivale:",
+            "opciones": ["1 Semitono.", "1 Tono + 1 Semitono.", "2 Tonos +  1 Semitono", "3 Tonos + 1 Semitonos"]
+          },
+          "pregunta_25": {
+            "pregunta": "Los calificativos “mayor” y “menor” tan solo se emplean en",
+            "opciones": ["$Segundas", "Tecersas", "Sextas y Séptimas", "Todas las anteriores"]
+          },
+          "pregunta_26": {
+            "pregunta": "El calificativo justo solo puede ser empleado en.",
+            "opciones": ["Cuartas, Quintas y Sextas.", "Segundas, Terceras y Septimas.", "Cuartas, Quintas, Sextas.", "$Cuartas Quintas, Octavas."]
+          },
+          "pregunta_27": {
+            "pregunta": "¿Qué calificativos existen en los intervalos?",
+            "opciones": ["$Mayor y Menor", "Aumentado y Disminuido", "Grande y pequeño", "Todas las anteriores."]
+          },
+          "pregunta_28": {
+            "pregunta": "Si (B) se llama sensible porque",
+            "opciones": ["Porque es un semitono de la supertónica.", "$Porque está a un semitono de la tónica.", "Porque es el último semitono.", "Porque está justo al inicio."]
+          },
+          "pregunta_29": {
+            "pregunta": "En teoría musical, un intervalo es:",
+            "opciones": ["La diferencia entre dos ritmos.", "La diferencia entre dos tiempos.", "La diferencia entre dos espacios.", "$Ninguna de las anteriores."]
+          },
+          "pregunta_30": {
+            "pregunta": "En un piano, el semitono es la distancia que existe entre:",
+            "opciones": ["Dos teclas blancas y una tecla negra.", "$Una tecla blanca y la tecla negra inmediata superior o inferior.", "Una tecla blanca y dos teclas negras.", "Ninguna de las anteriores."]
+          }
+    },
+    "armonia":{
+        "pregunta_1": {
+            "pregunta": "Una triada es:",
+            "opciones": ["Acorde formado por 2 notas distintas.", "Acorde formado por 4 notas distintas.", "$Acorde formado por 3 notas distintas.", "Acorde formado por 5 notas distintas."]
+          },
+          "pregunta_2": {
+            "pregunta": "Existen cuatro tipos de triadas básicas:",
+            "opciones": ["$Mayor, menor, disminuida y aumentada.", "Mayor, distinguida, disminuida y aumentada.", "Menor, acústica, disminuida y aumentada.", "Ninguna de las anteriores."]
+          },
+          "pregunta_3": {
+            "pregunta": "La triada mayor está formada por:",
+            "opciones": ["Una primera, tercera mayor y una quinta justa.", "$Una segunda, tercera menor y una quinta mayor.", "Una primera, tercera menor y una quinta justa.", "Una segunda, tercera mayoral y una quinta justa."]
+          },
+          "pregunta_4": {
+            "pregunta": "Los intervalos que se encuentra en la Triada Mayor son:",
+            "opciones": ["$Tercera mayor, seguida por una tercera menor.", "Tercera menor, seguida por una tercera mayor.", "Segunda mayor, seguida por una tercera menor.", "Segunda mayor, seguida por una tercera menor."]
+          },
+          "pregunta_5": {
+            "pregunta": "La triada menor está formada por:",
+            "opciones": ["Primera, una tercera mayor y una quinta justa.", "Segunda, una tercera menor y una quinta justa.", "$Primera, una tercera menor y una quinta justa.", "Segunda, una tercera menor y una quinta justa."]
+          },
+          "pregunta_6": {
+            "pregunta": "Los intervalos que se encuentran en la Triada Menor son:",
+            "opciones": ["Tercera mayor, seguida por una tercera menor.", "$Tercera menor, seguida por una tercera mayor.", "Tercera menor, seguida por una ternera menor.", "Tercera mayor, seguida por una tercera mayor."]
+          },
+          "pregunta_7": {
+            "pregunta": "La triada disminuida está formada por:",
+            "opciones": ["Primera, una tercera menor y una quinta disminuida.", "Segunda, una tercera menor y una quinta disminuida.", "Primera, una tercera mayor y una quinta justa.", "Segunda, una tercera mayor y una quinta justa."]
+          },
+          "pregunta_8": {
+            "pregunta": "Los intervalos que se encuentran en la Triada Disminuida son:",
+            "opciones": ["Tercera menor, seguida por una tercera menor.", "Tercera mayor, seguida por una tercera mayor.", "$Tercera menor, seguida por una tercera mayor.", "Tercera mayor, seguida por una tercera menor."]
+          },
+          "pregunta_9": {
+            "pregunta": "La tríada aumentada está formada por:",
+            "opciones": ["Primera, una tercera menor y una quinta disminuida.", "Segunda, una tercera menor y una quinta disminuida.", "$Primera, una tercera mayor y una aumentada.", "Segunda, una tercera mayor y una quinta justa."]
+          },
+          "pregunta_10": {
+            "pregunta": "Los intervalos que se encuentran en la Triada Aumentada son:",
+            "opciones": ["Tercera menor, seguida por una tercera menor.", "Tercera mayor, seguida por una tercera mayor.", "$Tercera menor, seguida por una tercera mayor.", "Tercera mayor, seguida por una tercera menor."]
+          },
+          "pregunta_11": {
+            "pregunta": "Los acordes son:",
+            "opciones": ["$Un conjunto de notas ordenadas por terceras.", "Un conjunto de notas ordenadas por segundas.", "Un conjunto de notas ordenadas por quintas.", "Ninguna de las anteriores."]
+          },
+          "pregunta_12": {
+            "pregunta": "La nota más importante del acorde es:",
+            "opciones": ["$La nota fundamental.", "La nota redonda.", "La nota blanca.", "La nota semifusa."]
+          },
+          "pregunta_13": {
+            "pregunta": "La diferencia que marca los distintos tipos de acorde, es:",
+            "opciones": ["El tipo de aumento.", "El tipo de disminución.", "El tipo de armonía.", "$El tipo de acorde."]
+          },
+          "pregunta_14": {
+            "pregunta": "Son escalas y sistemas tonales que se utilizan en la música para crear diferentes atmósferas y emociones.",
+            "opciones": ["Acordes.", "Notas", "Intervalos", "$Modos"]
+          },
+          "pregunta_15": {
+            "pregunta": "Los modos musicales son;",
+            "opciones": ["Nodo Jonico y Modo Dorico.", "Modo Frigio, Modo Lidio y Mixolidio.", "Modo Eolico y Modo Locrio.", "$Todas las anteriores."]
+          },
+          "pregunta_16": {
+            "pregunta": "Este modo se basa en la escala diatónica mayor y comienza en el primer grado. Es alegre y luminoso, y se usa ampliamente en la música popular y clásica occidental.",
+            "opciones": ["Modo Dorico.", "Modo Frigio.", "$Modo Jonico.", "Modo Locrio."]
+          },
+          "pregunta_17": {
+            "pregunta": "Este modo comienza en el segundo grado de la escala diatónica mayor. Tiene un carácter un tanto melancólico y se usa en géneros como el jazz y la música celta.",
+            "opciones": ["$Modo Dorico.", "Modo Frigio.", "Modo Jonico.", "Modo Locrio."]
+          },
+          "pregunta_18": {
+            "pregunta": "Este modo comienza en el tercer grado de la escala diatónica mayor. Tiene un carácter exótico y se usa en la música flamenca y algunas composiciones de rock y metal.",
+            "opciones": ["Modo Dorico.", "$Modo Frigio.", "Modo Jonico.", "Modo Locrio."]
+          },
+          "pregunta_19": {
+            "pregunta": "Este modo comienza en el cuarto grado de la escala diatónica mayor. Tiene un sonido brillante y se usa ocasionalmente en música jazz y clásica.",
+            "opciones": ["$Modo Lidio", "Modo Mixolidio", "Modo Eolico", "Modo Locrio"]
+          },
+          "pregunta_20": {
+            "pregunta": "Este modo comienza en el quinto grado de la escala diatónica mayor. Tiene un carácter fuerte y se utiliza en géneros como el blues y el rock.",
+            "opciones": ["Modo Lidio", "$Modo Mixolidio", "Modo Eolico", "Modo Locrio"]
+          },
+          "pregunta_21": {
+            "pregunta": "Este modo comienza en el sexto grado de la escala diatónica mayor. Es similar a una escala menor natural y se utiliza en música clásica, rock y otros estilos.",
+            "opciones": ["Modo Lidio", "Modo Mixolidio", "$Modo Eolico", "Modo Locrio"]
+          },
+          "pregunta_22": {
+            "pregunta": "Este modo comienza en el séptimo grado de la escala diatónica mayor. Es el modo menos común y tiene un carácter disonante, por lo que se usa con poca frecuencia en la música moderna.",
+            "opciones": ["$Modo Lidio", "Modo Mixolidio", "Modo Eolico", "Modo Locrio"]
+          },
+          "pregunta_23": {
+            "pregunta": "Es una visualización de todas las tonalidades mayores y menores. Las tonalidades mayores se encuentran en el círculo exterior y las tonalidades relativas menores en el círculo interior.",
+            "opciones": ["Tonalidades.", "$Circulo de quintas.", "Modos", "Notacion de acordes."]
+          },
+          "pregunta_24": {
+            "pregunta": "Las tonalidades mayores y las menores relativas comparten la misma:",
+            "opciones": ["Sinfonía", "Nota", "Espacio", "$Armadura."]
+          },
+          "pregunta_25": {
+            "pregunta": "El círculo de quintas permite comprender visualmente la relación entre las:",
+            "opciones": ["Tonalidades y espacios.", "$Tonalidades y los acordes.", "Acordes y espacios.", "Ninguna de las anteriores."]
+          },
+          "pregunta_26": {
+            "pregunta": "La parte superior del círculo muestra la tonalidad de do mayor:",
+            "opciones": ["Con sostenidos sin bemoles", "Sin sostenidos con bemoles.", "Con sostenidos y bemoles", "$Sin sostenidos ni bemoles."]
+          },
+          "pregunta_27": {
+            "pregunta": "Por cada paso en el sentido de las agujas del reloj se añade un:",
+            "opciones": ["Bemol a la armadura.", "$Sostenido a la armadura.", "Ninguna de las anteriores.", "Todas las anteriores."]
+          },
+          "pregunta_28": {
+            "pregunta": "Por cada paso en sentido contrario a las agujas del reloj se añade un:",
+            "opciones": ["$Bemol a la armadura.", "Sostenido a la armadura.", "Ninguna de las anteriores.", "Todas las anteriores."]
+          },
+          "pregunta_29": {
+            "pregunta": "Al transportar acordes, en el sentido de las agujas del reloj hay.",
+            "opciones": ["Una quinta ascendente.", "$Una quinta descendente.", "Un quinta constante.", "Ninguna de las anteriores."]
+          },
+          "pregunta_30": {
+            "pregunta": "Al transportar acordes, en el sentido contrario a las agujas del reloj hay.",
+            "opciones": ["$Una quinta ascendente.", "Una quinta descendente", "Un quinta constante.", "Ninguna de las anteriores."]
+          }
+    },
+    "ritmo":{
+        "pregunta_1": {
+            "pregunta": "Son aquellos que organizan el ritmo:",
+            "opciones": ["$Los compases.", "Las notas.", "Los descansos.", "Las armaduras."]
+          },
+          "pregunta_2": {
+            "pregunta": "Es el compás más utilizado en la música occidental.",
+            "opciones": ["Compás de 4/4 ", "Compás de 2/4", "Compás de 2/2", "Compás de 3/4"]
+          },
+          "pregunta_3": {
+            "pregunta": "Es aquel compás con dos tiempos o pulsos de negro por compás.",
+            "opciones": ["$Compás de 2/4", "Compás de <<C>>", "Compás de 2/2", "Compás de 3/4"]
+          },
+          "pregunta_4": {
+            "pregunta": "La «C» es una forma de representar el compás de:",
+            "opciones": ["Compás de 2/2", "Compás de 2/4", "$Compás de 4/4", "Compás de 3/4"]
+          },
+          "pregunta_5": {
+            "pregunta": "¿Cuál es el significado de la «C» utilizado para representar el compás de 4/4?",
+            "opciones": ["Tiempo alterno", "Tiempo constante", "$Tiempo común", "Tiempo diferente"]
+          },
+          "pregunta_6": {
+            "pregunta": "El siguiente compás confiere a la música un ritmo de marcha constante, perfecto para marcar el ritmo con los pies.",
+            "opciones": ["Compás de 2/2", "Compás de 2/4", "$Compás de 4/4", "Compás de 3/4"]
+          },
+          "pregunta_7": {
+            "pregunta": "Este compás tiene dos tiempos pulsos de blanca por compás.",
+            "opciones": ["$Compás de 2/2", "Compás de 2/4", "Compás de 4/4", "Compás de 3/4"]
+          },
+          "pregunta_8": {
+            "pregunta": "Es un compás dinámico, especialmente popular en polcas, marchas y otros géneros de música bailable.",
+            "opciones": ["Compás de 2/2", "$Compás de 2/4", "Compás de 4/4", "Compás de 3/4"]
+          },
+          "pregunta_9": {
+            "pregunta": "Este compás nos da tres tiempos o pulsos de negra por compás. Es decir, tres negras por compás, es el compás del elegante vals.",
+            "opciones": ["Compás de 2/2", "Compás de 2/4", "Compás de 4/4", "$Compás de 3/4"]
+          },
+          "pregunta_10": {
+            "pregunta": "Es cuando unimos 2 o más figuras musicales (iguales o diferentes) en el mismo sonido.",
+            "opciones": ["Unión", "Conjunto", "$Ligadura", "Ninguna de las anteriores."]
+          },
+          "pregunta_11": {
+            "pregunta": "Cual es la posición de la nota la cual el músico debe tocar al ver una ligadura.",
+            "opciones": ["Segunda Nota.", "$Primera Nota.", "Tercer Nota", "Cuarta Nota"]
+          },
+          "pregunta_12": {
+            "pregunta": "Es por definición la ausencia de una nota.",
+            "opciones": ["$Silencio.", "Acorde.", "Ligadura.", "Espacio"]
+          },
+          "pregunta_13": {
+            "pregunta": "Si requerimos hablar de ligaduras musicales necesitamos mencionar:",
+            "opciones": ["Dibujos.", "Letras.", "Imágenes.", "$Números"]
+          },
+          "pregunta_14": {
+            "pregunta": "Un empate solo va de:",
+            "opciones": ["Cabeza de nota a Pie de nota.", "$Cabeza de nota a Cabeza de nota.", "Pie de nota a Cabeza de nota.", "Pie de nota a Pie de Nota."]
+          },
+          "pregunta_15": {
+            "pregunta": "El arco del empate es siempre:",
+            "opciones": ["Opuesta a la dirección del tallo.", "Igual a la dirección del tallo.", "Equidistante a la dirección del tallo.", "Ninguna de las anteriores."]
+          },
+          "pregunta_16": {
+            "pregunta": "Son aquellos en los que la unidad de tiempo, es decir, la figura que completa un pulso del compás, se puede dividir en tres partes",
+            "opciones": ["$Compases Compuestos", "Compases Iguales", "Compases Paralelos", "Compases Seriales"]
+          },
+          "pregunta_17": {
+            "pregunta": "Es aquel que en una indicación de compás, nos indica una figura rítmica concreta.",
+            "opciones": ["Compás binario.", "$Compás denominador.", "Compás ternario.", "Compás numerador."]
+          },
+          "pregunta_18": {
+            "pregunta": "Es aquel que en una indicación de compás, nos dice cuántas de estas figuras rítmicas entran en un compás.",
+            "opciones": ["Compás binario.", "Compás denominador.", "Compás ternario.", "$Compás numerador."]
+          },
+          "pregunta_19": {
+            "pregunta": "Son aquellos en donde lo que tienen en común es que ambos refuerzan el tiempo débil del compás.",
+            "opciones": ["$Contratiempo y síncopa.", "Contratiempo y alternación.", "Alternación y síncopa.", "Ninguna de las anteriores."]
+          },
+          "pregunta_20": {
+            "pregunta": "Es aquel que se alarga hasta el tiempo siguiente.",
+            "opciones": ["Contratiempo.", "$Sincopa.", "Alternación.", "Ninguna de las anteriores."]
+          },
+          "pregunta_21": {
+            "pregunta": "Es aquel que se posa sobre el tiempo débil y sustituye los tiempos fuertes por silencios.",
+            "opciones": ["$Contratiempo.", "Sincopa.", "Alternación.", "Ninguna de las anteriores."]
+          },
+          "pregunta_22": {
+            "pregunta": "En este, ocurre el evento donde tenemos silencios en los tiempos fuertes, obteniendo un sonido distinto.",
+            "opciones": ["$Contratiempo", "Descanso", "Sincopa larga", "Sincopa breve."]
+          },
+          "pregunta_23": {
+            "pregunta": "Dura 2 tiempos y comienza en tiempo débil del compás y se prolonga al tiempo fuerte.",
+            "opciones": ["$Sincopa Larga", "Sincopa Breve.", "Nota a contratiempo larga.", "Nota a contratiempo breve."]
+          },
+          "pregunta_24": {
+            "pregunta": "Suele durar 1 tiempo y como la larga, comienzo en tiempo debil del compas y se prolonga sobre la parte fuerte del siguiente tiempo.",
+            "opciones": ["Sincopa Larga", "$Sincopa Breve.", "Nota a contratiempo larga.", "Nota a contratiempo breve."]
+          },
+          "pregunta_25": {
+            "pregunta": "Se produce en el tiempo débil del compás, mientras los tiempos débiles contienen un silencio",
+            "opciones": ["Sincopa Larga", "Sincopa Breve.", "Nota a contratiempo larga.", "$Nota a contratiempo breve."]
+          },
+          "pregunta_26": {
+            "pregunta": "Ocurre en la parte débil de un tiempo, por ejemplo cuando tenemos dos corcheas seguidas, la segunda nota va precedida y seguida de silencios.",
+            "opciones": ["Sincopa Larga", "Ligadura.", "Nota a contratiempo larga.", "$Nota a contratiempo breve."]
+          },
+          "pregunta_27": {
+            "pregunta": "Mediante una ligadura podemos acentuar los tiempos débiles de un compás y prolongarlo hacia el otro y caer sobre un tiempo fuerte.",
+            "opciones": ["Sincopa Larga", "$Ligadura.", "Nota a contratiempo larga.", "Nota a contratiempo breve."]
+          },
+          "pregunta_28": {
+            "pregunta": "Lo que diferencia del contratiempo al de la síncopa es:",
+            "opciones": ["La si prolongación del sonido sobre un tiempo o subdivisión del tiempo fuerte.", "$La no prolongación del sonido sobre un tiempo o subdivisión del tiempo fuerte.", "La no prolongación del sonido sobre un tiempo o subdivisión del tiempo débil", "La si prolongación del sonido sobre un tiempo o subdivisión del tiempo débil."]
+          },
+          "pregunta_29": {
+            "pregunta": "Se le denomina así al sonido métrico que ocurre por la aparición de silencios en las partes del compás.",
+            "opciones": ["$Contratiempo", "Ligadura", "Sincopa", "Acorde"]
+          },
+          "pregunta_30": {
+            "pregunta": "Es aquel en donde la figura y el silencio tienen la misma duración.",
+            "opciones": ["$Contratiempo Regular: cr", "Contratiempo Irregular: ci", "Ligadura", "Acorde"]
+          }
+    }
+}
+  
+  

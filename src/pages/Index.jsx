@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import "../styles/main.css"
 import "../styles/index.css"
 import pentagramaIndex from "../images/PentagramaIndex.svg"
+import logo from "../res/Logo.svg"
 
 export default function Index() {
   return (
     <div>
       <header className='header header-black'>
-        <p>Logo</p>
+        <img src={logo} className="logo" alt='logo'/>
         <div className='header-links'>
           <Link>Acerca de</Link>
           <Link to="/Registro">Registro</Link>

@@ -207,3 +207,7 @@ const fixChromatic = (note, chromatic)=>{
     }
     return chromatic;
 }
+
+export const suffle = (array) =>{
+    return array.sort(()=>Math.random() - 0.5);
+}

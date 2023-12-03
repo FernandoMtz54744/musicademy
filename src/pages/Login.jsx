@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import "../styles/main.css"
 import "../styles/auth.css"
 import googleIcon from "../res/googleIcon.png"
+import logo from "../res/Logo.svg"
 
 export default function Login({data, handleChange, handleLogin, handleLoginGoogle, error}) {
   return (
     <div>
       <header className='header header-black'>
-        <p>Logo</p>
+        <img src={logo} className="logo" alt='logo'/>
         <div className='header-links'>
           <Link>Acerca de</Link>
           <Link to="/">Inicio</Link>

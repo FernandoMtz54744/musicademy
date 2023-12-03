@@ -2,12 +2,13 @@ import React from 'react'
 import "../styles/main.css"
 import "../styles/auth.css"
 import { Link } from 'react-router-dom'
+import logo from "../res/Logo.svg"
 
 export default function Registro({data, handleChange, handleRegister, error}) {
   return (
     <div>
       <header className='header header-black'>
-        <p>Logo</p>
+        <img src={logo} className="logo" alt='logo'/>
         <div className='header-links'>
           <Link>Acerca de</Link>
           <Link to="/">Inicio</Link>
