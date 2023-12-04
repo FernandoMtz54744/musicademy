@@ -29,7 +29,7 @@ export default function SolfeoConfiguration({data, handleChange, handleOnClick})
 
                   <div className='inputConfig-container'>
                     <p>Instrumento:</p>
-                    <select className="selectSubdivison" name="instrumento" id="instrumento" defaultValue="real">
+                    <select className="selectSubdivison" name="instrumento" id="instrumento" onChange={handleChange} value={data.instrumento}>
                       <option value="real">Real (Piano, Guitarra, Flauta)</option>
                       <option value="virtual" >Virtual</option>
                     </select>

@@ -5,6 +5,7 @@ import Acorde from '../../pages/Practicas/Acorde';
 import Header from '../../pages/Header';
 import NoteDetector from '../../pages/Practicas/NoteDetector';
 import FinishPage from '../../pages/FinishPage';
+import InstrumentoVirtual from '../../pages/InstrumentoVirtual';
 
 export default function AcordesContainer() {
     const initialData = {
@@ -19,7 +20,8 @@ export default function AcordesContainer() {
         },
         modo: "nombre",
         instrumento: "real",
-        isStart: false
+        isStart: false, 
+
     }
 
     const [data, setData] = useState(initialData); //Contiene los datos de la configuración de la práctica
@@ -113,7 +115,12 @@ export default function AcordesContainer() {
                         </div>
                         <Acorde chord={chord} generateChord={generateChord} handleBack={handleBack} result={result}/>
                         {result.isPlayingNote?(
-                            <NoteDetector setFinalNote={setFinalNote} chromaticScale={chord.chromatic}/>
+                            <>
+                                <NoteDetector setFinalNote={setFinalNote} chromaticScale={chord.chromatic}/>
+                                {data.instrumento === "virtual" && (
+                                <InstrumentoVirtual/>
+                            )}
+                            </>
                         ):(
                             <center>
                                 {excerciseControl[excerciseControl.length-1].wasCorrect?(

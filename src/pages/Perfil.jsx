@@ -23,7 +23,13 @@ export default function Perfil({user}) {
                 </form>
             </div>
             <div>
-                <h1>Estadísticas</h1>
+                <h1>Seleccione el módulo para ver sus estadísticas</h1>
+                <div className='module-select-container'>
+                    <div className='module-button teoria-button-stadistic'>Teoria y Ejercicios</div>
+                    <div className='module-button practicas-button-stadistic'>Prácticas</div>
+                    <div className='module-button evaluaciones-button-stadistic'>Evaluaciones</div>
+                    <div className='module-button minijuegos-button-stadistic'>Minijuegos</div>
+                </div>
             </div>
         </main>
     </div>

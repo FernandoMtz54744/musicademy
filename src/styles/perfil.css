@@ -55,3 +55,58 @@
 .user-picture-perfil-module{
     margin: 0 0.5rem 0 0.5rem;
 }
+
+/* Estadísticas */
+.module-select-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.module-button{
+    padding: 1rem;
+    border-radius: 100px;
+    margin: 0px 10px 0px 10px;
+    font-size: large;
+}
+
+.teoria-button-stadistic{
+    border: 3px solid var(--teoria-color);
+}
+
+.teoria-button-stadistic:hover{
+    background-color: var(--teoria-color);
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.practicas-button-stadistic{
+    border: 3px solid var(--practicas-color);
+}
+
+.practicas-button-stadistic:hover{
+    background-color: var(--practicas-color);
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.evaluaciones-button-stadistic{
+    border: 3px solid var(--evaluaciones-color);
+}
+
+.evaluaciones-button-stadistic:hover{
+    background-color: var(--evaluaciones-color);
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.minijuegos-button-stadistic{
+    border: 3px solid var(--minijuegos-color);
+}
+
+.minijuegos-button-stadistic:hover{
+    background-color: var(--minijuegos-color);
+    color: whitesmoke;
+    cursor: pointer;
+}

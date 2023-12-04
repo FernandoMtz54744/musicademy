@@ -407,3 +407,84 @@
     align-items: center;
     padding-right: 3rem;
 }
+
+/* Instrumento virtual */
+
+.loading-virtual-instrument{
+    height: 92vh;
+    width: 100vw;
+    position: absolute;
+    top: 8vh;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid var(--practicas-color);
+    border-radius: 50%;
+    animation: spinner 1.5s linear infinite;
+  }
+
+/* Piano */
+.key {
+    position: relative;
+    width: 60px;
+    height: 100px;
+    border: 1px solid black;
+    border-right: none;
+    background: #fffff0;
+    border-radius: 5px;
+    box-shadow: 0px 3px 5px #666;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.black-key {
+    position: absolute;
+    top: -1px;
+    left: 37.5px;
+    width: 45px;
+    height: 50px;
+    background: black;
+    border-radius: 5px;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    color: white;
+}
+
+.piano{
+    position: absolute;
+    top: 60vh;
+    opacity: 60%;
+    list-style: none;
+    display: flex;
+}
+
+.text-piano{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SolfeoConfiguration from '../../pages/Practicas/SolfeoConfiguration'
 import SolfeoSheet from '../../pages/Practicas/SolfeoSheet';
 import Header from '../../pages/Header';
@@ -6,6 +6,7 @@ import NoteDetector from '../../pages/Practicas/NoteDetector';
 import 'react-circular-progressbar/dist/styles.css';
 import FinishPage from '../../pages/FinishPage';
 import { getTrueKeys, getRandomNumber, getRandomNoteByScale, getRandomNoteByAlteration} from '../../utils';
+import InstrumentoVirtual from '../../pages/InstrumentoVirtual';
 
 export default function SolfeoContainer() {
 
@@ -36,7 +37,8 @@ export default function SolfeoContainer() {
         }, 
         tiempo: 10,
         isStart: false,
-        modo: "alteraciones"
+        modo: "alteraciones",
+        instrumento: "real"
     }
 
     const [data, setData] = useState(initialData); //Datos del formulario
@@ -181,7 +183,12 @@ export default function SolfeoContainer() {
                     tonic={excercise.tonic} generateExcercise={generateExcercise} handleBack={handleBack}
                     notesPlayed = {result.notesPlayed}></SolfeoSheet>
                     {result.isPlayingNote?(
-                        <NoteDetector setFinalNote={setFinalNote} chromaticScale={excercise.solfeoNotes[result.notesPlayed.length].chromatic}/>
+                        <>
+                            <NoteDetector setFinalNote={setFinalNote} chromaticScale={excercise.solfeoNotes[result.notesPlayed.length].chromatic}/>
+                            {data.instrumento === "virtual" && (
+                                <InstrumentoVirtual/>
+                            )}
+                        </>
                         ):(
                         <center>
                             {excerciseControl[excerciseControl.length-1].wasCorrect?(
