@@ -6,6 +6,8 @@ const diminishedChords = ["B", "F#", "C#", "G#", "D#", "A#", "E#", "B#", "E", "A
 const majorKeyPattern = [0,2,4,5,7,9,11] //Patrón T-T-ST-T-T-T de una escala mayor
 const triadPattern = [0,2,4] //Patron de un acorde (1ra, 3ra y 5ta) de la escala mayor/menor
 const seventhPattern = [0,2,4,6] //Patrón de un acorde menor (1ra, 3ra y 5ta, 7ma) de la escala mayor/menor
+const sus4Pattern = [0,3,4]; //Patrón de un acorded Sus4
+const sus2Pattern = [0,1,4] //patrón de un acorde Sus2
 
 //Devuelve un arreglo con las claves de un objeto JSON cuyo valor sea true
 export const getTrueKeys = (json)=>{
@@ -21,7 +23,7 @@ export const getRandomNumber = (max)=>{
 
 //Obtiene una escala musical aleatoria
 export const getRandomKey= (type)=>{
-    if(type === "mayor" || type === "maj7" || type === "septima"){
+    if(type === "mayor" || type === "maj7" || type === "septima" || type === "sus4" || type === "sus2"){
         return majorScales[getRandomNumber(majorScales.length)];
     }if (type === "menor" || type === "m7"){
         return minorScales[getRandomNumber(minorScales.length)];
@@ -105,8 +107,18 @@ export const getChord = (tonic, type)=>{
         for(let i=0; i<triadPattern.length; i++){
             chord.notes.push(minorScale.notes[triadPattern[i]]);
         }
-    }else if(type === "aumentado"){
-        
+    }else if(type === "sus4"){
+        const majorScale = getMajorScale(tonic);
+        chord.chromatic = majorScale.chromatic;
+        for(let i=0; i<sus4Pattern.length; i++){
+            chord.notes.push(majorScale.notes[sus4Pattern[i]]);
+        }
+    }else if(type === "sus2"){
+        const majorScale = getMajorScale(tonic);
+        chord.chromatic = majorScale.chromatic;
+        for(let i=0; i<sus2Pattern.length; i++){
+            chord.notes.push(majorScale.notes[sus2Pattern[i]]);
+        }
     }else if(type === "disminuido"){
         chord.tonic = majorScales[diminishedChords.indexOf(tonic)]; //Tonica de la escala mayor de donde el sale el acorde disminuido (septimo grado)
         const majorScale = getMajorScale(chord.tonic);
@@ -154,6 +166,10 @@ export const getChordName = (tonic, type)=>{
         name = name + "Maj7";
     }else if(type === "m7"){
         name = name + "m7";
+    }else if(type === "sus4"){
+        name = name + "sus4";   
+    }else if(type === "sus2"){
+        name = name + "sus2";
     }
     return name;
 }

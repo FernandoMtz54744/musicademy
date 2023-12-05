@@ -22,11 +22,17 @@ export default function Acordes({data, handleChange, handleChecked, handleStart}
                     </button>
                   </div>
                   <div className='chord-type-group'>
-                    <button className={`chord-button ${data.acordes.aumentado?"checked-chord":""}`} onClick={handleChecked} name="aumentado">
+                    {/* <button className={`chord-button ${data.acordes.aumentado?"checked-chord":""}`} onClick={handleChecked} name="aumentado">
                       Aumentados
                     </button>
                     <button className={`chord-button ${data.acordes.disminuido?"checked-chord":""}`} onClick={handleChecked} name="disminuido">
                       Disminuidos
+                    </button> */}
+                    <button className={`chord-button ${data.acordes.sus4?"checked-chord":""}`} onClick={handleChecked} name="sus4">
+                      Sus4
+                    </button>
+                    <button className={`chord-button ${data.acordes.sus2?"checked-chord":""}`} onClick={handleChecked} name="sus2">
+                      Sus2
                     </button>
                   </div>  
                   <div className='chord-type-group'>

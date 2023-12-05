@@ -16,7 +16,9 @@ export default function AcordesContainer() {
             disminuido: false,
             septima: false,
             maj7: false,
-            m7: false
+            m7: false, 
+            sus4: false,
+            sus2: false
         },
         modo: "nombre",
         instrumento: "real",
@@ -63,6 +65,7 @@ export default function AcordesContainer() {
         const chordType = posibleChordType[getRandomNumber(posibleChordType.length)];
         const tonic = getRandomKey(chordType);
         const chord = getChord(tonic, chordType);
+        console.log(chord.notes);
         setChord(chord);
         setResult({notesPlayed:[], isPlayingNote: true})
         setExcerciseControl([...excerciseControl, {number: excerciseControl.length+1, wasCorrect: false, totalNotesCorrect: 0, totalNotesWrong: 0}])

@@ -42,6 +42,8 @@ export default function EvaluationContainer() {
         //Conectarse a bd y subir a estadísticas
     }
 
+
+
     const handleBack = () =>{
         navigate("/Evaluaciones")
     }
@@ -82,6 +84,12 @@ export default function EvaluationContainer() {
             setTime(time => time + 1);
         }, 1000);
     }
+
+    useEffect(()=>{
+        if(time === 120){
+            document.getElementById("finish-evaluation").click();
+        }
+    }, [time])
     
     const formatTiempo = (segundos)=> {
         const minutos = Math.floor(segundos / 60);
