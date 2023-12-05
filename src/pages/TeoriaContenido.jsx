@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import teoria from "../res/teoria.json"
 import { useNavigate, useParams } from 'react-router-dom';
 import Header from './Header';
+import Ejercicio from './Ejercicio';
 
 export default function TeoriaContenido() {
     const {submodulo, subtema} = useParams();
     const [etiquetas] = useState(Object.keys(teoria[submodulo][subtema]));
     const navigate = useNavigate();
+    const [ejercicioState, setEjercicioState] = useState("sin realizar") //[sin realizar, realizando, realizado]
 
     const handleBack = ()=>{
         navigate(`/Teoria/${submodulo}`)
@@ -25,11 +27,11 @@ export default function TeoriaContenido() {
                             <img src={teoria[submodulo][subtema][etiqueta]} alt='imagen'/>
                         </div>
                 }else if(tipo === "ejercicio"){
-                    return <h1 key={i}>Aqui va un ejercicio</h1>
+                    return <Ejercicio key={i} setEjercicioState={setEjercicioState} ejercicioState={ejercicioState} titulo={teoria[submodulo][subtema]["titulo_1"]} subtema={subtema}/>
                 }else if(tipo === "titulo"){
-                    return <h1>{teoria[submodulo][subtema][etiqueta]}</h1>
+                    return <h1 key={i}>{teoria[submodulo][subtema][etiqueta]}</h1>
                 }else{
-                    return <div>Etiqueta no encontrada</div>
+                    return <div key={i}>Etiqueta no encontrada</div>
                 }
             })}
 
