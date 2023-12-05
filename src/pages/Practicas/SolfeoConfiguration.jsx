@@ -13,11 +13,11 @@ export default function SolfeoConfiguration({data, handleChange, handleOnClick})
             <h1>Práctica de Solfeo</h1>
             <h2>Configura tu práctica</h2>
             <main className='configuration-container'>
-                <div className='inputConfig-container'>
+                {/* <div className='inputConfig-container'>
                   <p>Tiempo para responder:</p>
                   <input type="number" name='tiempo' id='tiempo' min="5" max="20" onChange={handleChange} value={data.tiempo}/>
                   <p>segundos</p>
-                </div>
+                </div> */}
                 
 
                 <div className='inputConfig-container-group'>
