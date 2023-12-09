@@ -4,8 +4,13 @@ import Ritmo from '../../pages/Practicas/Ritmo';
 import Header from '../../pages/Header';
 import * as Tone from "tone"
 import { getTrueKeys } from '../../utils';
+import { db } from '../../firebase/firabase.config';
+import { addDoc, collection } from 'firebase/firestore';
+import { useAuth } from '../../context/AuthContext';
 
 export default function RitmoContainer() {
+
+    const usuarioContext = useAuth();
 
     const initialData = {
       tempo:60, 
@@ -103,10 +108,6 @@ export default function RitmoContainer() {
         }
         console.log(excerciseControlTemp);
         setExcerciseControl(excerciseControlTemp);
-
-        if(excerciseControlTemp.length === NUMBER_OF_EXCERCISES){//Guardar en BD
-
-        }
       }
     }, [isPlaying]);
 
@@ -277,6 +278,27 @@ export default function RitmoContainer() {
     document.addEventListener("keydown",  handleOnKeydown);
     return ()=>document.removeEventListener("keydown", handleOnKeydown)
   }, [handleOnKeydown])
+
+  useEffect(()=>{
+    if(excerciseControl.length === NUMBER_OF_EXCERCISES+1){
+      guardarPractica();
+    }
+  }, [excerciseControl]);
+
+  const guardarPractica = () =>{
+    const ritmoCollection = collection(db, "Usuarios", usuarioContext.user.uid, "Ritmo");
+    addDoc(ritmoCollection, {
+        ritmosCorrectos: excerciseControl.filter(excercise => excercise.wasCorrect).length,
+        ritmosIncorrectos: NUMBER_OF_EXCERCISES-excerciseControl.filter(excercise => excercise.wasCorrect).length,
+        notasCorrectas: excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesCorrect, 0),
+        notasIncorrectas: excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesWrong, 0)
+    }).then(()=>{
+        console.log("Datos agregados");
+    }).catch((error)=>{
+        console.log("Error al agregar datos", error);
+    })
+    console.log("Guardado");
+}
 
 
   return (

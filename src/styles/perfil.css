@@ -62,6 +62,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin: 0.5rem;
 }
 
 .module-button{
@@ -109,4 +110,19 @@
     background-color: var(--minijuegos-color);
     color: whitesmoke;
     cursor: pointer;
+}
+/* Estadisticas */
+.estadisticas-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80vw;
+}
+
+.estadistica-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

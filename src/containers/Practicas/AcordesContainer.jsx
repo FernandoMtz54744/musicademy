@@ -6,8 +6,13 @@ import Header from '../../pages/Header';
 import NoteDetector from '../../pages/Practicas/NoteDetector';
 import FinishPage from '../../pages/FinishPage';
 import InstrumentoVirtual from '../../pages/InstrumentoVirtual';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../firebase/firabase.config';
+import { useAuth } from '../../context/AuthContext';
 
 export default function AcordesContainer() {
+    const usuarioContext = useAuth();
+
     const initialData = {
         acordes:{
             mayor: true,
@@ -105,6 +110,27 @@ export default function AcordesContainer() {
         setExcerciseControl(excerciseControlTemp);
         
     }, [finalNote]);
+
+    useEffect(()=>{
+        if(excerciseControl.length === TOTAL_OF_EXCERCISES+1){
+            guardarPractica();
+        }
+    }, [excerciseControl]);
+
+    const guardarPractica = () =>{
+        const acordeCollection = collection(db, "Usuarios", usuarioContext.user.uid, "Acordes");
+        addDoc(acordeCollection, {
+            acordesCorrectos: excerciseControl.filter(excercise => excercise.wasCorrect).length,
+            acordesIncorrectos: TOTAL_OF_EXCERCISES-excerciseControl.filter(excercise => excercise.wasCorrect).length,
+            notasCorrectas: excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesCorrect, 0),
+            notasIncorrectas: excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesWrong, 0)
+        }).then(()=>{
+            console.log("Datos agregados");
+        }).catch((error)=>{
+            console.log("Error al agregar datos", error);
+        })
+        console.log("Guardado");
+    }
 
   return (
 

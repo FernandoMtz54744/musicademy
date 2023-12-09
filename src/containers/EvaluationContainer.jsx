@@ -5,9 +5,13 @@ import Header from '../pages/Header';
 import preguntasJSON from "../res/evaluacion.json"
 import { getRandomNumber, suffle } from '../utils';
 import "../styles/evaluacion.css"
+import { db } from '../firebase/firabase.config';
+import { addDoc, collection } from 'firebase/firestore';
+import { useAuth } from '../context/AuthContext';
 
 export default function EvaluationContainer() {
 
+    const usuarioContext = useAuth();
     const {submodulo} = useParams();
     const [evaluacion, setEvaluacion] = useState([]);
     const NUMBER_OF_QUESTIONS = 10;
@@ -40,6 +44,22 @@ export default function EvaluationContainer() {
         window.scroll(0,0);
 
         //Conectarse a bd y subir a estadísticas
+        guardarEvaluacion(userAnswerTemp);
+    }
+
+    const guardarEvaluacion = (userAnswerTemp) =>{
+        const evaluacionCollection = collection(db, "Usuarios", usuarioContext.user.uid, "Evaluaciones");
+        addDoc(evaluacionCollection, {
+            submodulo: submodulo,
+            tiempo: time,
+            correctas: userAnswerTemp.filter(answer => answer).length,
+            incorrectas: NUMBER_OF_QUESTIONS-userAnswerTemp.filter(answer => answer).length,
+        }).then(()=>{
+            console.log("Datos agregados");
+        }).catch((error)=>{
+            console.log("Error al agregar datos", error);
+        })
+        console.log("Guardado");
     }
 
 

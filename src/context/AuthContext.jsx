@@ -1,4 +1,6 @@
 import { auth } from "../firebase/firabase.config";
+import { db } from "../firebase/firabase.config";
+import { doc, getDoc, setDoc } from "firebase/firestore"; 
 import { createContext, useContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, 
     GoogleAuthProvider, signInWithPopup,
@@ -23,6 +25,19 @@ export function AuthProvider({children}){
             }else{
                 setUser(currentUser);
                 console.log(currentUser);
+                //Se verifica si existe un documento en firestore para ese usuario
+                const docRef = doc(db,"Usuarios", currentUser.uid);
+                getDoc(docRef).then((docSnap) =>{
+                    if(!docSnap.exists()){
+                        setDoc(docRef, {}).then(()=>{
+                            console.log("Colección creada para uid: " + currentUser.uid);
+                        }).catch((error)=>{
+                            console.log("Error al crear la colección", error);
+                        })
+                    }else{
+                        console.log("La colección ya existe con uid: " + currentUser.uid);
+                    }
+                })
             }         
         })
         return ()=>suscribed();

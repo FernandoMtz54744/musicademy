@@ -7,8 +7,13 @@ import 'react-circular-progressbar/dist/styles.css';
 import FinishPage from '../../pages/FinishPage';
 import { getTrueKeys, getRandomNumber, getRandomNoteByScale, getRandomNoteByAlteration} from '../../utils';
 import InstrumentoVirtual from '../../pages/InstrumentoVirtual';
+import { db } from '../../firebase/firabase.config';
+import { addDoc, collection } from 'firebase/firestore';
+import { useAuth } from '../../context/AuthContext';
 
 export default function SolfeoContainer() {
+    
+    const usuarioContext = useAuth();
 
     //Datos iniciales de la configuración de solfeo
     const initialData = {
@@ -158,17 +163,34 @@ export default function SolfeoContainer() {
                 if(correctNotes.length === NUMBER_OF_NOTES){//Tuvo todas las notas correctas
                     excerciseControlTemp[excerciseControl.length-1].wasCorrect = true;
                 }
-
-                if(excerciseControlTemp.length === TOTAL_OF_EXCERCISES){
-                    //Código para guardar la estadística (los datos los tiene excerciseControlTemp)
-                }
-
                 setExcerciseControl(excerciseControlTemp);
             }
             setResult(resultTemp);
         }
 
     }, [finalNote]);
+
+    useEffect(()=>{
+        if(excerciseControl.length === TOTAL_OF_EXCERCISES+1){
+            //Código para guardar la estadística (los datos los tiene excerciseControlTemp)
+            guardarPractica();
+        }
+    }, [excerciseControl]);
+
+    const guardarPractica = () =>{
+        const solfeoCollection = collection(db, "Usuarios", usuarioContext.user.uid, "Solfeo");
+        addDoc(solfeoCollection, {
+            solfeosCorrectos: excerciseControl.filter(excercise => excercise.wasCorrect).length,
+            solfeosIncorrectos: TOTAL_OF_EXCERCISES-excerciseControl.filter(excercise => excercise.wasCorrect).length,
+            notasCorrectas: excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesCorrect, 0),
+            notasIncorrectas: excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesWrong, 0)
+        }).then(()=>{
+            console.log("Datos agregados");
+        }).catch((error)=>{
+            console.log("Error al agregar datos", error);
+        })
+        console.log("Guardado");
+    }
     
   return (
     data.isStart?(

@@ -1,8 +1,12 @@
 import React from 'react'
 import Header from './Header'
 import "../styles/perfil.css"
+import EstadisticasEvaluacion from './estadisticas/EstadisticasEvaluacion'
+import EstadisticasTeoria from './estadisticas/EstadisticasTeoria'
+import EstadisticasPracticas from './estadisticas/EstadisticasPracticas'
+import EstadisticasMinijuegos from './estadisticas/EstadisticasMinijuegos'
 
-export default function Perfil({user}) {
+export default function Perfil({user, handleOnClick, estadisticaActual}) {
   return (
     <div>
         <Header headerColor={"header-black"}/>
@@ -25,12 +29,24 @@ export default function Perfil({user}) {
             <div>
                 <h1>Seleccione el módulo para ver sus estadísticas</h1>
                 <div className='module-select-container'>
-                    <div className='module-button teoria-button-stadistic'>Teoria y Ejercicios</div>
-                    <div className='module-button practicas-button-stadistic'>Prácticas</div>
-                    <div className='module-button evaluaciones-button-stadistic'>Evaluaciones</div>
-                    <div className='module-button minijuegos-button-stadistic'>Minijuegos</div>
+                    <div className='module-button teoria-button-stadistic' onClick={()=>handleOnClick("teoria")}>Teoria y Ejercicios</div>
+                    <div className='module-button practicas-button-stadistic' onClick={()=>handleOnClick("practicas")}>Prácticas</div>
+                    <div className='module-button evaluaciones-button-stadistic' onClick={()=>handleOnClick("evaluaciones")}>Evaluaciones</div>
+                    <div className='module-button minijuegos-button-stadistic' onClick={()=>handleOnClick("minijuegos")}>Minijuegos</div>
                 </div>
+                {estadisticaActual && <center><h2>Tus estadísticas de {estadisticaActual.toUpperCase()}</h2></center>}
             </div>
+            {estadisticaActual === "teoria"?(
+                <EstadisticasTeoria/>
+            ):(estadisticaActual === "practicas"?(
+                <EstadisticasPracticas/>
+            ):(estadisticaActual === "evaluaciones"?(
+                <EstadisticasEvaluacion/>
+            ):(estadisticaActual === "minijuegos"?(
+                <EstadisticasMinijuegos/>
+            ):(
+                <></>
+            ))))}
         </main>
     </div>
   )

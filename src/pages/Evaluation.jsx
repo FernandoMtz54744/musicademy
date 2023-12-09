@@ -9,7 +9,7 @@ export default function Evaluation({evaluacion, handleChange, handleSubmit, data
         {evaluacion.map((pregunta, i)=>(
           <div className='pregunta-container' key={i}>
             <div className='pregunta-text'>
-              {i+1}.- {pregunta.pregunta}-{pregunta.correcta}
+              {i+1}.- {pregunta.pregunta}
             </div>
             <div className='opciones-container'>
               {pregunta.opciones.map((opcion, j)=>(
