@@ -114,15 +114,41 @@
 /* Estadisticas */
 .estadisticas-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 80vw;
+    width: 100vw;
+    padding-top: 2rem;   
 }
 
 .estadistica-container{
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px solid black;
+    border-radius: 5px;
+    width: 90vw;
+    margin-bottom: 1rem;
+    box-shadow: 5px 5px black;
+}
+
+.estadistica-container center p{
+    padding-right: 1rem;
+}
+
+.grafica-container{
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.estadistica-modulo-titulo{
+    text-align: center;
+    vertical-align: center;
+    height: 100%;
+    font-size: larger;
+    font-weight: 600;
+    padding-left: 1rem;
 }

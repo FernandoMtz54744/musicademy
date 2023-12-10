@@ -12,7 +12,8 @@ export default function EstadisticasEvaluacion() {
     const options = {
         legend: {position: "bottom"},
         backgroundColor: "#F5F5F5",
-        titlePosition:"none"
+        titlePosition:"none",
+        width: '100%'
     }
     
     useEffect(()=>{
@@ -40,36 +41,40 @@ export default function EstadisticasEvaluacion() {
   return (
     <div className='estadisticas-container'>
         {submodulo.map((submodulo)=>{
-            let tiempoPromedio = 0;
-            let correctasPromedio = 0;
-            let incorrectasPromedio = 0;
+            let tiempo = 0;
+            let correctas = 0;
+            let incorrectas = 0;
             let cantidad = 0;
             if(estadisticaEvaluacion[submodulo]){
                 cantidad = estadisticaEvaluacion[submodulo].numeroEvaluaciones;
-                tiempoPromedio = estadisticaEvaluacion[submodulo].totalTiempo/cantidad;
-                correctasPromedio = estadisticaEvaluacion[submodulo].totalCorrectas/cantidad;
-                incorrectasPromedio = estadisticaEvaluacion[submodulo].totalIncorrectas/cantidad;
-
+                tiempo = estadisticaEvaluacion[submodulo].totalTiempo;
+                correctas = estadisticaEvaluacion[submodulo].totalCorrectas;
+                incorrectas = estadisticaEvaluacion[submodulo].totalIncorrectas;
             }
            
             return(
                 <div className='estadistica-container'>
-                    <h2>{submodulo.toUpperCase()}</h2>
-                    {tiempoPromedio? (
+                    <div className='estadistica-modulo-titulo'>{submodulo.toUpperCase()}</div>
+                    {tiempo? (
                         <>
-                        <h4>Tiempo promedio: {tiempoPromedio} segundos</h4>
-                        <h4>Evaluaciones: {cantidad}</h4>
+                        <div>
+                            <h4>Tiempo total: {tiempo} segundos</h4>
+                            <h4>Evaluaciones: {cantidad}</h4>
+                        </div>
+                        <div className='grafica-container'>
                         <h4>Preguntas:</h4>
-                        <Chart
-                            chartType='PieChart'
-                            data={[["Preguntas", "Cantidad"], ["Correctas", correctasPromedio], ["Incorrectas", incorrectasPromedio]]}
-                            options={options}
-                        />
+                            <Chart
+                                chartType='PieChart'
+                                data={[["Preguntas", "Cantidad"], ["Correctas", correctas], ["Incorrectas", incorrectas]]}
+                                options={options}
+                                width={200}
+                            />
+                        </div>
+                        
                         </>
                     ):(
-                        <center><h4>Realiza evaluaciones de este módulo para ver tus estadísticas</h4></center>
+                        <center><p>Realiza evaluaciones de este módulo para ver tus estadísticas</p></center>
                     )}
-                    
                 </div>
             )
         })}
