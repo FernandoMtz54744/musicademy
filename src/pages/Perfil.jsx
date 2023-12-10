@@ -11,7 +11,7 @@ export default function Perfil({user, handleOnClick, estadisticaActual}) {
     <div>
         <Header headerColor={"header-black"}/>
         <main className='main-perfil'>
-            <h1>Perfíl</h1>
+            <h1>Perfil y Estadísticas</h1>
             <div className='form-container-perfil'>
                 {user.photoURL?(
                    <img src={user.photoURL} className='user-picture-perfil-module' alt="usuario-picture" />

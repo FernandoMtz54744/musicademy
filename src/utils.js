@@ -227,3 +227,13 @@ const fixChromatic = (note, chromatic)=>{
 export const suffle = (array) =>{
     return array.sort(()=>Math.random() - 0.5);
 }
+
+export const formatTiempo = (segundos)=> {
+    const minutos = Math.floor(segundos / 60);
+    const segundosRestantes = segundos % 60;
+  
+    const formatoMinutos = minutos < 10 ? `0${minutos}` : minutos;
+    const formatoSegundos = segundosRestantes < 10 ? `0${segundosRestantes}` : segundosRestantes;
+  
+    return `${formatoMinutos}:${formatoSegundos}`;
+}

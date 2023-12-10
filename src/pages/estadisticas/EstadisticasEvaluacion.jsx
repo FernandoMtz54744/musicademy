@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../../firebase/firabase.config';
 import { useAuth } from '../../context/AuthContext';
 import Chart from 'react-google-charts';
+import { formatTiempo } from '../../utils';
 
 export default function EstadisticasEvaluacion() {
 
@@ -37,6 +38,28 @@ export default function EstadisticasEvaluacion() {
         });
          
     },[]);
+
+    const getTiempoTotal = ()=>{
+        const suma = submodulo.reduce((suma, submodulo)=>{
+            if(estadisticaEvaluacion[submodulo]){
+                return suma+estadisticaEvaluacion[submodulo].totalTiempo;
+            }else{
+                return suma;
+            }
+        }, 0)
+        return suma;
+    }
+
+    const getEvaluacionesTotal = ()=>{
+        const suma = submodulo.reduce((suma, submodulo)=>{
+            if(estadisticaEvaluacion[submodulo]){
+                return suma+estadisticaEvaluacion[submodulo].numeroEvaluaciones;
+            }else{
+                return suma;
+            }
+        }, 0)
+        return suma;
+    }
   
   return (
     <div className='estadisticas-container'>
@@ -58,7 +81,7 @@ export default function EstadisticasEvaluacion() {
                     {tiempo? (
                         <>
                         <div>
-                            <h4>Tiempo total: {tiempo} segundos</h4>
+                            <h4>Tiempo total: {formatTiempo(tiempo)} min</h4>
                             <h4>Evaluaciones: {cantidad}</h4>
                         </div>
                         <div className='grafica-container'>
@@ -78,6 +101,46 @@ export default function EstadisticasEvaluacion() {
                 </div>
             )
         })}
+        <div className='estadistica-container'>
+            <div className='estadistica-modulo-titulo'>Tiempos</div>
+            <div>
+                <h4>Tiempo total en el módulo de evaluación: {formatTiempo(getTiempoTotal())} min</h4>
+                <h4>Evaluaciones totales: {getEvaluacionesTotal()}</h4>
+            </div>
+            <div className='grafica-container'>
+                <h4>Tiempo [s]:</h4>
+                    <Chart
+                        chartType='ColumnChart'
+                        data={[["Submodulo", "Tiempo"], 
+                        ["Fundamentos", (estadisticaEvaluacion["fundamentos"]?.totalTiempo || 0)], 
+                        ["Melodia", (estadisticaEvaluacion["melodia"]?.totalTiempo || 0)],
+                        ["Armonia", (estadisticaEvaluacion["armonia"]?.totalTiempo || 0)],
+                        ["Ritmo", (estadisticaEvaluacion["ritmo"]?.totalTiempo || 0)]]}
+                        options={options}
+                        width={500}
+                    />
+            </div>
+        </div>
+        <div className='estadistica-container'>
+            <div className='estadistica-modulo-titulo'>Preguntas</div>
+            <div>
+                <h4>Tiempo total en el módulo de evaluación: {formatTiempo(getTiempoTotal())} min</h4>
+                <h4>Evaluaciones totales: {getEvaluacionesTotal()}</h4>
+            </div>
+            <div className='grafica-container'>
+                <h4>Preguntas:</h4>
+                    <Chart
+                        chartType='Bar'
+                        data={[["Submodulo", "Correctas", "Incorrectas"], 
+                        ["Fundamentos", (estadisticaEvaluacion["fundamentos"]?.totalCorrectas || 0), (estadisticaEvaluacion["fundamentos"]?.totalIncorrectas || 0)], 
+                        ["Melodia", (estadisticaEvaluacion["melodia"]?.totalCorrectas || 0),(estadisticaEvaluacion["melodia"]?.totalIncorrectas || 0)],
+                        ["Armonia", (estadisticaEvaluacion["armonia"]?.totalCorrectas || 0),(estadisticaEvaluacion["armonia"]?.totalIncorrectas || 0)],
+                        ["Ritmo", (estadisticaEvaluacion["ritmo"]?.totalCorrectas || 0),(estadisticaEvaluacion["ritmo"]?.totalIncorrectas || 0)]]}
+                        options={options}
+                        width={500}
+                    />
+            </div>
+        </div>
     </div>
   )
 }

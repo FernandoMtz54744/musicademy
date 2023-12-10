@@ -145,10 +145,14 @@
 }
 
 .estadistica-modulo-titulo{
-    text-align: center;
     vertical-align: center;
     height: 100%;
     font-size: larger;
     font-weight: 600;
     padding-left: 1rem;
+    min-width: 11rem;
+}
+
+.grafica--bar-container{
+    width: 40rem;
 }

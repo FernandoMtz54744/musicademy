@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getEjercicio } from '../ejercicios';
+import { useAuth } from '../context/AuthContext';
+import { db } from '../firebase/firabase.config';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 
-export default function Ejercicio({ejercicioState, titulo, setEjercicioState, subtema}) {
+export default function Ejercicio({ejercicioState, titulo, setEjercicioState, subtema, submodulo}) {
     const ejercicioData = {
         id: "",
         pregunta: "",
@@ -18,6 +21,7 @@ export default function Ejercicio({ejercicioState, titulo, setEjercicioState, su
     const [userAnswer, setUserAnswer] = useState(0);
     const [isAnswering, setIsAnswering] = useState(false);
     const [result, setResult] = useState("incorrecto");
+    const usuarioContext = useAuth();
 
     const generarEjercicio = ()=>{
         setEjercicio(getEjercicio(subtema));
@@ -36,9 +40,24 @@ export default function Ejercicio({ejercicioState, titulo, setEjercicioState, su
         if(userAnswer === ejercicio.correcta){
             setResult("correcto");
             // Subir a BD
+            guardarEjercicio(); 
+            console.log(submodulo+"/"+subtema);
+
         }else{
             setResult("incorrecto");
         }
+    }
+
+    const guardarEjercicio = () =>{
+        const collectionRef = collection(db, "Usuarios", usuarioContext.user.uid, "Teoria");
+        addDoc(collectionRef, {
+            submodulo: submodulo,
+            ejercicio: submodulo+"/"+subtema
+        }).then(()=>{
+            console.log("Datos agregados");
+        }).catch((error)=>{
+            console.log("Error al agregar datos", error);
+        })
     }
 
     const handleContinue = ()=>{
@@ -48,6 +67,20 @@ export default function Ejercicio({ejercicioState, titulo, setEjercicioState, su
             setEjercicioState("sin realizar")
         }
     }
+
+    useEffect(()=>{
+        const collectionRef = collection(db, "Usuarios", usuarioContext.user.uid, "Teoria");
+        const q = query(collectionRef, where("ejercicio", "==", submodulo+"/"+subtema));
+        let cantidad = 0;
+        getDocs(q).then((querySnapshot)=>{
+            querySnapshot.forEach((doc) => {
+                cantidad++;
+            })
+            if(cantidad > 0){
+                setEjercicioState("realizado")
+            }
+        });
+    },[])
 
   return (
     ejercicioState === "sin realizar" || ejercicioState === "realizado"?(

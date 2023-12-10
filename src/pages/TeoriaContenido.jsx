@@ -27,7 +27,7 @@ export default function TeoriaContenido() {
                             <img src={teoria[submodulo][subtema][etiqueta]} alt='imagen'/>
                         </div>
                 }else if(tipo === "ejercicio"){
-                    return <Ejercicio key={i} setEjercicioState={setEjercicioState} ejercicioState={ejercicioState} titulo={teoria[submodulo][subtema]["titulo_1"]} subtema={subtema}/>
+                    return <Ejercicio key={i} setEjercicioState={setEjercicioState} ejercicioState={ejercicioState} titulo={teoria[submodulo][subtema]["titulo_1"]} subtema={subtema} submodulo={submodulo}/>
                 }else if(tipo === "titulo"){
                     return <h1 key={i}>{teoria[submodulo][subtema][etiqueta]}</h1>
                 }else{
