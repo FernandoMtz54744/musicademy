@@ -21,10 +21,10 @@ export default function Modulos() {
           <p>Evaluaciones</p>
           <Link className='modulo-card-button evaluaciones-button' to="/Evaluaciones">Comenzar</Link>
         </div>
-        <div className='modulo-card minijuegos-card'>
+        {/* <div className='modulo-card minijuegos-card'>
           <p>Minijuegos</p>
           <Link className='modulo-card-button minijuegos-button' to="/Minijuegos">Comenzar</Link>
-        </div>
+        </div> */}
       </main>
 
       <footer className='footer-waves'>

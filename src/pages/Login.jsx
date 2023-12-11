@@ -4,6 +4,7 @@ import "../styles/main.css"
 import "../styles/auth.css"
 import googleIcon from "../res/googleIcon.png"
 import logo from "../res/Logo.svg"
+import manual from "../res/manuales/Login.pdf";
 
 export default function Login({data, handleChange, handleLogin, handleLoginGoogle, error}) {
   return (
@@ -14,6 +15,7 @@ export default function Login({data, handleChange, handleLogin, handleLoginGoogl
           <Link>Acerca de</Link>
           <Link to="/">Inicio</Link>
           <Link to="/Registro">Registrarse</Link>
+          <Link to={manual} target='_blank'>Manual</Link>
         </div>
       </header>
 

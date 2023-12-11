@@ -4,12 +4,13 @@ import claveSol from "../../res/claveSol.png"
 import claveFa from "../../res/claveFa.png"
 import sostenido from "../../res/sostenido.png"
 import bemol from "../../res/bemol.png"
+import manual from "../../res/manuales/Solfeo.pdf";
 
 export default function SolfeoConfiguration({data, handleChange, handleOnClick}) {
   return (
     <div>
         <div className='modulos'>
-            <Header headerColor={"header-green"}/>
+            <Header headerColor={"header-green"} manual={manual}/>
             <h1>Práctica de Solfeo</h1>
             <h2>Configura tu práctica</h2>
             <main className='configuration-container'>

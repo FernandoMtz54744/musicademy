@@ -3,7 +3,7 @@ import { Link , useNavigate} from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import logo from '../res/Logo.svg'
 
-export default function Header({headerColor}) {
+export default function Header({headerColor, manual}) {
   const auth = useAuth();
   const navigate = useNavigate()
 
@@ -29,6 +29,7 @@ export default function Header({headerColor}) {
             {auth.user.displayName}
           </Link>
           <Link onClick={logout}>Logout</Link>
+          {manual && <Link to={manual} target='_blank'>Manual</Link>}
         </div>
       </header>
   )

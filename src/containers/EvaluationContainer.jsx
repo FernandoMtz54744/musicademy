@@ -8,6 +8,7 @@ import "../styles/evaluacion.css"
 import { db } from '../firebase/firabase.config';
 import { addDoc, collection } from 'firebase/firestore';
 import { useAuth } from '../context/AuthContext';
+import manual from "../res/manuales/Evaluacion.pdf";
 
 export default function EvaluationContainer() {
 
@@ -123,7 +124,7 @@ export default function EvaluationContainer() {
 
     return (
         <>
-            <Header headerColor={"header-purple"}/>
+            <Header headerColor={"header-purple"} manual={manual}/>
             {time === null?(
                 <div className='instrucciones-container'>
                     <div className='instrucciones-evaluacion'>

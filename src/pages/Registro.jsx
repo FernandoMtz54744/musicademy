@@ -3,6 +3,7 @@ import "../styles/main.css"
 import "../styles/auth.css"
 import { Link } from 'react-router-dom'
 import logo from "../res/Logo.svg"
+import manual from "../res/manuales/Registro.pdf";
 
 export default function Registro({data, handleChange, handleRegister, error}) {
   return (
@@ -13,6 +14,7 @@ export default function Registro({data, handleChange, handleRegister, error}) {
           <Link>Acerca de</Link>
           <Link to="/">Inicio</Link>
           <Link to="/Login">Login</Link>
+          <Link to={manual} target="_blank">Manual</Link>
         </div>
       </header>
 

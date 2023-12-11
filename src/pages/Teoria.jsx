@@ -7,7 +7,7 @@ export default function Teoria() {
   return (
     <div>
         <div className='modulos'>
-            <Header headerColor={"header-blue"}/>
+            <Header headerColor={"header-blue"} />
             <h1>Selecciona el tema de tu interés</h1>
             <main className='main-modulos'>
                 <div className='modulo-card teoria-card'>

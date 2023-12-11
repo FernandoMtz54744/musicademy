@@ -7,6 +7,7 @@ import { getTrueKeys } from '../../utils';
 import { db } from '../../firebase/firabase.config';
 import { addDoc, collection } from 'firebase/firestore';
 import { useAuth } from '../../context/AuthContext';
+import manual from "../../res/manuales/Ritmo.pdf";
 
 export default function RitmoContainer() {
 
@@ -305,7 +306,7 @@ export default function RitmoContainer() {
       <>
         {data.isStart?(
           <>
-            <Header headerColor={"header-green"}/>
+            <Header headerColor={"header-green"} manual={manual}/>
             <Ritmo data={data} generateRhythmPattern={generateRhythmPattern}
                   handleBack={handleBack} handleOnKeydown={handleOnKeydown} 
                   circleBeatCSS={circleBeatCSS} setCircleBeatCSS={setCircleBeatCSS}

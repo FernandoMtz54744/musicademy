@@ -5,12 +5,13 @@ import redonda from "../../res/redonda.png"
 import blanca from "../../res/blanca.png"
 import negra from "../../res/negra.png"
 import corchea from "../../res/corchea.png"
+import manual from "../../res/manuales/Ritmo.pdf";
 
 export default function RitmoConfiguration({data, handleChange, handleOnClick, handleStart}) {
   return (
     <div>
         <div className='modulos'>
-            <Header headerColor={"header-green"}/>
+            <Header headerColor={"header-green"} manual={manual}/>
             <h1>Práctica de Ritmo</h1>
             <h2>Configura tu práctica</h2>
             <main className='configuration-container'>

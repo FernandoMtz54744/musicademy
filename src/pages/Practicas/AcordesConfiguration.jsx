@@ -1,11 +1,12 @@
 import React from 'react'
 import Header from '../Header'
+import manual from "../../res/manuales/Acordes.pdf";
 
 export default function Acordes({data, handleChange, handleChecked, handleStart}) {
   return (
     <div>
         <div className='modulos'>
-            <Header headerColor={"header-green"}/>
+            <Header headerColor={"header-green"} manual={manual}/>
             <h1>Práctica de Acordes</h1>
             <h2>Configura tu práctica</h2>
             <main className='configuration-container'>

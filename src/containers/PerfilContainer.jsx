@@ -10,6 +10,10 @@ export default function PerfilContainer() {
     setEstadisticaActual(modulo);
   } 
 
+  const handleSubmit = ()=>{
+    
+  }
+
   return (
     <Perfil user={auth.user} handleOnClick={handleOnClick} estadisticaActual={estadisticaActual}/>
   )

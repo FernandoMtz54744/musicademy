@@ -9,6 +9,7 @@ import InstrumentoVirtual from '../../pages/InstrumentoVirtual';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase/firabase.config';
 import { useAuth } from '../../context/AuthContext';
+import manual from "../../res/manuales/Acordes.pdf";
 
 export default function AcordesContainer() {
     const usuarioContext = useAuth();
@@ -136,7 +137,7 @@ export default function AcordesContainer() {
 
         data.isStart?(
             <>
-                <Header headerColor={"header-green"}/>
+                <Header headerColor={"header-green"} manual={manual}/>
                 {excerciseControl.length<=TOTAL_OF_EXCERCISES?(
                     <>
                         <div className='excercise-counter-container'>

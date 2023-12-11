@@ -1,12 +1,13 @@
 import React from 'react'
 import Header from './Header'
 import { Link } from 'react-router-dom'
+import manual from "../res/manuales/Evaluacion.pdf";
 
 export default function Evaluaciones() {
   return (
     <div>
         <div className='modulos'>
-            <Header headerColor={"header-purple"}/>
+            <Header headerColor={"header-purple"} manual={manual}/>
             <h1>¡A demostrar lo aprendido!</h1>
             <main className='main-modulos'>
               <div className='div-table div-table-purple evaluaciones-card'>
