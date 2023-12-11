@@ -1,23 +1,63 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import teoria from "../res/teoria.json"
 import { useNavigate, useParams } from 'react-router-dom';
 import Header from './Header';
 import Ejercicio from './Ejercicio';
+import { formatTiempo } from '../utils';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../firebase/firabase.config';
+import { useAuth } from '../context/AuthContext';
 
 export default function TeoriaContenido() {
     const {submodulo, subtema} = useParams();
     const [etiquetas] = useState(Object.keys(teoria[submodulo][subtema]));
     const navigate = useNavigate();
     const [ejercicioState, setEjercicioState] = useState("sin realizar") //[sin realizar, realizando, realizado]
+    const [time, setTime] = useState(0);
+    const interval = useRef();
+    const usuarioContext = useAuth();
 
     const handleBack = ()=>{
         navigate(`/Teoria/${submodulo}`)
+        if(time !== 0){
+            guardarTiempo();
+        }
+    }
+
+    const startTime = ()=>{
+        setTime(0);
+        interval.current = setInterval(()=>{
+            setTime(time => time + 1);
+        }, 1000);
+    }
+
+    useEffect(()=>{
+        startTime();
+        return ()=>{
+            clearInterval(interval.current);
+        }
+    }, []);
+
+    const guardarTiempo = () =>{
+        const collectionRef = collection(db, "Usuarios", usuarioContext.user.uid, "TeoriaTiempos");
+        addDoc(collectionRef, {
+            submodulo: submodulo,
+            tiempo: time,
+        }).then(()=>{
+            console.log("Datos agregados");
+        }).catch((error)=>{
+            console.log("Error al agregar datos", error);
+        })
+        console.log("Guardado");
     }
 
   return (
     <div className='modulos'>
         <Header headerColor={"header-blue"}/>
         <div className='teoria-contenido-container'>
+            <div className='timer-container-teoria'>
+                Tiempo: {formatTiempo(time)}
+            </div>
             {etiquetas.map((etiqueta, i)=>{
                 const tipo = etiqueta.split("_")[0];
                 if(tipo === "texto"){
@@ -40,6 +80,7 @@ export default function TeoriaContenido() {
                 <button className='teoria-button-back' onClick={handleBack}>Regresar</button>
             </div>
         </div>
+        
     </div>
   )
 }

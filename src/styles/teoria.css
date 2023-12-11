@@ -26,7 +26,7 @@
 
 /*  Teoria*/
 .teoria-contenido-container{
-    padding: 3rem;
+    padding: 0rem 3rem 3rem 3rem;
     text-align: justify;
     white-space: pre-line;  
     vertical-align: bottom;
@@ -80,6 +80,8 @@
     align-items: center;
     padding: 1rem;
     box-shadow: 10px 10px black;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 .ejercicio-container button{
@@ -160,4 +162,17 @@
 .ejercicio-incorrecta{
     background-color: #f50057;
     border: 3px solid #f50057;
+}
+
+.timer-container-teoria{
+    position: sticky;
+    top: 5rem;
+    left: 88vw;
+    font-size: larger;
+    font-weight: 600;
+    border: 3px solid var(--teoria-color);
+    padding: 0.5rem;
+    border-radius: 10px;
+    width: 8rem;
+    background-color: whitesmoke;
 }

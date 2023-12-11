@@ -111,6 +111,28 @@
     color: whitesmoke;
     cursor: pointer;
 }
+
+/* --- actives */
+.teoria-button-stadistic-active{
+    background-color: var(--teoria-color);
+    color: whitesmoke;
+}
+
+.practicas-button-stadistic-active{
+    background-color: var(--practicas-color);
+    color: whitesmoke;
+}
+
+.evaluaciones-button-stadistic-active{
+    background-color: var(--evaluaciones-color);
+    color: whitesmoke;
+}
+
+.minijuegos-button-stadistic-active{
+    background-color: var(--minijuegos-color);
+    color: whitesmoke;
+}
+
 /* Estadisticas */
 .estadisticas-container{
     display: flex;

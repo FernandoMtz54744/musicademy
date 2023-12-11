@@ -2,8 +2,6 @@ import React from 'react'
 
 export default function Evaluation({evaluacion, handleChange, handleSubmit, data, userAnswer, isAnswering, handleBack}) {
    
-  console.log(evaluacion)
-
   return (
       <form action="" className='evaluacion-form'>
         {evaluacion.map((pregunta, i)=>(

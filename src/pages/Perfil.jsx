@@ -29,12 +29,12 @@ export default function Perfil({user, handleOnClick, estadisticaActual}) {
             <div>
                 <h1>Seleccione el módulo para ver sus estadísticas</h1>
                 <div className='module-select-container'>
-                    <div className='module-button teoria-button-stadistic' onClick={()=>handleOnClick("teoria")}>Teoria y Ejercicios</div>
-                    <div className='module-button practicas-button-stadistic' onClick={()=>handleOnClick("practicas")}>Prácticas</div>
-                    <div className='module-button evaluaciones-button-stadistic' onClick={()=>handleOnClick("evaluaciones")}>Evaluaciones</div>
-                    <div className='module-button minijuegos-button-stadistic' onClick={()=>handleOnClick("minijuegos")}>Minijuegos</div>
+                    <div className={`module-button teoria-button-stadistic ${estadisticaActual === "teoria"?"teoria-button-stadistic-active":""}`} onClick={()=>handleOnClick("teoria")}>Teoría y Ejercicios</div>
+                    <div className={`module-button practicas-button-stadistic ${estadisticaActual === "practicas"?"practicas-button-stadistic-active":""}`} onClick={()=>handleOnClick("practicas")}>Prácticas</div>
+                    <div className={`module-button evaluaciones-button-stadistic ${estadisticaActual === "evaluaciones"?"evaluaciones-button-stadistic-active":""}`} onClick={()=>handleOnClick("evaluaciones")}>Evaluaciones</div>
+                    <div className={`module-button minijuegos-button-stadistic ${estadisticaActual === "minijuegos"?"minijuegos-button-stadistic-active":""}`} onClick={()=>handleOnClick("minijuegos")}>Minijuegos</div>
                 </div>
-                {estadisticaActual && <center><h2>Tus estadísticas de {estadisticaActual.toUpperCase()}</h2></center>}
+                {estadisticaActual && <center><h2>Tus estadísticas de {estadisticaActual.replace("teoria", "teoría").replace("practicas", "prácticas")}</h2></center>}
             </div>
             {estadisticaActual === "teoria"?(
                 <EstadisticasTeoria/>

@@ -105,27 +105,26 @@ export default function EstadisticasEvaluacion() {
             <div className='estadistica-modulo-titulo'>Tiempos</div>
             <div>
                 <h4>Tiempo total en el módulo de evaluación: {formatTiempo(getTiempoTotal())} min</h4>
-                <h4>Evaluaciones totales: {getEvaluacionesTotal()}</h4>
             </div>
             <div className='grafica-container'>
                 <h4>Tiempo [s]:</h4>
                     <Chart
                         chartType='ColumnChart'
-                        data={[["Submodulo", "Tiempo"], 
-                        ["Fundamentos", (estadisticaEvaluacion["fundamentos"]?.totalTiempo || 0)], 
-                        ["Melodia", (estadisticaEvaluacion["melodia"]?.totalTiempo || 0)],
-                        ["Armonia", (estadisticaEvaluacion["armonia"]?.totalTiempo || 0)],
-                        ["Ritmo", (estadisticaEvaluacion["ritmo"]?.totalTiempo || 0)]]}
+                        data={[["Submodulo", "Tiempo", { role: "style" }], 
+                        ["Fundamentos", (estadisticaEvaluacion["fundamentos"]?.totalTiempo || 0),  "#1a237e"], 
+                        ["Melodia", (estadisticaEvaluacion["melodia"]?.totalTiempo || 0), "#e65100"],
+                        ["Armonia", (estadisticaEvaluacion["armonia"]?.totalTiempo || 0), "#311b92"],
+                        ["Ritmo", (estadisticaEvaluacion["ritmo"]?.totalTiempo || 0), "#00c853"]]}
                         options={options}
                         width={500}
                     />
             </div>
         </div>
         <div className='estadistica-container'>
-            <div className='estadistica-modulo-titulo'>Preguntas</div>
+            <div className='estadistica-modulo-titulo'>Respuestas</div>
             <div>
-                <h4>Tiempo total en el módulo de evaluación: {formatTiempo(getTiempoTotal())} min</h4>
-                <h4>Evaluaciones totales: {getEvaluacionesTotal()}</h4>
+                <h4>Has hecho {getEvaluacionesTotal()} evaluaciones en total</h4>
+                <p>Relacion de respuestas correctas vs incorrectas en total para cada módulo</p>
             </div>
             <div className='grafica-container'>
                 <h4>Preguntas:</h4>

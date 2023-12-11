@@ -26,31 +26,52 @@ export default function EstadisticasTeoria() {
  
 
     useEffect(()=>{
-      const estadisticasTemp = {}
-      const collectionRef = collection(db, "Usuarios", auth.user.uid, "Teoria");
-      const ejerciciosHechosTemp = [];
-      getDocs(collectionRef).then((querySnapshot)=>{
-          querySnapshot.forEach((doc)=>{
-              const submodulo = doc.data().submodulo;
-              if (!estadisticasTemp[submodulo]) {
-                estadisticasTemp[submodulo] = {};  
-              }
-              estadisticasTemp[submodulo].ejercicios = (estadisticasTemp[submodulo].ejercicios || 0) + 1;
-              if(ejerciciosHechosTemp.indexOf(doc.data().ejercicio) === -1){
-                estadisticasTemp[submodulo].ejerciciosCompletados = (estadisticasTemp[submodulo].ejerciciosCompletados || 0) + 1;
-                ejerciciosHechosTemp.push(doc.data().ejercicio);
-              }
-          });
-          setEstadisticas(estadisticasTemp);
-          console.log(estadisticasTemp);
-      });
-       
+        const getEstadisticas = async ()=>{
+            const estadisticasTemp = {}
+            const ejerciciosHechosTemp = [];
+            let collectionRef = collection(db, "Usuarios", auth.user.uid, "Teoria");
+            let querySnapshot = await getDocs(collectionRef);
+            querySnapshot.forEach((doc)=>{
+                const submodulo = doc.data().submodulo;
+                if (!estadisticasTemp[submodulo]) {
+                    estadisticasTemp[submodulo] = {};  
+                }
+                estadisticasTemp[submodulo].ejercicios = (estadisticasTemp[submodulo].ejercicios || 0) + 1;
+                if(ejerciciosHechosTemp.indexOf(doc.data().ejercicio) === -1){
+                    estadisticasTemp[submodulo].ejerciciosCompletados = (estadisticasTemp[submodulo].ejerciciosCompletados || 0) + 1;
+                    ejerciciosHechosTemp.push(doc.data().ejercicio);
+                }
+            });
+
+            collectionRef = collection(db, "Usuarios", auth.user.uid, "TeoriaTiempos");
+            querySnapshot = await getDocs(collectionRef);
+            querySnapshot.forEach((doc)=>{
+                const submodulo = doc.data().submodulo;
+                if (!estadisticasTemp[submodulo]) {
+                    estadisticasTemp[submodulo] = {};  
+                }
+                estadisticasTemp[submodulo].tiempo = (estadisticasTemp[submodulo].tiempo || 0) + doc.data().tiempo;
+            });
+            setEstadisticas(estadisticasTemp);          
+        }
+       getEstadisticas();
   },[]);
 
   const getEjerciciosTotal = ()=>{
     const suma = submodulo.reduce((suma, submodulo)=>{
-        if(estadisticas[submodulo]){
+        if(estadisticas[submodulo]?.ejercicios){
             return suma+estadisticas[submodulo].ejercicios;
+        }else{
+            return suma;
+        }
+    }, 0)
+    return suma;
+}
+
+const getTiempoTotal = ()=>{
+    const suma = submodulo.reduce((suma, submodulo)=>{
+        if(estadisticas[submodulo]){
+            return suma+estadisticas[submodulo].tiempo;
         }else{
             return suma;
         }
@@ -63,10 +84,11 @@ export default function EstadisticasTeoria() {
         {submodulo.map((submodulo)=>{
             let ejercicios = 0;
             let ejerciciosCompletados = 0;
-            let tiempo = 1;
+            let tiempo = 0;
             if(estadisticas[submodulo]){
-                ejercicios = estadisticas[submodulo].ejercicios;
-                ejerciciosCompletados = estadisticas[submodulo].ejerciciosCompletados;
+                ejercicios = (estadisticas[submodulo].ejercicios || 0);
+                ejerciciosCompletados = (estadisticas[submodulo].ejerciciosCompletados || 0);
+                tiempo = estadisticas[submodulo].tiempo;
             }
            
             return(
@@ -75,7 +97,7 @@ export default function EstadisticasTeoria() {
                     {tiempo? (
                         <>
                         <div>
-                            <h4>Tiempo total: {tiempo} segundos</h4>
+                            <h4>Tiempo total: {formatTiempo(tiempo)} min</h4>
                             <h4>Ejercicios: {ejerciciosCompletados} de {NUMERO_EJERCICIOS[submodulo]}</h4>
                         </div>
                         <div className='grafica--bar-container'>
@@ -90,24 +112,43 @@ export default function EstadisticasTeoria() {
                 </div>
             )
         })}
-    <div className='estadistica-container'>
-        <div className='estadistica-modulo-titulo'>Ejercicios</div>
-        <div>
-            <h4>Ejercicios realizados: {getEjerciciosTotal()}</h4>
-            <p>Si has realizado un ejercicio más de de una vez aquí puedes ver tu estadística</p>
+        <div className='estadistica-container'>
+            <div className='estadistica-modulo-titulo'>Tiempos</div>
+            <div>
+                <h4>Tiempo total en el módulo de Teoria: {formatTiempo(getTiempoTotal())} min</h4>
+            </div>
+            <div className='grafica-container'>
+                <h4>Tiempo [s]:</h4>
+                    <Chart
+                        chartType='ColumnChart'
+                        data={[["Submodulo", "Tiempo", { role: "style" }], 
+                        ["Fundamentos", (estadisticas["fundamentos"]?.tiempo || 0), "#1a237e"], 
+                        ["Melodia", (estadisticas["melodia"]?.tiempo || 0), "#e65100"],
+                        ["Armonia", (estadisticas["armonia"]?.tiempo || 0), "#311b92"],
+                        ["Ritmo", (estadisticas["ritmo"]?.tiempo || 0),"#00c853"]]}
+                        options={options}
+                        width={500}
+                    />
+            </div>
         </div>
-        <div className='grafica-container'>
-            <h4>Ejercicios:</h4>
-                <Chart
-                    chartType='ColumnChart'
-                    data={[["Submodulo", "Ejercicios"], 
-                    ["Fundamentos", (estadisticas["fundamentos"]?.ejercicios || 0)], 
-                    ["Melodia", (estadisticas["melodia"]?.ejercicios || 0)],
-                    ["Armonia", (estadisticas["armonia"]?.ejercicios || 0)],
-                    ["Ritmo", (estadisticas["ritmo"]?.ejercicios || 0)]]}
-                    options={options}
-                    width={500}
-                />
+        <div className='estadistica-container'>
+            <div className='estadistica-modulo-titulo'>Ejercicios</div>
+            <div>
+                <h4>Ejercicios realizados: {getEjerciciosTotal()}</h4>
+                <p>Si has realizado un ejercicio más de de una vez aquí puedes ver tu estadística</p>
+            </div>
+            <div className='grafica-container'>
+                <h4>Ejercicios:</h4>
+                    <Chart
+                        chartType='ColumnChart'
+                        data={[["Submodulo", "Ejercicios", { role: "style" }], 
+                        ["Fundamentos", (estadisticas["fundamentos"]?.ejercicios || 0), "#1a237e"], 
+                        ["Melodia", (estadisticas["melodia"]?.ejercicios || 0), "#e65100"],
+                        ["Armonia", (estadisticas["armonia"]?.ejercicios || 0), "#311b92"],
+                        ["Ritmo", (estadisticas["ritmo"]?.ejercicios || 0), "#00c853"]]}
+                        options={options}
+                        width={500}
+                    />
         </div>
     </div>
   </div>
