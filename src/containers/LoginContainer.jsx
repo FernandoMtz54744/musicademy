@@ -20,8 +20,12 @@ export default function LoginContainer() {
 
   const handleLogin = (e)=>{
     e.preventDefault();
-    auth.login(data.email, data.password).then(()=>{
-      navigate("/Modulos");
+    auth.login(data.email, data.password).then((userCredential)=>{
+      if(userCredential.user.emailVerified){
+        navigate("/Modulos");
+      }else{
+        setError("Verifique su email")
+      }
     }).catch((error)=>{
       console.log(error);
       if(error.code === "auth/invalid-email"){

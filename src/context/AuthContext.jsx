@@ -20,7 +20,7 @@ export function AuthProvider({children}){
     const [user, setUser] = useState("");
     useEffect(()=>{
         const suscribed = onAuthStateChanged(auth, (currentUser)=>{   
-            if(!currentUser){
+            if(!currentUser || !currentUser.emailVerified){
                 setUser("");
             }else{
                 setUser(currentUser);

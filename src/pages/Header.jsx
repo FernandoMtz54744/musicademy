@@ -15,7 +15,7 @@ export default function Header({headerColor, manual}) {
 
   useEffect(()=>{
     if(!auth.user){
-      // navigate("/Login");
+      navigate("/Login");
     }
   }, [auth.user])
 

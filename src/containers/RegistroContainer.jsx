@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Registro from '../pages/Registro'
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { updateProfile } from 'firebase/auth';
+import { sendEmailVerification, updateProfile } from 'firebase/auth';
 
 export default function RegistroContainer() {
   const inialData = {
@@ -26,9 +26,16 @@ export default function RegistroContainer() {
         displayName: data.usuario
       }).then(()=>{
         console.log("Nombre de usuario actualizado");
+        console.log(auth.user);
+        sendEmailVerification(userCredential.user).then(()=>{
+          alert("Email de verificación enviado");
+        }).catch((error)=>{
+          console.log("Error al enviar email de verificación", error);
+        })
       }).catch((error)=>{
         console.log(error);
       });
+      
       navigate("/Modulos");
     }).catch((error)=>{
       console.log(error);
@@ -40,6 +47,10 @@ export default function RegistroContainer() {
         setError("Contraseña no valida [debe ser al menos 6 caracteres]")
       }else if(error.code === "auth/weak-password"){
         setError("Contraseña débil [debe ser al menos 6 caracteres]")
+      }else if(error.code === "auth/email-already-in-use"){
+        setError("Este email ya está en uso")
+      }else{
+        setError(error.code);
       }
     })
   }
