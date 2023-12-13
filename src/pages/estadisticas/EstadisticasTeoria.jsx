@@ -18,7 +18,7 @@ export default function EstadisticasTeoria() {
     }
 
     const NUMERO_EJERCICIOS={
-      fundamentos: 6,
+      fundamentos: 5,
       melodia: 2,
       armonia: 1,
       ritmo: 1

@@ -21,7 +21,9 @@ export default function Header({headerColor, manual}) {
 
   return (
     <header className={`header ${headerColor}`}>
-        <img src={logo} className="logo" alt='logo'/>
+        <Link to="/Modulos">
+          <img src={logo} className="logo" alt='logo'/>
+        </Link>
         <div className='header-links'>
           <Link to="/Modulos">Inicio</Link>
           <Link to="/Perfil" className='user-name-container'>

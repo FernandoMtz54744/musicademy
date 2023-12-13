@@ -3,6 +3,7 @@ import { getEjercicio } from '../ejercicios';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../firebase/firabase.config';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import Partitura from './Partitura';
 
 export default function Ejercicio({ejercicioState, titulo, setEjercicioState, subtema, submodulo}) {
     const ejercicioData = {
@@ -17,7 +18,7 @@ export default function Ejercicio({ejercicioState, titulo, setEjercicioState, su
         opciones: [],
         correcta: 0
     }
-    const [ejercicio, setEjercicio] = useState();
+    const [ejercicio, setEjercicio] = useState(ejercicioData);
     const [userAnswer, setUserAnswer] = useState(0);
     const [isAnswering, setIsAnswering] = useState(false);
     const [result, setResult] = useState("incorrecto");
@@ -69,11 +70,14 @@ export default function Ejercicio({ejercicioState, titulo, setEjercicioState, su
     }
 
     useEffect(()=>{
+        if(!usuarioContext.user){
+            return;
+        }
         const collectionRef = collection(db, "Usuarios", usuarioContext.user.uid, "Teoria");
         const q = query(collectionRef, where("ejercicio", "==", submodulo+"/"+subtema));
         let cantidad = 0;
         getDocs(q).then((querySnapshot)=>{
-            querySnapshot.forEach((doc) => {
+            querySnapshot.forEach(() => {
                 cantidad++;
             })
             if(cantidad > 0){
@@ -98,6 +102,7 @@ export default function Ejercicio({ejercicioState, titulo, setEjercicioState, su
         <div className='ejercicio-container'>
             <h2>Ejercicio de {titulo}</h2>
             <h2>{ejercicio.pregunta}</h2>
+            {ejercicio.partitura.display && <Partitura partitura={ejercicio.partitura}/>}
             <div className='opciones-container-teoria'>
                 {ejercicio.opciones.map((opcion, i)=>(
                     <label key={i} className={`opcion-container-teoria 

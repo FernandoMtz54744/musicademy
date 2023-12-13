@@ -8,34 +8,38 @@
              "titulo_1" : "Notas Musicales",
               "texto_1": "Las notas musicales son los elementos básicos de la música. Imagina que son las letras del alfabeto musical. A diferencia de las letras del abecedario, las notas se representan con letras de la A a la G  y se utilizan para crear melodías y armonías en la música. \n  Cada nota tiene un nombre, y estas notas se organizan en una secuencia llamada escala. La escala más común es la escala diatónica, que consta de siete notas: Do, Re, Mi, Fa, Sol, La y Si, para siete tonos se utilizan las letras C-D-E-F-G-A-B y en caso de tener 8 notas se repite la letra C después de la B. \n Las notas también tienen duraciones diferentes, lo que significa que algunas notas suenan más largas que otras. Esto crea el ritmo en la música, que es la organización del tiempo musical. \n Cuando varias notas se tocan o suenan juntas, se crea un acorde. Los acordes son como bloques de construcción en la música y se combinan de diversas maneras para crear armonías, que son combinaciones de sonidos que suenan bien juntos.", 
                "dibujo_1":"",
-               "ejercicio_1":"" 
-         }, 
-         "figuras_musicales":{
+               "ejercicio_1":""
+        },
+        "figuras_musicales":{
             "titulo_1" : "Figuras Musicales",
-             "texto_1":"Las figuras musicales son símbolos que representan la duración de las notas en una composición musical. Estas figuras son fundamentales para entender el ritmo de una pieza musical y cómo se organizan las notas en el tiempo. \n La figura musical más básica es la representación de la nota la cual puede tener diferentes figuras ya que cada una de ellas permite deducir el valor exacto en tiempo de un determinado sonido. \n", 
-             "dibujo_1":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen1.png?alt=media&token=0d912c69-53fe-4120-aead-bbc22acd4753", 
-             "texto_2":"Una nota completa se simboliza como un ovalo abierto. \n Una media nota es un ovalo abierto con un tallo unido hacia un lado de él. \n La nota de ¼ es un ovalo cerrado con un tallo. \n Una nota de 8 es un óvalo cerrado con un tallo y una bandera . \n Una nota de 16 es similar a una de 8 pero con dos banderas",
-             "dibujo_2":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen2.png?alt=media&token=03380eb6-52cf-4acb-9a24-36e228e2a5e3",
-             "texto_3": "La interpretación entre tiempos es la siguiente:",
-             "dibujo_3" : "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen3.png?alt=media&token=7208b910-9c3d-4139-b3c6-4f64027951a0",
-             "ejercicio_1":"",
-             "texto_4":"Con corcheas o semicorcheas es posible unir dos o más de estas notas. Esta alternativa es más cómoda de escribir",
-             "dibujo_4":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen4.png?alt=media&token=0bf060a7-58dd-409d-bf5c-c323dc296240",
-             "texto_5":"Como lo implican sus nombres en forma de fracción, los valores relativos (duraciones relativas) de las notas son: ",
-             "dibujo_5":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen5.png?alt=media&token=894a184f-acf9-4737-bfc9-96dfb2559a0a",
-             "ejercicio_2": "",
-             "texto_6":"Las plicas se extienden hacia abajo y están en el lado izquierdo de la cabeza de la nota cuando la nota está sobre o por encima del tercera línea de cualquier personal. Las plicas se extienden hacia arriba y están en el lado derecho de la cabeza de la nota cuando la nota está debajo de la tercera línea de cualquier pentagrama.",
-             "subtitulo_1": "Silencios",
-             "texto_7": "La música no es música sin silencio. Los espacios de silencio en la música son tan importantes como las pausas al momento en que hablamos, es importante tener períodos de silencio después de las oraciones. (la voz) necesita silencios y descansos para permitir el acto fundamental de respirar. Al igual que los valores de las notas, de hecho, exactamente igual que los valores de las notas, existen valores de silencio. Simplemente los llamamos descansos.",
-             "dibujo_6":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen6.png?alt=media&token=65ad538c-f282-4440-ba7c-cc3ff2318074",
-             "texto_8": "De lo anterior se pueden interpretar una nota o silencio con la suma de otras, como se muestra a continuación",
-             "dibujo_7":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen7.png?alt=media&token=73528601-52b3-4eb2-9d44-90b272167641",
-             "ejercicio_3":"",
-             "subtitulo_2":"Punto de aumento",
-             "texto_9": "se coloca un punto de aumento a cualquier nota, la duración de esta aumentará a la mitad del valor original El punto de aumento funciona igual para los silencios, aumentando el valor del silencio a la mitad del original",
-             "dibujo_8":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen8.png?alt=media&token=ff5a9e82-c3e1-4d8b-b27f-8e89debe1b45",
-             "ejercicio_4":""
-          },
+            "texto_1":"Las figuras musicales son símbolos que representan la duración de las notas en una composición musical. Estas figuras son fundamentales para entender el ritmo de una pieza musical y cómo se organizan las notas en el tiempo. \n La figura musical más básica es la representación de la nota la cual puede tener diferentes figuras ya que cada una de ellas permite deducir el valor exacto en tiempo de un determinado sonido. \n", 
+            "dibujo_1":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen1.png?alt=media&token=0d912c69-53fe-4120-aead-bbc22acd4753", 
+            "texto_2":"Una nota completa se simboliza como un ovalo abierto. \n Una media nota es un ovalo abierto con un tallo unido hacia un lado de él. \n La nota de ¼ es un ovalo cerrado con un tallo. \n Una nota de 8 es un óvalo cerrado con un tallo y una bandera . \n Una nota de 16 es similar a una de 8 pero con dos banderas",
+            "dibujo_2":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen2.png?alt=media&token=03380eb6-52cf-4acb-9a24-36e228e2a5e3",
+            "texto_3": "La interpretación entre tiempos es la siguiente:",
+            "dibujo_3" : "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen3.png?alt=media&token=7208b910-9c3d-4139-b3c6-4f64027951a0",
+            "ejercicio_1":"",
+            "texto_4":"Con corcheas o semicorcheas es posible unir dos o más de estas notas. Esta alternativa es más cómoda de escribir",
+            "dibujo_4":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen4.png?alt=media&token=0bf060a7-58dd-409d-bf5c-c323dc296240",
+            "texto_5":"Como lo implican sus nombres en forma de fracción, los valores relativos (duraciones relativas) de las notas son: ",
+            "dibujo_5":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen5.png?alt=media&token=894a184f-acf9-4737-bfc9-96dfb2559a0a",
+            
+            "texto_6":"Las plicas se extienden hacia abajo y están en el lado izquierdo de la cabeza de la nota cuando la nota está sobre o por encima del tercera línea de cualquier personal. Las plicas se extienden hacia arriba y están en el lado derecho de la cabeza de la nota cuando la nota está debajo de la tercera línea de cualquier pentagrama.",
+            "subtitulo_1": "Silencios",
+            "texto_7": "La música no es música sin silencio. Los espacios de silencio en la música son tan importantes como las pausas al momento en que hablamos, es importante tener períodos de silencio después de las oraciones. (la voz) necesita silencios y descansos para permitir el acto fundamental de respirar. Al igual que los valores de las notas, de hecho, exactamente igual que los valores de las notas, existen valores de silencio. Simplemente los llamamos descansos.",
+            "dibujo_6":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen6.png?alt=media&token=65ad538c-f282-4440-ba7c-cc3ff2318074",
+            "texto_8": "De lo anterior se pueden interpretar una nota o silencio con la suma de otras, como se muestra a continuación",
+            "dibujo_7":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen7.png?alt=media&token=73528601-52b3-4eb2-9d44-90b272167641",
+            
+            "subtitulo_2":"Punto de aumento",
+            "texto_9": "se coloca un punto de aumento a cualquier nota, la duración de esta aumentará a la mitad del valor original El punto de aumento funciona igual para los silencios, aumentando el valor del silencio a la mitad del original",
+            "dibujo_8":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen8.png?alt=media&token=ff5a9e82-c3e1-4d8b-b27f-8e89debe1b45",
+            "ejercicio_4":"",
+            "video":{
+                "url":"https://www.youtube.com/embed/TEBMwBlckEI?si=k_tdXgSJtjzvZJX7",
+                "canal":"Mi Guitarra Electrica"
+            }
+        },
         "pentagrama" : {
             "titulo_1" : "Pentagrama",
             "texto_1":"Las partituras son el lenguaje escrito de la música, una representación visual de una composición musical que permite a los músicos leer, interpretar y ejecutar la música de manera precisa. \n Para escribir una partitura se utiliza el *pentagrama* el cual consiste en cinco líneas horizontales sobre las cuales se sobreponen las notas y silencios previamente vistos. Cada línea o espacio en el pentagrama es para una sola nota",
@@ -46,7 +50,11 @@
             "dibujo_3":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen11.png?alt=media&token=980b3ee4-038e-48cc-85cc-8a2b011c0fbf",
             "texto_4":"Las notas representan sonidos llamados tonos. Debido a que la música emplea un conjunto de tonos (que van de bajo a alto), el pentagrama actúa como un mapa para las notas, permitiéndonos escucharlas. La secuencia de las notas se lee de izquierda a derecha.",
             "dibujo_4":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen12.png?alt=media&token=b43fb025-db6a-4e9a-babd-234fd3fabed8",
-            "ejercicio_1":""
+            "ejercicio_1":"",
+            "video":{
+                "url":"https://www.youtube.com/embed/1qkHfkgYLh0?si=NQenC5VEZRzaf45w",
+                "canal":"Escuela de Musica Crooner"
+            }
         },
         "claves" : {
             "titulo_1" : "Claves",
@@ -58,7 +66,11 @@
             "dibujo_3":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen15.png?alt=media&token=7ccac725-b70e-4ee9-8c24-19b1395141bf",
             "texto_4":"La clave de alto (también llamada clave de C) funciona de la siguiente manera:",
             "dibujo_4":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen16.png?alt=media&token=3d50f048-a387-495d-98b5-d53a0dca7f1a",
-            "ejercicio_1":""
+            "ejercicio_1":"",
+            "video":{
+                "url":"https://www.youtube.com/embed/Y5DI2mi7tcU?si=KoYET9-qWQ1av1vS",
+                "canal":"Tu Nota"
+            }
         },
         "solfeo" : {
             "titulo_1" : "Solfeo",
@@ -75,10 +87,13 @@
             "ejercicio_1":"",
             "subtitulo_2": "Accidentales",
             "texto_5" : "Una alteración es un símbolo que sube o baja una nota. En la práctica, esto suele significar aumentar o bajando una nota blanca a la nota negra adyacente. \n Si levantamos una nota, utilizamos un signo sostenido: #. si bajamos una nota, usamos un signo bemol: b. \n Para cancelar o desactivar un sostenido o bemol anterior utilizamos un signo natural \n .En notación musical, el signo accidental se coloca a la izquierda de la cabeza de la nota. En tales notas, las palabras *bemol*, *sostenido* o *natural* van después del nombre de la nota.",
-            "dibujo_6" : "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen22.png?alt=media&token=1f6534ad-1d29-4b9e-83e3-cceb85bff061",
-            "ejercicio_2" :""
+            "dibujo_6" : "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen22.png?alt=media&token=1f6534ad-1d29-4b9e-83e3-cceb85bff061",   
+            "video":{
+                "url":"https://www.youtube.com/embed/9_NnmGVzDw8?si=HlwYd334isn8zPJd",
+                "canal":"David Palau"
+            }
         }
-      },
+    },
     "melodia":{
         "intervalos":{
             "titulo_1" : "Intervalos",
@@ -99,7 +114,11 @@
             "texto_8" : "2ª menor = 1 Semitono \n 3ª menor = 1 Tono + 1 Semitono \n 4ª Justa = 2 Tonos + 1 Semitono (igual que desde Do) \n 5ª Justa = 3 Tonos + 1 Semitono (igual que desde Do) \n 6ª menor = 4 Tonos \n 7ª menor = 5 Tonos 8ª \n Justa = 6 Tonos (igual que desde Do).",
             "ejercicio_1": "",
             "texto_9" : "Puedes ver que todos los intervalos menores tienen un semitono menos que sus respectivos mayores (por ejemplo, una 3ª Mayor tiene 2 Tonos mientras que una 3ª menor tiene 1 tono y 1 semitono). \n Por tanto, el esquema que se sigue para calificar un intervalo es el siguiente:", 
-            "dibujo_8" : "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen30.png?alt=media&token=abdf6d1e-0d4f-47e4-8836-1d26a89521b1"
+            "dibujo_8" : "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen30.png?alt=media&token=abdf6d1e-0d4f-47e4-8836-1d26a89521b1",
+            "video":{
+                "url":"https://www.youtube.com/embed/KbIRXKP6GfY?si=n-Alqsnkpn4Nke5R",
+                "canal":"Jaime Altozano"
+            }
              } ,
         "grados":{
             "titulo_1" : "Grados",
@@ -118,7 +137,11 @@
             "dibujo_5" : "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen35.png?alt=media&token=59f52d22-4b7e-415a-ab18-a2702b443330",
             "texto_7" : "El tercer grado (III) o Mediante, se llama así porque está a mitad de camino entre la tónica y la dominante. Gracias a él sabemos si una escala o acorde es mayor o menor. \n El sexto grado (VI) o Superdominante o Submediante es la raíz del relativo menor. Se llama submediante porque está a medio camino entre la subdominante y tónica. \n El séptimo grado (VII) es especial y te explico por qué. Si el séptimo grado se encuentra a una distancia de un semitono con respecto de la tónica se llama Sensible. Este grado crea una gran tensión y tiende a resolver hacia la tónica. \n Por ejemplo, en la escala mayor de Do el grado VII, que es Si (B), se llama sensible porque está a un semitono de la tónica, Do (C).",
             "dibujo_6" : "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen36.png?alt=media&token=dd7d751f-cdb2-4b1d-9af0-d5412f2c9cdb",
-            "ejercicio_1": ""
+            "ejercicio_1": "",
+            "video":{
+                "url":"https://www.youtube.com/embed/aQAQ6gpxrx8?si=MqK3gM1AbuFkINMR",
+                "canal":"Guitarrista Paso a Paso"
+            }
         }
     },
     "armonia":{
@@ -133,22 +156,38 @@
             "texto_4" : "Los intervalos que se encuentran en esta triada son una tercera menor, seguida por otra tercera menor. Por ejemplo, de Do a Mib hay una tercera menor, y de Mib a Solb, otra tercera menor. \n La triada aumentada esta formada con una primera, una tercera mayor y una quinta aumentada, de ahí el nombre de esa triada. Todas contadas a partir de la raíz, que es la nota que da el nombre al acorde. Esta triada se puede encontrar en el bIII grado de una escala menor armónica y de una escala menor melódica.",
             "dibujo_4" : "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen40.png?alt=media&token=59296093-b230-4950-b884-7ca6702a2604",
             "texto_5" : "Los intervalos que se encuentran en esta triada son una tercera mayor, seguida por otra tercera mayor. Por ejemplo, de Do a Mi hay una tercera mayor, y de Mi a Sol#, otra tercera mayor.",
-            "dibujo_5": "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen41.png?alt=media&token=69dbeb3d-f21f-4faf-ab4e-7ecca6940c25"
+            "dibujo_5": "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen41.png?alt=media&token=69dbeb3d-f21f-4faf-ab4e-7ecca6940c25",
+            "video":{
+                "url":"https://www.youtube.com/embed/tLkxCD58BO4?si=GgeIPXgEVN5zCmKI",
+                "canal":"Música con Andrés"
+            }
         },
         "acordes" : {
             "titulo_1" : "Acordes",
             "texto_1" : "Los acordes son un conjunto de notas ordenadas por terceras. Es decir, apilamos una tercera encima de otra. La nota más importante del acorde es la nota fundamental. Esta fundamental le dará nombre al acorde: un acorde de Re mayor (D en cifrado americano) se construye a partir de la nota Re como fundamental. Luego, al superponer una tercera sobre esta fundamental, obtenemos la tercera del acorde. Y al superponer una tercera sobre la tercera, obtenemos la quinta. Así, un acorde suele tener fundamental, tercera y quinta. \n La diferencia que marcará los distintos tipos de acorde (o especies), es justamente el tipo de intervalo: habrá algunos que tengan una tercera menor, otros una tercera mayor, otros una quinta disminuida, y así sucesivamente. Ya vamos a ello.",
-            "dibujo_1" : "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen42.png?alt=media&token=16e83a2f-c8fe-4969-beb6-56bde2c60de7"
+            "dibujo_1" : "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen42.png?alt=media&token=16e83a2f-c8fe-4969-beb6-56bde2c60de7",
+            "video":{
+                "url":"https://www.youtube.com/embed/YDX4xULlkwc?si=ZpT0934fB6oN4MzJ",
+                "canal":"Jaime Altozano"
+            }
         },
         "modos" : {
             "titulo_1" : "Modos",
             "texto_1" : "Los modos musicales son escalas y sistemas tonales que se utilizan en la música para crear diferentes atmósferas y emociones. Cada modo se basa en una escala diatónica, que es una secuencia específica de tonos y semitonos. Los modos se generan al comenzar y finalizar una escala diatónica en diferentes grados, lo que da como resultado siete modos diferentes. \n Los modos más comunes son los siguientes: \n Modo Jónico (o Iónico): Este modo se basa en la escala diatónica mayor y comienza en el primer grado. Es alegre y luminoso, y se usa ampliamente en la música popular y clásica occidental. \n Modo Dórico: Comienza en el segundo grado de la escala diatónica mayor. Tiene un carácter un tanto melancólico y se usa en géneros como el jazz y la música celta. \n Modo Frigio: Comienza en el tercer grado de la escala diatónica mayor. Tiene un carácter exótico y se usa en la música flamenca y algunas composiciones de rock y metal. \n Modo Lidio: Comienza en el cuarto grado de la escala diatónica mayor. Tiene un sonido brillante y se usa ocasionalmente en música jazz y clásica. \n Modo Mixolidio: Comienza en el quinto grado de la escala diatónica mayor. Tiene un carácter fuerte y se utiliza en géneros como el blues y el rock. \n Modo Eólico: Comienza en el sexto grado de la escala diatónica mayor. Es similar a una escala menor natural y se utiliza en música clásica, rock y otros estilos. \n Modo Locrio: Comienza en el séptimo grado de la escala diatónica mayor. Es el modo menos común y tiene un carácter disonante, por lo que se usa con poca frecuencia en la música moderna. \n Cada modo tiene un patrón de tonos y semitonos que le confiere un sonido único y distintivo. Los músicos y compositores utilizan los modos para crear diferentes atmósferas musicales y expresar una variedad de emociones en sus obras. Los modos también son importantes en la improvisación, especialmente en géneros como el jazz y la música étnica, donde los músicos exploran y utilizan estos patrones escalares para enriquecer sus interpretaciones.",
-            "ejercicio_1": ""
+            "ejercicio_1": "",
+            "video":{
+                "url":"https://www.youtube.com/embed/jla_UWGwtc0?si=07lyHk9BkZh6d5x-",
+                "canal":"Alberto Muitaro"
+            }
         },
         "circulo" : {
             "titulo_1" : "Círculo de Quintas",
             "texto_1": "El círculo de quintas es una visualización de todas las tonalidades mayores y menores. Las tonalidades mayores se encuentran en el círculo exterior y las tonalidades relativas menores en el círculo interior. Cada nombre dentro del círculo de quintas puede representar tanto una nota como un acorde. \n En el exterior del círculo están las armaduras de cada tonalidad. Las tonalidades mayores y las menores relativas comparten la misma armadura. Por ejemplo, las tonalidades de fa mayor y re menor tienen un bemol en su armadura. \n El círculo de quintas permite comprender visualmente la relación entre las tonalidades y los acordes. Por ejemplo, puedes utilizar el círculo de quintas para: \n Recordar las armaduras de clave. La parte superior del círculo muestra la tonalidad de do mayor sin sostenidos ni bemoles. Por cada paso en el sentido de las agujas del reloj se añade un sostenido (♯) a la armadura. Por cada paso en sentido contrario a las agujas del reloj se añade un bemol (♭) a la armadura. \n Componer música. La idea para una canción puede empezar con unos cuantos acordes que suenen bien juntos. Los tres acordes mayores y los tres acordes menores dentro de cualquier cuarto del círculo pertenecen a la misma tonalidad y, por lo tanto, suenan bien juntos. \n Transportar acordes. Los acordes de una canción pueden colocarse en el círculo de quintas y posteriormente transportarse moviendo el patrón de acordes alrededor del círculo. Por ejemplo, coloca los acordes de do, fa y sol en el círculo de quintas. El do está en el centro, el fa está un paso en sentido contrario a las agujas del reloj y el sol está un paso hacia el lado de las agujas del reloj. Al transportar a la mayor, los acordes son la, re y mi. \n En el sentido de las agujas del reloj, hay una quinta justa ascendente entre cada tonalidad. En el sentido contrario a las agujas del reloj, hay una quinta justa descendente entre cada tonalidad. Si empiezas en cualquier tonalidad y subes una quinta justa 12 veces, llegarás a la misma tonalidad.",
-            "dibujo_1":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen43.png?alt=media&token=d4dcf774-ef83-468a-b3fc-0bee6b8108d2"
+            "dibujo_1":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen43.png?alt=media&token=d4dcf774-ef83-468a-b3fc-0bee6b8108d2",
+            "video":{
+                "url":"https://www.youtube.com/embed/BRBTCIK_9_g?si=AOHvhfrMk_2WviAk",
+                "canal":"Jaime Altozano"
+            }
         }
     },
     "ritmo":{
@@ -172,14 +211,22 @@
             "subtitulo_4": "Compas de 3/4",
             "texto_8": "Por último, pero no por ello menos importante, tenemos el elegante compás de tres por cuatro. Este compás nos da tres tiempos o pulsos de negra por compás. Es decir, tres negras por compás. Es el compás del elegante vals; y de muchas canciones populares y pop. Si cuentas al rítmico de uno-dos-tres, uno-dos-tres; estás sintiendo el vaivén del compás de 3/4.",
             "dibujo_6":"https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen49.png?alt=media&token=675be700-0547-48eb-8f33-a115b1ad566c",
-            "ejercicio_1:":""
+            "ejercicio_1:":"",
+            "video":{
+                "url":"https://www.youtube.com/embed/faBivRMi2LY?si=l0hR3qn80GkToEPL",
+                "canal":"Jaime Altozano"
+            }
         },
         "ligaduras":{
             "titulo_1" : "Ligaduras",
             "texto_1": "Básicamente, la ligadura musical es cuando unimos 2 o más figuras musicales (iguales o diferentes) en el mismo sonido, de modo que sus duraciones se suman una a la otra. El músico sabe que al ver una ligadura, solo se toca la primera nota que genera el sonido, y la deja sonando hasta que acabe la ligadura. \n Para que pueda suceder esto es importante mencionar que debe ser una misma nota musical (sol + sol, re + re, etc.) o una misma superficie cuando hablamos de instrumentos percutivos (utilizaríamos un mismo tambor, platillo o elemento de percusión). Cabe mencionar que los silencios nunca se ligan, ya que en realidad un silencio es por definición la ausencia de una nota. \n Se sabe que la música mantiene una estrecha relación con la matemática, así que para hablar de ligaduras musicales necesitamos mencionar números. Por ejemplo, si ligamos una redonda con una blanca: una redonda dura 4 tiempos, y una blanca dura 2 tiempos. Es decir que si ligamos estas dos figuras, el tiempo en total que se mantiene sonando la nota son 6 tiempos. (4+2=6). \n Que un compás haya terminado no necesariamente significa que el sonido también deba finalizar. Cuando queremos que la última nota de un compás siga sonando hasta el siguiente compás, ligamos esa nota con la primera del próximo. Es incluso común que si queremos que una nota dure por mucho tiempo, la figura se ligue por 2 o más compases. \n La música es un vasto mundo por explorar, mientras más elementos conozcamos, mejor aprovecharemos la diversidad musical, o crearemos música más rica. La ligadura musical es tan solo uno de tantos elementos con los cuales podemos jugar para crear cosas interesantes.",
             "dibujo_1": "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen50.png?alt=media&token=9a872457-a56c-4efa-950b-1c195047524f",
             "texto_2": "Un empate sólo va de cabeza de nota a cabeza de nota de la misma nota. El arco del empate es siempre opuesto a la dirección del tallo. Como arriba, si la plica apunta hacia arriba (o si la plica apuntaría hacia arriba si la nota fuera tiene empate), el arco del empate está hacia abajo, etc. También encontrarás vínculos dentro de una sola medida. Con notas individuales en el compás, es menos probable que pueden ocurrir, pero puede suceder cuando la parte *&* del tiempo comienza el empate.",
-            "dibujo_2": "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen51.png?alt=media&token=202abe78-527c-4f80-b549-90f7164c203b"
+            "dibujo_2": "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen51.png?alt=media&token=202abe78-527c-4f80-b549-90f7164c203b",
+            "video":{
+                "url":"https://www.youtube.com/embed/-RDyEVbhFCQ?si=r9Mi97tLddE-oY8k",
+                "canal":"Profe Oscar Music"
+            }
         },
         "tiempos_compuestos":{
             "titulo_1" : "Teimpos Compuestos",
@@ -198,7 +245,11 @@
             "subtitulo_2": "Contratiempo",
             "texto_3":"En el contratiempo, como se ha explicado antes, ocurre que tenemos silencios en los tiempos fuertes, consiguiendo un sonido distinto.",
             "dibujo_2": "https://firebasestorage.googleapis.com/v0/b/musicademy-aaa17.appspot.com/o/im%C3%A1gen55.png?alt=media&token=2d998a67-6c84-40bf-81db-3582d9556574",
-            "texto_4":"1- Sincopa larga: \n El sonido sincopado dura 2 tiempos y comienza en tiempo débil del compás y se prolonga al tiempo fuerte, ahora vamos a usar el mismo ejemplo de antes. si observas, las dos primeras notas señaladas, verás que comienzan en el tiempo 2 (tiempo débil) y se prolonga al 3 (tiempo fuerte), por eso están sincopadas. \n 2- Sincopa breve: \n Suele durar 1 tiempo y como la larga, comienza en tiempo débil del compás y se prolonga sobre la parte fuerte del siguiente tiempo. \n 3- Nota a contratiempo larga: \n Se produce en tiempo débil del compás, mientras los tiempos débiles contiene un silencio. \n 4- Nota a contratiempo breve: \n Ocurre en la parte débil de un tiempo, por ejemplo cuando tenemos dos corcheas seguidas, la segunda nota va precedida y seguida de silencios. \n 5-La ligadura: \n Mediante una ligadura podemos acentuar los tiempos débiles de un compás y prolongarlo hacia el otro y caer sobre un tiempo fuerte. \n En definitiva, las notas a contratiempo pueden ser de muchos tipos al igual que la sincopa, lo que tienes que tener en cuenta es que una se produce en la parte débil del compás y pueden ir seguidas o precedidas de un silencio y la otra se produce en tiempo débil pero se alarga hasta un tiempo fuerte."
+            "texto_4":"1- Sincopa larga: \n El sonido sincopado dura 2 tiempos y comienza en tiempo débil del compás y se prolonga al tiempo fuerte, ahora vamos a usar el mismo ejemplo de antes. si observas, las dos primeras notas señaladas, verás que comienzan en el tiempo 2 (tiempo débil) y se prolonga al 3 (tiempo fuerte), por eso están sincopadas. \n 2- Sincopa breve: \n Suele durar 1 tiempo y como la larga, comienza en tiempo débil del compás y se prolonga sobre la parte fuerte del siguiente tiempo. \n 3- Nota a contratiempo larga: \n Se produce en tiempo débil del compás, mientras los tiempos débiles contiene un silencio. \n 4- Nota a contratiempo breve: \n Ocurre en la parte débil de un tiempo, por ejemplo cuando tenemos dos corcheas seguidas, la segunda nota va precedida y seguida de silencios. \n 5-La ligadura: \n Mediante una ligadura podemos acentuar los tiempos débiles de un compás y prolongarlo hacia el otro y caer sobre un tiempo fuerte. \n En definitiva, las notas a contratiempo pueden ser de muchos tipos al igual que la sincopa, lo que tienes que tener en cuenta es que una se produce en la parte débil del compás y pueden ir seguidas o precedidas de un silencio y la otra se produce en tiempo débil pero se alarga hasta un tiempo fuerte.",
+            "video":{
+                "url":"https://www.youtube.com/embed/Wo9KwLWVpyM?si=AQFCblrqFO_N1pji",
+                "canal":"Cresciente-Teoría Musical & Composición"
+            }
         } 
 
     }

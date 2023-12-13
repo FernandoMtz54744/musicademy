@@ -68,10 +68,21 @@ export default function TeoriaContenido() {
                         </div>
                 }else if(tipo === "ejercicio"){
                     return <Ejercicio key={i} setEjercicioState={setEjercicioState} ejercicioState={ejercicioState} titulo={teoria[submodulo][subtema]["titulo_1"]} subtema={subtema} submodulo={submodulo}/>
-                }else if(tipo === "titulo"){
+                }else if(tipo === "ti   tulo"){
                     return <h1 key={i}>{teoria[submodulo][subtema][etiqueta]}</h1>
+                }else if(tipo === "video"){
+                    return(
+                        <div className='video-container' key={i}>
+                            <iframe width="560" height="315" src={teoria[submodulo][subtema][etiqueta].url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                            <h4>Autor: {teoria[submodulo][subtema][etiqueta].canal}</h4>
+                        </div>
+                        )
+                }else if(tipo === "subtitulo"){
+                    return <h2 key={i}>{teoria[submodulo][subtema][etiqueta]}</h2>
+                }else if(tipo === "titulo"){
+                    return <h1 key={i}><center>{teoria[submodulo][subtema][etiqueta]}</center></h1>
                 }else{
-                    return <div key={i}>Etiqueta no encontrada</div>
+                    return <div key={i}>{etiqueta}</div>
                 }
             })}
 

@@ -47,7 +47,7 @@
 .teoria-contenido-button-container{
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -174,5 +174,18 @@
     padding: 0.5rem;
     border-radius: 10px;
     width: 8rem;
+    background-color: whitesmoke;
+}
+
+.video-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.partitura{
     background-color: whitesmoke;
 }
