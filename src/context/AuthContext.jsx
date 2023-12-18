@@ -31,6 +31,7 @@ export function AuthProvider({children}){
                     if(!docSnap.exists()){
                         setDoc(docRef, {}).then(()=>{
                             console.log("Colección creada para uid: " + currentUser.uid);
+                            
                         }).catch((error)=>{
                             console.log("Error al crear la colección", error);
                         })

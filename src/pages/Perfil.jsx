@@ -6,7 +6,7 @@ import EstadisticasTeoria from './estadisticas/EstadisticasTeoria'
 import EstadisticasPracticas from './estadisticas/EstadisticasPracticas'
 import EstadisticasMinijuegos from './estadisticas/EstadisticasMinijuegos'
 
-export default function Perfil({user, handleOnClick, estadisticaActual}) {
+export default function Perfil({user, handleOnClick, estadisticaActual, handleEditar}) {
   return (
     <div>
         <Header headerColor={"header-black"}/>
@@ -22,7 +22,7 @@ export default function Perfil({user, handleOnClick, estadisticaActual}) {
                     <p>Correo: {user.email}</p>
                     <p>Usuario: {user.displayName}</p>    
                     <div className='button-container-perfil'>
-                        <input className='input-button-pefil' type="submit" name='editar' value="Editar"/>
+                        <input className='input-button-pefil' type="submit" name='editar' value="Editar" onClick={handleEditar}/>
                     </div>
                 </form>
             </div>
