@@ -16,9 +16,16 @@ export default function RitmoSheet({data, rhythm}) {
         renderer.resize(1000, 200);
         var context = renderer.getContext();
         context.scale(2,2);
+        if(window.innerWidth <= 1000){
+            renderer.resize(500, 100);
+            context.scale(0.25,0.25)
+        }
 
         // Crea un Stave
-        const stave = new Vex.Stave(50, 0, 400);
+        let stave = new Vex.Stave(50, 0, 400);
+        if(window.innerWidth <= 900){
+            stave = new Vex.Stave(40, 0, 300);
+        }
         stave.options.line_config = [
             { visible: false },
             { visible: false },

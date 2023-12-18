@@ -110,3 +110,26 @@
     padding: 0.5rem;
     border-radius: 10px;
 }
+
+@media only screen and (max-width: 768px) {
+    .instrucciones-evaluacion h2{
+        font-size: medium;
+        padding: 1rem;
+    }
+
+    .evaluacion-container h2{
+        font-size: larger;
+    }
+
+    .opcion-container{
+        font-size: small;
+    }
+
+    .pregunta-text{
+        font-size: small;
+    }
+
+    .timer-container{
+        background-color: whitesmoke;
+    }
+}

@@ -211,7 +211,14 @@
         width: 80vw;
     }
 
-    .partitura{
-        width: 80vw;
+    .ejercicio-button-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ejercicio-button-container button{
+        margin-top: 10px;
     }
 }

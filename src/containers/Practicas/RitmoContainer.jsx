@@ -5,7 +5,7 @@ import Header from '../../pages/Header';
 import * as Tone from "tone"
 import { getTrueKeys } from '../../utils';
 import { db } from '../../firebase/firabase.config';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc } from 'firebase/firestore';
 import { useAuth } from '../../context/AuthContext';
 import manual from "../../res/manuales/Ritmo.pdf";
 
@@ -255,6 +255,56 @@ export default function RitmoContainer() {
         }
     }
 
+    const handleTouch = (e)=>{
+      const time = Tone.immediate();
+      const rhythmTemp = [...rhythm];
+        if(isPlaying){
+          if (timeReference.current === 0) {
+            const realTimeReference = metronomeBeatTime.current;
+            // setTimeReference(realTimeReference);
+            timeReference.current = realTimeReference;
+            if(time-realTimeReference < USER_PULSE_MARGIN){
+              rhythmTemp[0].tocado = "correcto";
+              rhythmTemp[0].punto = true;
+              console.log("Correcto con: " + (time-realTimeReference));
+            }else{
+              rhythmTemp[0].tocado = "incorrecto";
+              rhythmTemp[0].punto = true;
+              console.log("Incorrecto con: " + (time-realTimeReference));
+              setFails(fails => fails + 1);
+            }
+          }else{
+            let isCorrect = false;
+            let failsTemp = fails; 
+            let didntChangeIncorrect = true;
+            const userRythmMs = time - timeReference.current;
+            for (let i = 0; i < rhythm.length; i++){
+              if(rhythmTemp[i].tipo === "nota"){
+                if(userRythmMs >= rhythmTemp[i].segundo - USER_PULSE_MARGIN && userRythmMs <= rhythmTemp[i].segundo + USER_PULSE_MARGIN){
+                  isCorrect = true;
+                  rhythmTemp[i].tocado = "correcto";
+                  rhythmTemp[i].punto = true;
+                  break;
+                }else{
+                  if(rhythmTemp[i].tocado === "" && rhythmTemp[i].segundo < userRythmMs){ //Ya paso esta nota y es incorrecta
+                    rhythmTemp[i].tocado = "incorrecto";
+                    rhythmTemp[i].punto = true;
+                    failsTemp++;
+                    didntChangeIncorrect = false
+                  }
+                }
+              }
+            }
+            if(!isCorrect && didntChangeIncorrect){
+              failsTemp++;
+            }
+            setFails(failsTemp);
+            isCorrect?console.log("Correcto con: " + userRythmMs):console.log("Incorrecto con: " + userRythmMs);
+          }
+          setRhythm(rhythmTemp)
+        }
+    }
+
     const handleStart = ()=>{
       generateRhythmPattern();
       setData({...data, isStart:true});
@@ -277,7 +327,11 @@ export default function RitmoContainer() {
       //Actualiza los datos de handleOnKeydown cambia el tiempo de referencia
   useEffect(()=>{
     document.addEventListener("keydown",  handleOnKeydown);
-    return ()=>document.removeEventListener("keydown", handleOnKeydown)
+    document.addEventListener("touchstart", handleTouch);
+    return ()=>{
+      document.removeEventListener("keydown", handleOnKeydown)
+      document.removeEventListener("touchstart", handleTouch)
+    }
   }, [handleOnKeydown])
 
   useEffect(()=>{

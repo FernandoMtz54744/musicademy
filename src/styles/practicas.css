@@ -509,4 +509,49 @@
         padding: 10px;
         margin: 5px;
     }
+
+    .chord-page-container h1{
+        text-align: center;
+    }
+
+    .chord-page-container h2{
+        font-size: medium;
+    }
+
+    .buttonRitmoContainer{
+        padding: 10px;
+    }
+
+    .buttonRitmoContainer button{
+        font-size: large;
+    }
+
+    .chord-name{
+        font-size: 5rem;
+    }
+
+    .puntaje-container h3{
+        text-align: center;
+    }
+
+    .sheet{
+        width: 100%;
+    }
+
+    .sheetContainer h2{
+        font-size: medium;
+    }
+
+    .entered-configuration{
+        display: none;
+    }
+
+    .buttonRitmoContainer h2{
+        font-size: medium;
+    }
+
+    .circle-beat{
+        height: 35px;
+        width: 35px;
+    }
 }

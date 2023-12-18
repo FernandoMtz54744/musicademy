@@ -17,10 +17,16 @@ export default function Solfeo({notes, generateExcercise, handleBack, clef, toni
     renderer.resize(1000, 250);
     var context = renderer.getContext();
     context.scale(2,2);
-    // context.setViewBox(105, 20, 200, 200); 
+    if(window.innerWidth <= 900){
+      renderer.resize(500, 100);
+      context.scale(0.25,0.25)
+    }
 
     // // Crea un Stave
-    const stave = new Vex.Stave(50, 0, 400);
+    let stave = new Vex.Stave(50, 0, 400);
+    if(window.innerWidth <= 900){
+      stave = new Vex.Stave(150, 0, 300);
+    }
     stave.setClef(clef);
     stave.setKeySignature(tonic);
     stave.setContext(context).draw();

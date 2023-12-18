@@ -20,8 +20,16 @@ export default function Partitura({partitura}) {
         var context = renderer.getContext();
         context.scale(2,2);
 
+        if(window.innerWidth <= 768){
+            renderer.resize(200, 100);
+            context.scale(0.25,0.25)
+        }
+
         // Crea un Stave
-        const stave = new Vex.Stave(20, 0, 300 );
+        let stave = new Vex.Stave(10, 0, 300);
+        if(window.innerWidth <= 768){
+            stave = new Vex.Stave(10, 0, 180);
+        }
         stave.setClef(partitura.clave);
         stave.setKeySignature(partitura.escala);
         stave.setContext(context).draw();
