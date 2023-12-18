@@ -488,3 +488,25 @@
     align-items: center;
     font-size: small;
 }
+
+@media only screen and (max-width: 768px) {
+    .configuration-container{
+        flex-direction: column;
+        font-size: medium;
+        height: auto;
+    }
+
+    .inputConfig-container-group{
+        flex-direction: column;
+    }
+
+    .inputConfig-container .selectSubdivison, .inputConfig-container  option{
+        font-size: small;
+    }
+
+    .chord-button {
+        font-size: small;
+        padding: 10px;
+        margin: 5px;
+    }
+}

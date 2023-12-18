@@ -140,4 +140,36 @@
     path{
         display: none;
     }
+
+    .div-row{
+        display: flex;
+        flex-direction: column;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .div-table {
+        height: fit-content
+    }
+
+    .div-row p{
+        padding-bottom: 1rem;
+    }
+
+    .instrucciones-evaluacion h2{
+        font-size: medium;
+        padding: 1rem;
+    }
+
+    .evaluacion-container h2{
+        font-size: larger;
+    }
+
+    .opcion-container{
+        font-size: x-small;
+    }
+
+    .pregunta-text{
+        font-size: x-small;
+    }
 }

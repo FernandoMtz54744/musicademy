@@ -42,6 +42,8 @@
 .teoria-img-container img{
     width: 50vw;
     min-width: 300px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .teoria-contenido-button-container{
@@ -188,4 +190,28 @@
 
 .partitura{
     background-color: whitesmoke;
+}
+
+@media only screen and (max-width: 768px) {
+    .ejercicio-container h2{
+        font-size: large;
+    }
+
+    .ejercicio-button-state-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ejercicio-button-state-container button{
+        width: 90%;
+        margin-top: 1rem;
+    }
+
+    .video-container iframe{
+        width: 80vw;
+    }
+
+    .partitura{
+        width: 80vw;
+    }
 }

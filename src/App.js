@@ -16,6 +16,7 @@ import { AuthProvider } from './context/AuthContext';
 import Indice from './pages/Indice';
 import TeoriaContenido from './pages/TeoriaContenido';
 import EvaluationContainer from './containers/EvaluationContainer';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path='/Teoria/:submodulo/:subtema' element={<TeoriaContenido/>} />
           {/* Evaluacion */}
           <Route path='/Evaluaciones/:submodulo' element={<EvaluationContainer/>} />
+          <Route path='*' element={<NotFoundPage/>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
