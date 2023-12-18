@@ -474,11 +474,19 @@
 }
 
 .piano{
-    position: absolute;
+    /* position: absolute;
     top: 60vh;
-    opacity: 60%;
+    left: 35vw; */
+    align-self: center;
+    /* opacity: 60%; */
     list-style: none;
     display: flex;
+}
+
+.piano-continer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .text-piano{

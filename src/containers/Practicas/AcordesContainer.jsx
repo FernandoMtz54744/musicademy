@@ -147,7 +147,7 @@ export default function AcordesContainer() {
                         <Acorde chord={chord} generateChord={generateChord} handleBack={handleBack} result={result}/>
                         {result.isPlayingNote?(
                             <>
-                                <NoteDetector setFinalNote={setFinalNote} chromaticScale={chord.chromatic} virtualNote={virtualNote}/>
+                                <NoteDetector setFinalNote={setFinalNote} chromaticScale={chord.chromatic} virtualNote={virtualNote} instrumento={data.instrumento}/>
                                 {data.instrumento === "virtual" && (
                                 <InstrumentoVirtual setVirtualNote={setVirtualNote}/>
                             )}

@@ -209,7 +209,8 @@ export default function SolfeoContainer() {
                     {result.isPlayingNote?(
                         <>
                             <NoteDetector setFinalNote={setFinalNote} chromaticScale={excercise.solfeoNotes[result.notesPlayed.length].chromatic}
-                            virtualNote={virtualNote}/>
+                            virtualNote={virtualNote}
+                            instrumento={data.instrumento}/>
                             {data.instrumento === "virtual" && (
                                 <InstrumentoVirtual setVirtualNote={setVirtualNote}/>
                             )}

@@ -84,7 +84,7 @@ export default function InstrumentoVirtual({setVirtualNote}) {
     }, [])
 
   return isLoaded ? (
-    <div>
+    <div className='piano-continer'>
       <ul id="piano" className="piano">
         <div data-note="C4" className="key">
           <div data-note="C#4" className="black-key"><div className='text-piano'><p>Do#</p><p>[R]</p></div></div>

@@ -3,7 +3,7 @@ import FFT from 'fft.js';
 import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-export default function NoteDetector({chromaticScale, setFinalNote, virtualNote}){
+export default function NoteDetector({chromaticScale, setFinalNote, virtualNote, instrumento}){
 
   const [noteFFT, setNoteFFT] = useState({nota: "Silencio", repeticiones: 0}) //Nota obtenida por el método FFT Autocorrelation
   const [noteProgressDetector, setNoteProgressDetector] = useState({}); //Mantiene el historial de notas para obtener la nota final
@@ -31,6 +31,8 @@ export default function NoteDetector({chromaticScale, setFinalNote, virtualNote}
 
   //Función para la detección de notas
   const noteDetection = ()=>{
+      if(instrumento === "virtual")
+        return
       navigator.mediaDevices.getUserMedia({ audio: true }).then(function(mediaStream){  //Pide permiso de micrófono
       // Se vincula el nodo de entrada con el micrófono
       const audioContext = new AudioContext();
@@ -166,6 +168,7 @@ useEffect(()=>{
 },[]);
 
   return (
+    instrumento === "real" &&
     <div className='noteDetector-container'>
         {/* <div>Rep: {noteProgressDetector.repeticiones}</div> */}
         <CircularProgressbar value={noteProgressDetector.repeticiones} text={`${noteProgressDetector.note}`} 
