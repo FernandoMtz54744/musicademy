@@ -54,6 +54,7 @@ export default function SolfeoContainer() {
     const [result, setResult] = useState({isPlayingNote: true, notesPlayed: []}); //Maneja el resultado de las notas tocadas (por ejercicio)
     const NUMBER_OF_NOTES = 7;
     const TOTAL_OF_EXCERCISES = 10;
+    const [virtualNote, setVirtualNote] = useState(null);
 
     //Maneja el cambio de los inputs
     const handleChange = (e)=>{
@@ -207,9 +208,10 @@ export default function SolfeoContainer() {
                     notesPlayed = {result.notesPlayed}></SolfeoSheet>
                     {result.isPlayingNote?(
                         <>
-                            <NoteDetector setFinalNote={setFinalNote} chromaticScale={excercise.solfeoNotes[result.notesPlayed.length].chromatic}/>
+                            <NoteDetector setFinalNote={setFinalNote} chromaticScale={excercise.solfeoNotes[result.notesPlayed.length].chromatic}
+                            virtualNote={virtualNote}/>
                             {data.instrumento === "virtual" && (
-                                <InstrumentoVirtual/>
+                                <InstrumentoVirtual setVirtualNote={setVirtualNote}/>
                             )}
                         </>
                         ):(

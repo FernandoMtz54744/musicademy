@@ -7,7 +7,7 @@ import A4 from "../res/samples/A4.wav"
 
 
 
-export default function InstrumentoVirtual() {
+export default function InstrumentoVirtual({setVirtualNote}) {
     const [isLoaded, setIsLoaded] = useState(false);
     const isPlayingVInstrument = useRef(false);
     
@@ -29,28 +29,40 @@ export default function InstrumentoVirtual() {
             if(!isPlayingVInstrument.current){
                 const now = Tone.now();
                 if(e.keyCode === 68){
+                    setVirtualNote(261.626)
                     synth.triggerAttack("C4", now);
                 }else if(e.keyCode === 82){
+                    setVirtualNote(277.183)
                     synth.triggerAttack("C#4", now);  
                 }else if(e.keyCode === 70){
+                    setVirtualNote(293.665)
                     synth.triggerAttack("D4", now);
                 }else if(e.keyCode === 84){
+                    setVirtualNote(311.127)
                     synth.triggerAttack("D#4", now);
                 }else if(e.keyCode === 71){
+                    setVirtualNote(329.628)
                     synth.triggerAttack("E4", now);
                 }else if(e.keyCode === 72){
+                    setVirtualNote(349.228)
                     synth.triggerAttack("F4", now);
                 }else if(e.keyCode === 85){
+                    setVirtualNote(369.994)
                     synth.triggerAttack("F#4", now);
                 }else if(e.keyCode === 74){
+                    setVirtualNote(391.995)
                     synth.triggerAttack("G4", now);
                 }else if(e.keyCode === 73){
+                    setVirtualNote(415.305)
                     synth.triggerAttack("G#4", now);
                 }else if(e.keyCode === 75){
+                  setVirtualNote(440)
                     synth.triggerAttack("A4", now);
                 }else if(e.keyCode === 79){
+                    setVirtualNote(466.164)
                     synth.triggerAttack("A#4", now);
                 }else if(e.keyCode === 76){
+                    setVirtualNote(493.883)
                     synth.triggerAttack("B4", now);
                 }
                 isPlayingVInstrument.current = true;
@@ -61,6 +73,7 @@ export default function InstrumentoVirtual() {
             const now = Tone.now();
             synth.releaseAll(now);
             isPlayingVInstrument.current = false;
+            setVirtualNote(null)
         }
 
         document.addEventListener("keydown",  handleOnKeyDown);

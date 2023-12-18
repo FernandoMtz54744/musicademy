@@ -3,7 +3,7 @@ import FFT from 'fft.js';
 import { CircularProgressbar , buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-export default function NoteDetector({chromaticScale, setFinalNote}){
+export default function NoteDetector({chromaticScale, setFinalNote, virtualNote}){
 
   const [noteFFT, setNoteFFT] = useState({nota: "Silencio", repeticiones: 0}) //Nota obtenida por el método FFT Autocorrelation
   const [noteProgressDetector, setNoteProgressDetector] = useState({}); //Mantiene el historial de notas para obtener la nota final
@@ -22,6 +22,12 @@ export default function NoteDetector({chromaticScale, setFinalNote}){
   useEffect(()=>{
     chromatic.current = chromaticScale;
   }, [chromaticScale]);
+
+  useEffect(()=>{
+    if(virtualNote){
+      setFinalNote(noteFromPitch(virtualNote));
+    } 
+  },[virtualNote])
 
   //Función para la detección de notas
   const noteDetection = ()=>{

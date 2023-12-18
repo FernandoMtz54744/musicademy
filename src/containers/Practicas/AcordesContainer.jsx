@@ -39,6 +39,7 @@ export default function AcordesContainer() {
     const [excerciseControl, setExcerciseControl] = useState([]) //Controla el numero de ejercicios 
     const TOTAL_OF_EXCERCISES = 10;
     const PERMITED_ERRORS = 3;
+    const [virtualNote, setVirtualNote] = useState(null);
 
     //Valida que tipo de acordes se han seleccionado (checkbox)
     const handleChecked = (e)=>{
@@ -146,9 +147,9 @@ export default function AcordesContainer() {
                         <Acorde chord={chord} generateChord={generateChord} handleBack={handleBack} result={result}/>
                         {result.isPlayingNote?(
                             <>
-                                <NoteDetector setFinalNote={setFinalNote} chromaticScale={chord.chromatic}/>
+                                <NoteDetector setFinalNote={setFinalNote} chromaticScale={chord.chromatic} virtualNote={virtualNote}/>
                                 {data.instrumento === "virtual" && (
-                                <InstrumentoVirtual/>
+                                <InstrumentoVirtual setVirtualNote={setVirtualNote}/>
                             )}
                             </>
                         ):(
