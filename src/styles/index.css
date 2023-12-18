@@ -44,3 +44,27 @@
 .main-index-container img{
     height: 50vh;
 }
+
+@media only screen and (max-width: 768px) {
+    .texto-index-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+
+    .texto-index-container h1{
+        font-size: x-large;
+        text-align: center;
+    }
+
+    .main-index-container p{
+        font-size: large;
+        text-align: center;
+    }
+
+    .main-index-container img{
+        display: none;
+    }
+}

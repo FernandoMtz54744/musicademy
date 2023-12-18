@@ -121,3 +121,22 @@ body{
 .logo{
     height: 50px;
 }
+
+@media only screen and (max-width: 768px) {
+    .header{
+        font-size: smaller;
+    }
+
+    .header a{
+        padding: 0px;
+        padding-right: 10px;
+    }
+
+    img{
+        width: 100px;
+    }
+
+    .user-name-container img{
+        display: none;
+    }
+}

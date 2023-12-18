@@ -132,3 +132,25 @@
     color: #ff1744;
     min-height: 2rem;
 }
+
+@media only screen and (max-width: 768px) {
+    .form-container-auth{
+        width: 90vw;
+    }
+
+    .form-auth{
+        width: 90%;
+    }
+
+    .main-auth{
+        width: 100vw;
+    }
+
+    .form-container-auth > h1{
+        display: none;
+    }
+
+    .google-button img{
+        width: 40px;
+    }
+}

@@ -120,3 +120,24 @@
 .teoria-button:hover{
     background-color: #1025EA;
 }
+
+@media only screen and (max-width: 768px) {
+    .main-modulos{
+       flex-direction: column;
+       height: auto;
+    }
+
+    .modulo-card{
+        width: 60vw;
+        height: 200px;
+        margin-bottom: 2rem;
+    }
+
+    h1{
+        font-size: larger;
+    }
+
+    path{
+        display: none;
+    }
+}
