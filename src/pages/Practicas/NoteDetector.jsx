@@ -26,6 +26,8 @@ export default function NoteDetector({chromaticScale, setFinalNote, virtualNote,
   useEffect(()=>{
     if(virtualNote){
       setFinalNote(noteFromPitch(virtualNote));
+    }else{
+      setFinalNote("");
     } 
   },[virtualNote])
 

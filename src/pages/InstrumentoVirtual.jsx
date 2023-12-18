@@ -70,10 +70,10 @@ export default function InstrumentoVirtual({setVirtualNote}) {
         }
         
         const handleKeyUp = (e)=>{
+            setVirtualNote(null);
             const now = Tone.now();
             synth.releaseAll(now);
             isPlayingVInstrument.current = false;
-            setVirtualNote(null)
         }
 
         document.addEventListener("keydown",  handleOnKeyDown);
