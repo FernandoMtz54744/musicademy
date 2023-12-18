@@ -23,7 +23,6 @@ export default function EstadisticasTeoria() {
       armonia: 1,
       ritmo: 1
     }
- 
 
     useEffect(()=>{
         const getEstadisticas = async ()=>{
@@ -127,7 +126,7 @@ const getTiempoTotal = ()=>{
                         ["Armonia", (estadisticas["armonia"]?.tiempo || 0), "#311b92"],
                         ["Ritmo", (estadisticas["ritmo"]?.tiempo || 0),"#00c853"]]}
                         options={options}
-                        width={500}
+                        width={window.innerWidth >=500?500:300}
                     />
             </div>
         </div>
@@ -147,7 +146,7 @@ const getTiempoTotal = ()=>{
                         ["Armonia", (estadisticas["armonia"]?.ejercicios || 0), "#311b92"],
                         ["Ritmo", (estadisticas["ritmo"]?.ejercicios || 0), "#00c853"]]}
                         options={options}
-                        width={500}
+                        width={window.innerWidth >=500?500:300}
                     />
         </div>
     </div>

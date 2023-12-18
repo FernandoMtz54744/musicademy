@@ -116,7 +116,7 @@ export default function EstadisticasEvaluacion() {
                         ["Armonia", (estadisticaEvaluacion["armonia"]?.totalTiempo || 0), "#311b92"],
                         ["Ritmo", (estadisticaEvaluacion["ritmo"]?.totalTiempo || 0), "#00c853"]]}
                         options={options}
-                        width={500}
+                        width={window.innerWidth >=500?500:300}
                     />
             </div>
         </div>
@@ -136,10 +136,10 @@ export default function EstadisticasEvaluacion() {
                         ["Armonia", (estadisticaEvaluacion["armonia"]?.totalCorrectas || 0),(estadisticaEvaluacion["armonia"]?.totalIncorrectas || 0)],
                         ["Ritmo", (estadisticaEvaluacion["ritmo"]?.totalCorrectas || 0),(estadisticaEvaluacion["ritmo"]?.totalIncorrectas || 0)]]}
                         options={options}
-                        width={500}
+                        width={window.innerWidth >=500?500:250}
                     />
             </div>
         </div>
     </div>
   )
-}
+}   

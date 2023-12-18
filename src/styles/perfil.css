@@ -178,3 +178,43 @@
 .grafica--bar-container{
     width: 40rem;
 }
+
+@media only screen and (max-width: 768px) {
+    .form-container-perfil{
+        flex-direction: column;
+    }
+
+    .perfil-form, .input-button-pefil{
+        font-size: small;
+    }
+
+    .button-container-perfil{
+        justify-content: center;
+    }
+
+    .input-button-pefil{
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .main-perfil h1{
+        font-size: medium;
+        text-align: center;
+    }
+
+    .module-select-container div{
+        font-size: small;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .estadistica-container{
+        flex-direction: column;
+    }
+
+    .grafica--bar-container{
+        width: 80%;
+        margin: 10px 0 10px 0;
+        text-align: center;
+    }
+}
