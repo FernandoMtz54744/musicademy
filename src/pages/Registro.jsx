@@ -11,7 +11,7 @@ export default function Registro({data, handleChange, handleRegister, error}) {
       <header className='header header-black'>
         <img src={logo} className="logo" alt='logo'/>
         <div className='header-links'>
-          <Link>Acerca de</Link>
+          <Link to="/acerca">Acerca de</Link>
           <Link to="/">Inicio</Link>
           <Link to="/Login">Login</Link>
           <Link to={manual} target="_blank">Manual</Link>

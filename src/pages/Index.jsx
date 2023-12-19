@@ -11,7 +11,7 @@ export default function Index() {
       <header className='header header-black'>
         <img src={logo} className="logo" alt='logo'/>
         <div className='header-links'>
-          <Link>Acerca de</Link>
+          <Link to="/acerca">Acerca de</Link>
           <Link to="/Registro">Registro</Link>
           <Link to="/Login">Login</Link>
         </div>

@@ -137,10 +137,6 @@
         font-size: larger;
     }
 
-    footer path{
-        display: none;
-    }
-
     .div-row{
         display: flex;
         flex-direction: column;
@@ -154,5 +150,17 @@
 
     .div-row p{
         padding-bottom: 1rem;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    footer path{
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 580px) {
+    footer path{
+        display: none;
     }
 }

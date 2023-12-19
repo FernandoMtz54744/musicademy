@@ -179,6 +179,8 @@
     width: 40rem;
 }
 
+
+
 @media only screen and (max-width: 768px) {
     .form-container-perfil{
         flex-direction: column;

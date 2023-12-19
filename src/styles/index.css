@@ -45,6 +45,50 @@
     height: 50vh;
 }
 
+.acerca-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+}
+
+.acerca-container h1{
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.acerca-container h2{
+    text-align: center;
+}
+
+.acerca-container p{
+    margin-bottom: 1rem;
+    width: 80vw;
+}
+
+.acerca-teoria{
+    border: 3px solid var(--teoria-color);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 10px 10px 0px 2px var(--teoria-color);
+    margin-bottom: 5rem;
+}
+
+.acerca-practicas{
+    border: 3px solid var(--practicas-color);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 10px 10px 0px 2px var(--practicas-color);
+}
+
+.acerca-evaluacion{
+    border: 3px solid var(--evaluaciones-color);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 10px 10px 0px 2px var(--evaluaciones-color);
+}
+
 @media only screen and (max-width: 768px) {
     .texto-index-container{
         display: flex;

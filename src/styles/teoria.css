@@ -221,4 +221,9 @@
     .ejercicio-button-container button{
         margin-top: 10px;
     }
+
+    .timer-container-teoria{
+        font-size: medium;
+        width: fit-content;
+    }
 }

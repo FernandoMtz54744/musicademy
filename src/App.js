@@ -17,6 +17,7 @@ import Indice from './pages/Indice';
 import TeoriaContenido from './pages/TeoriaContenido';
 import EvaluationContainer from './containers/EvaluationContainer';
 import NotFoundPage from './pages/NotFoundPage';
+import Acerca from './pages/Acerca';
 
 function App() {
   return (
@@ -32,7 +33,8 @@ function App() {
           <Route path='/Practicas' element={<Practicas/>}/>
           <Route path='/Evaluaciones' element={<Evaluaciones/>}/>
           <Route path='/Minijuegos' element={<Minijuegos/>}/>
-          {/* Practicas */}
+          <Route path='/acerca' element={<Acerca/>} />
+           {/* Practicas */}
           <Route path='/Practicas/Ritmo' element={<RitmoContainer/>}/>
           <Route path='/Practicas/Solfeo' element={<SolfeoContainer/>}/>
           <Route path='/Practicas/Melodia' element={<Melodias/>}/>
