@@ -153,4 +153,11 @@
     .google-button img{
         width: 40px;
     }
+
+    .header-links a{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
 }
