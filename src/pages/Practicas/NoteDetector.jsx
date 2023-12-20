@@ -9,7 +9,7 @@ export default function NoteDetector({chromaticScale, setFinalNote, virtualNote,
   const [noteProgressDetector, setNoteProgressDetector] = useState({}); //Mantiene el historial de notas para obtener la nota final
   const intervals = useRef([]); //Controla los ID's de los setInterval creados para ser detenidos
   const streams = useRef([]); //Controla los stream de audios creados para ser cerrados
-  const numberOfRepetitions = 15; //Numero de detección de la misma nota para determinar que es la nota final
+  const numberOfRepetitions = 12; //Numero de detección de la misma nota para determinar que es la nota final
   const chromatic = useRef([]);
   const allowDetection = useRef(true); //Control para no detectar por notas hasta que vuelva estado a silencio
 

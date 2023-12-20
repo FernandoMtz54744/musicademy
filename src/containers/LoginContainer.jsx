@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Login from '../pages/Login'
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 
 export default function LoginContainer() {
@@ -25,13 +26,16 @@ export default function LoginContainer() {
         navigate("/Modulos");
       }else{
         setError("Verifique su email")
+        toast.error("Verifique su email")
       }
     }).catch((error)=>{
       console.log(error);
       if(error.code === "auth/invalid-email"){
         setError("Email no válido");
+        toast.error("Email no válido")
       }else if(error.code === "auth/invalid-login-credentials"){  
         setError("Email o contraseña incorrectos")
+        toast.error("Email o contraseña incorrectos")
       }
     });
   }

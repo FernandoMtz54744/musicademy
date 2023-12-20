@@ -10,6 +10,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase/firabase.config';
 import { useAuth } from '../../context/AuthContext';
 import manual from "../../res/manuales/Acordes.pdf";
+import toast from 'react-hot-toast';
 
 export default function AcordesContainer() {
     const usuarioContext = useAuth();
@@ -55,6 +56,10 @@ export default function AcordesContainer() {
 
     //Maneja el evento de click en el botón iniciar
     const handleStart = ()=>{
+        if(getTrueKeys(data.acordes).length === 0){
+            toast.error("Debe seleccionar al menos un tipo de acorde");
+            return 
+        }
         setData({...data, isStart:true})
         generateChord();
     }
@@ -128,6 +133,7 @@ export default function AcordesContainer() {
             notasIncorrectas: excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesWrong, 0)
         }).then(()=>{
             console.log("Datos agregados");
+            toast.success("Práctica guardada")
         }).catch((error)=>{
             console.log("Error al agregar datos", error);
         })

@@ -18,10 +18,12 @@ import TeoriaContenido from './pages/TeoriaContenido';
 import EvaluationContainer from './containers/EvaluationContainer';
 import NotFoundPage from './pages/NotFoundPage';
 import Acerca from './pages/Acerca';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <AuthProvider>
+      <Toaster />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Index/>}/>

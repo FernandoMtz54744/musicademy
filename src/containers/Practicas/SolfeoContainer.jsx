@@ -11,6 +11,7 @@ import { db } from '../../firebase/firabase.config';
 import { addDoc, collection } from 'firebase/firestore';
 import { useAuth } from '../../context/AuthContext';
 import manual from "../../res/manuales/Solfeo.pdf";
+import toast from 'react-hot-toast';
 
 export default function SolfeoContainer() {
     
@@ -77,6 +78,13 @@ export default function SolfeoContainer() {
             const toggleData = !data.alteraciones[buttonName];
             setData({...data, alteraciones:{...data.alteraciones, [buttonName]: toggleData}});
         }else if(buttonName === "start"){
+            if(getTrueKeys(data.claves).length ===0){
+                toast.error("Debe seleccional al menos una clave")
+                return
+            }else if(data.modo ==="escalas" && getTrueKeys(data.escalas).length === 0){
+                toast.error("Debe seleccionar al menos una escala")
+                return
+            }
             setData({...data, isStart:true})
             generateExcercise();
         }else{
@@ -188,6 +196,7 @@ export default function SolfeoContainer() {
             notasIncorrectas: excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesWrong, 0)
         }).then(()=>{
             console.log("Datos agregados");
+            toast.success("Práctica guardada")
         }).catch((error)=>{
             console.log("Error al agregar datos", error);
         })

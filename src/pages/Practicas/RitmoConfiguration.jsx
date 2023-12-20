@@ -54,7 +54,7 @@ export default function RitmoConfiguration({data, handleChange, handleOnClick, h
                 
                 <div className='inputConfig-container'>
                   <p>Compases:</p>
-                  <input type="number" name='compases' id='compases' min="2" max="6" value={data.compases} onChange={handleChange}/>
+                  <input type="number" name='compases' id='compases' min="1" max="4" value={data.compases} onChange={handleChange}/>
                 </div>
                 
                 <div className='configurationButtonContainer'>

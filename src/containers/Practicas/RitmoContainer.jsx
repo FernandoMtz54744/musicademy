@@ -8,6 +8,7 @@ import { db } from '../../firebase/firabase.config';
 import { addDoc, collection, doc } from 'firebase/firestore';
 import { useAuth } from '../../context/AuthContext';
 import manual from "../../res/manuales/Ritmo.pdf";
+import toast from 'react-hot-toast';
 
 export default function RitmoContainer() {
 
@@ -185,7 +186,7 @@ export default function RitmoContainer() {
           numericRhythm.push(...rhythmByCompass)
           numericRhythm.push(-1)
         }else{//No hay se puede generar un patrón ritmico con los parámetros del usuario
-          break;
+          return false;
         }
       }
       numericRhythm.pop();//Eliminar el ultimo -1
@@ -203,6 +204,7 @@ export default function RitmoContainer() {
       setIsPlaying(true);
       setExcerciseControl([...excerciseControl, {number: excerciseControl.length+1, wasCorrect: false, totalNotesCorrect: 0, totalNotesWrong: 0}])
       setFails(0);
+      return true;
     }
 
     const handleOnKeydown = (e)=>{
@@ -306,8 +308,22 @@ export default function RitmoContainer() {
     }
 
     const handleStart = ()=>{
-      generateRhythmPattern();
-      setData({...data, isStart:true});
+      if(getTrueKeys(data.figuras).length === 0){
+        toast.error("Debe seleccionar al menos una figura musical");
+        return
+      }else if(data.compases > 4 || data.compases < 1){
+        toast.error("Compas no valido")
+        return;
+      }else if(data.tempo < 40 || data.tempo > 200){
+        toast.error("Tempo no válido")
+        return;
+      }
+
+      if(generateRhythmPattern()){
+        setData({...data, isStart:true});
+      }else{
+        toast.error("No se pudo generar una práctica con los datos ingresados")
+      }
     }
 
     const handleBack = ()=>{
@@ -349,6 +365,7 @@ export default function RitmoContainer() {
         notasIncorrectas: excerciseControl.reduce((cantidad, current) => cantidad+current.totalNotesWrong, 0)
     }).then(()=>{
         console.log("Datos agregados");
+        toast.success("Práctica guardada")
     }).catch((error)=>{
         console.log("Error al agregar datos", error);
     })

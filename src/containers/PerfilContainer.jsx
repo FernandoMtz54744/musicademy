@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Perfil from '../pages/Perfil'
 import { useAuth } from '../context/AuthContext'
 import { updateProfile } from 'firebase/auth';
+import toast from 'react-hot-toast';
 
 export default function PerfilContainer() {
   const auth = useAuth();
@@ -26,15 +27,19 @@ export default function PerfilContainer() {
         displayName: data.displayName
       }).then(()=>{
         console.log("DisplayName actualizado");
+        toast.success("Nombre de usuario actualizado");
         if(data.password!="password"){
           auth.user.updatePassword(data.password).then(()=>{
             console.log("Password actualizada");
+            toast.success("Contraseña actualizada")
           }).catch((error)=>{
             console.log("Error al actualizar password", error);
+            toast.error("Error al actualizar contraseña")
           });
         }
       }).catch((error)=>{
         console.log("Error al actualizar displayName", error);
+        toast.error("Error al actualizar nombre de usuario");
       })
       setEditState("mostrando");
     }
