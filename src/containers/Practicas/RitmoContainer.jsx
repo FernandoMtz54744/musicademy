@@ -33,7 +33,7 @@ export default function RitmoContainer() {
     const [rhythm, setRhythm] = useState([{tipo: "", figura:0, segundo:0, tocado:"", punto: true}]); //Maneja todo el ritmo del ejercicio
     const [isPlaying, setIsPlaying] = useState(true);
     const [fails, setFails] = useState(0);
-    const NUMBER_OF_EXCERCISES = 10;
+    const NUMBER_OF_EXCERCISES = 5;
 
     //Iniciar el metronomo al mostrar formulario y al cambiar datos [tempo, signatura y subdivisión]
     useEffect(()=>{

@@ -38,7 +38,7 @@ export default function AcordesContainer() {
     const [finalNote, setFinalNote] = useState(); //Resultado de la nota tocada
     const [result, setResult] = useState({notesPlayed: [], isPlayingNote: true}); //Resultado de las notas tocadas
     const [excerciseControl, setExcerciseControl] = useState([]) //Controla el numero de ejercicios 
-    const TOTAL_OF_EXCERCISES = 10;
+    const TOTAL_OF_EXCERCISES = 5;
     const PERMITED_ERRORS = 3;
     const [virtualNote, setVirtualNote] = useState(null);
 

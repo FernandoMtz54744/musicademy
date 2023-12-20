@@ -54,7 +54,7 @@ export default function SolfeoContainer() {
     const [excerciseControl, setExcerciseControl] = useState([]) //Controla el numero de ejercicios 
     const [result, setResult] = useState({isPlayingNote: true, notesPlayed: []}); //Maneja el resultado de las notas tocadas (por ejercicio)
     const NUMBER_OF_NOTES = 7;
-    const TOTAL_OF_EXCERCISES = 10;
+    const TOTAL_OF_EXCERCISES = 5;
     const [virtualNote, setVirtualNote] = useState(null);
 
     //Maneja el cambio de los inputs
