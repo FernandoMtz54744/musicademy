@@ -210,7 +210,7 @@ export default function SolfeoContainer() {
             {excerciseControl.length <= TOTAL_OF_EXCERCISES?(
                 <>
                     <div className='excercise-counter-container'>
-                        <h4>Ejercicio {excerciseControl.length} de 10</h4>
+                        <h4>Ejercicio {excerciseControl.length} de {TOTAL_OF_EXCERCISES}</h4>
                     </div>
                     <SolfeoSheet notes={getNotesFromSolfeoNotes(excercise.solfeoNotes)} clef={excercise.clef} 
                     tonic={excercise.tonic} generateExcercise={generateExcercise} handleBack={handleBack}
